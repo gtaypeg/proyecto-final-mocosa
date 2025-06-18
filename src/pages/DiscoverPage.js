@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 const Container = styled.div`
     display: flex;
@@ -8,148 +9,100 @@ const Container = styled.div`
     min-height: 100vh;
     max-width: 480px;
     margin: 0 auto;
-    background-color: #f8f9fa;
+    background: linear-gradient(
+        135deg,
+        ${props => props.theme.colors.background} 0%,
+        ${props => props.theme.colors.backgroundDark} 100%
+    );
     position: relative;
+    border-radius: ${props => props.theme.borderRadius["2xl"]};
+    box-shadow: ${props => props.theme.colors.shadow};
+    overflow: hidden;
 `;
 
 const Header = styled.div`
-    padding: 20px;
-    background-color: white;
+    padding: ${props => props.theme.spacing["2xl"]} ${props => props.theme.spacing.lg} ${props => props.theme.spacing.lg};
+    background: ${props => props.theme.colors.surface};
     position: relative;
+    border-radius: ${props => props.theme.borderRadius["2xl"]} ${props => props.theme.borderRadius["2xl"]} 0 0;
+
+    &::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, ${props => props.theme.colors.border}, transparent);
+    }
+`;
+
+const HeaderContent = styled.div`
+    text-align: center;
 `;
 
 const Title = styled.h1`
-    font-size: 24px;
-    font-weight: 600;
-    color: #333;
+    font-size: ${props => props.theme.fontSizes["3xl"]};
+    font-weight: 700;
+    background: ${props => props.theme.colors.primary};
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     margin: 0;
+    font-family: ${props => props.theme.fonts.display};
+    letter-spacing: -0.02em;
 `;
 
-const SearchContainer = styled.div`
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: 20px;
-`;
-
-const SearchBar = styled.div`
-    flex: 1;
-    display: flex;
-    align-items: center;
-    background-color: #f0f0f0;
-    border-radius: 25px;
-    padding: 12px 16px;
-    gap: 12px;
-    border: 2px solid #e0e0e0;
-`;
-
-const SearchIcon = styled.div`
-    width: 20px;
-    height: 20px;
-    color: #666;
-`;
-
-const SearchInput = styled.input`
-    flex: 1;
-    border: none;
-    background: none;
-    outline: none;
-    font-size: 16px;
-    color: #333;
-
-    &::placeholder {
-        color: #999;
-    }
-`;
-
-const SearchButton = styled.button`
-    background: linear-gradient(135deg, #4ade80, #a855f7);
-    color: white;
-    border: none;
-    border-radius: 20px;
-    padding: 12px 24px;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease;
-
-    &:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 4px 8px rgba(139, 92, 246, 0.3);
-    }
-`;
-
-const FilterButton = styled.button`
-    background: white;
-    border: 2px solid #e0e0e0;
-    border-radius: 12px;
-    padding: 12px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease;
-
-    &:hover {
-        border-color: #4ade80;
-    }
+const Subtitle = styled.p`
+    color: ${props => props.theme.colors.textLight};
+    font-size: ${props => props.theme.fontSizes.base};
+    margin: ${props => props.theme.spacing.sm} 0 0 0;
+    font-weight: 400;
 `;
 
 const Main = styled.div`
-    padding: 24px 20px;
+    padding: ${props => props.theme.spacing.xl} ${props => props.theme.spacing.lg};
     flex: 1;
+    background: ${props => props.theme.colors.background};
 `;
 
 const CardGrid = styled.div`
     display: grid;
-    gap: 16px;
+    gap: ${props => props.theme.spacing.lg};
     grid-template-columns: 1fr;
 `;
 
-const LargeCard = styled.div`
+const Card = styled(motion.div)`
     position: relative;
-    height: 240px;
-    border-radius: 16px;
+    height: 280px;
+    border-radius: ${props => props.theme.borderRadius["2xl"]};
     overflow: hidden;
     cursor: pointer;
-    transition: all 0.3s ease;
+    background: ${props => props.theme.colors.surface};
+    box-shadow: ${props => props.theme.colors.shadow};
+    border: 1px solid ${props => props.theme.colors.border};
+    transition: ${props => props.theme.transitions.slow};
+
+    &:hover {
+        transform: translateY(-8px);
+        box-shadow: ${props => props.theme.colors.shadowHover};
+    }
+`;
+
+const CardBackground = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background-image: url(${props => props.src});
     background-size: cover;
     background-position: center;
+    transition: ${props => props.theme.transitions.slow};
 
-    &:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    ${Card}:hover & {
+        transform: scale(1.05);
     }
-`;
-
-const SmallCardsContainer = styled.div`
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin-top: 16px;
-`;
-
-const SmallCard = styled.div`
-    position: relative;
-    height: 140px;
-    border-radius: 16px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: all 0.3s ease;
-
-    &:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    }
-`;
-
-const DiabeticsCard = styled(SmallCard)`
-    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
-`;
-
-const BothCard = styled(SmallCard)`
-    background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
 `;
 
 const CardOverlay = styled.div`
@@ -158,120 +111,267 @@ const CardOverlay = styled.div`
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.3);
+    background: linear-gradient(
+        135deg,
+        rgba(102, 126, 234, 0.8) 0%,
+        rgba(118, 75, 162, 0.6) 50%,
+        rgba(76, 99, 210, 0.8) 100%
+    );
     display: flex;
-    align-items: flex-end;
-    padding: 20px;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: ${props => props.theme.spacing.xl};
+    backdrop-filter: blur(2px);
+`;
+
+const CardHeader = styled.div`
+    display: flex;
+    align-items: center;
+    gap: ${props => props.theme.spacing.md};
+`;
+
+const CardIcon = styled.div`
+    width: 60px;
+    height: 60px;
+    background: ${props => props.theme.colors.glass};
+    backdrop-filter: blur(20px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: ${props => props.theme.borderRadius.xl};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+
+    svg {
+        width: 28px;
+        height: 28px;
+    }
+`;
+
+const CardContent = styled.div`
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 `;
 
 const CardTitle = styled.h2`
     color: white;
-    font-size: 24px;
+    font-size: ${props => props.theme.fontSizes["3xl"]};
     font-weight: 700;
-    margin: 0;
+    margin: 0 0 ${props => props.theme.spacing.sm} 0;
+    font-family: ${props => props.theme.fonts.display};
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    letter-spacing: -0.02em;
 `;
 
-const SmallCardTitle = styled.h3`
+const CardDescription = styled.p`
+    color: rgba(255, 255, 255, 0.9);
+    font-size: ${props => props.theme.fontSizes.base};
+    margin: 0;
+    line-height: 1.5;
+    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+`;
+
+const StatsContainer = styled.div`
+    display: flex;
+    gap: ${props => props.theme.spacing.md};
+    margin-top: ${props => props.theme.spacing.md};
+`;
+
+const StatItem = styled.div`
+    background: ${props => props.theme.colors.glassDark};
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: ${props => props.theme.borderRadius.md};
+    padding: ${props => props.theme.spacing.sm} ${props => props.theme.spacing.md};
     color: white;
-    font-size: 18px;
-    font-weight: 600;
-    margin: 0;
+    font-size: ${props => props.theme.fontSizes.sm};
+    font-weight: 500;
     text-align: center;
+    min-width: 60px;
+
+    .number {
+        display: block;
+        font-size: ${props => props.theme.fontSizes.lg};
+        font-weight: 700;
+        margin-bottom: ${props => props.theme.spacing.xs};
+    }
 `;
 
-const HeaderContent = styled.div`
-    text-align: center;
-    margin-top: 20px;
+const FloatingElements = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    overflow: hidden;
 `;
 
-
-const PlanTitle = styled.h2`
-    font-size: 20px;
-    font-weight: 600;
-    color: #333;
-    margin: 15px 0 5px 0;
+const FloatingShape = styled(motion.div)`
+    position: absolute;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    backdrop-filter: blur(10px);
 `;
 
 const DiscoverPage = () => {
     const navigate = useNavigate();
 
-      const handleCardClick = (type) => {
-    console.log(`Selected: ${type}`);
-    if (type === "Hipertenso") {
-      navigate("/category/hipertenso");
-    } else if (type === "Diabeticos") {
-      navigate("/category/diabeticos");
-    } else if (type === "Ambas") {
-      navigate("/category/ambas");
-    }
-  };
+    const handleCardClick = (type) => {
+        console.log(`Selected: ${type}`);
+        if (type === "Hipertenso") {
+            navigate("/category/hipertenso");
+        } else if (type === "Diabeticos") {
+            navigate("/category/diabeticos");
+        } else if (type === "Ambas") {
+            navigate("/category/ambas");
+        }
+    };
+
+    const cardVariants = {
+        hidden: { opacity: 0, y: 50 },
+        visible: (i) => ({
+            opacity: 1,
+            y: 0,
+            transition: {
+                delay: i * 0.2,
+                duration: 0.6,
+                ease: "easeOut"
+            }
+        })
+    };
+
+    const floatingVariants = {
+        animate: {
+            y: [-20, 20, -20],
+            x: [-10, 10, -10],
+            rotate: [0, 180, 360],
+            transition: {
+                duration: 20,
+                repeat: Infinity,
+                ease: "easeInOut",
+            }
+        }
+    };
 
     return (
         <Container>
-            {/* <Header>
-                <Title>Descubrir</Title>
-                <SearchContainer>
-                    <SearchBar>
-                        <SearchIcon>
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M21.71 20.29L18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.39zM11 18a7 7 0 1 1 7-7 7 7 0 0 1-7 7z" />
-                            </svg>
-                        </SearchIcon>
-                        <SearchInput placeholder="Buscar" />
-                    </SearchBar>
-                    <SearchButton>Buscar</SearchButton>
-                    <FilterButton>
-                        <svg
-                            width="20"
-                            height="20"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                        >
-                            <line x1="4" y1="21" x2="4" y2="14"></line>
-                            <line x1="4" y1="10" x2="4" y2="3"></line>
-                            <line x1="12" y1="21" x2="12" y2="12"></line>
-                            <line x1="12" y1="8" x2="12" y2="3"></line>
-                            <line x1="20" y1="21" x2="20" y2="16"></line>
-                            <line x1="20" y1="12" x2="20" y2="3"></line>
-                            <line x1="1" y1="14" x2="7" y2="14"></line>
-                            <line x1="9" y1="8" x2="15" y2="8"></line>
-                            <line x1="17" y1="16" x2="23" y2="16"></line>
-                        </svg>
-                    </FilterButton>
-                </SearchContainer>
-            </Header> */}
-
             <Header>
                 <HeaderContent>
-                    <PlanTitle>Inicio</PlanTitle>
-                    {/* <PlanLevel>Selecciona tu ejercicio</PlanLevel> */}
+                    <Title>Bienvenido</Title>
+                    <Subtitle>Elige tu camino hacia una vida más saludable</Subtitle>
                 </HeaderContent>
             </Header>
 
             <Main>
                 <CardGrid>
-                    {/* <LargeCard onClick={() => handleCardClick("Hipertenso")}>
+                    <Card
+                        custom={0}
+                        initial="hidden"
+                        animate="visible"
+                        variants={cardVariants}
+                        onClick={() => handleCardClick("Ambas")}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                    >
+                        <CardBackground src="/ejercicios.webp" />
                         <CardOverlay>
-                            <CardTitle>Hipertenso</CardTitle>
+                            <CardHeader>
+                                <CardIcon>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                        <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+                                    </svg>
+                                </CardIcon>
+                            </CardHeader>
+                            <CardContent>
+                                <CardTitle>Ejercicios</CardTitle>
+                                <CardDescription>
+                                    Rutinas personalizadas adaptadas a tu condición física y objetivos de salud
+                                </CardDescription>
+                                <StatsContainer>
+                                    <StatItem>
+                                        <span className="number">50+</span>
+                                        <span>Rutinas</span>
+                                    </StatItem>
+                                    <StatItem>
+                                        <span className="number">4</span>
+                                        <span>Niveles</span>
+                                    </StatItem>
+                                    <StatItem>
+                                        <span className="number">24/7</span>
+                                        <span>Acceso</span>
+                                    </StatItem>
+                                </StatsContainer>
+                            </CardContent>
                         </CardOverlay>
-                    </LargeCard>
-                    <LargeCard onClick={() => handleCardClick("Diabeticos")}>
+                        <FloatingElements>
+                            <FloatingShape
+                                style={{ width: 60, height: 60, top: '20%', left: '80%' }}
+                                variants={floatingVariants}
+                                animate="animate"
+                            />
+                            <FloatingShape
+                                style={{ width: 40, height: 40, top: '70%', left: '10%' }}
+                                variants={floatingVariants}
+                                animate="animate"
+                            />
+                        </FloatingElements>
+                    </Card>
+
+                    <Card
+                        custom={1}
+                        initial="hidden"
+                        animate="visible"
+                        variants={cardVariants}
+                        onClick={() => navigate("/recipes")}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                    >
+                        <CardBackground src="/comidas.jpeg" />
                         <CardOverlay>
-                            <CardTitle>Diabeticos</CardTitle>
+                            <CardHeader>
+                                <CardIcon>
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                        <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                                    </svg>
+                                </CardIcon>
+                            </CardHeader>
+                            <CardContent>
+                                <CardTitle>Recetas</CardTitle>
+                                <CardDescription>
+                                    Deliciosas recetas saludables diseñadas por nutricionistas especializados
+                                </CardDescription>
+                                <StatsContainer>
+                                    <StatItem>
+                                        <span className="number">100+</span>
+                                        <span>Recetas</span>
+                                    </StatItem>
+                                    <StatItem>
+                                        <span className="number">5</span>
+                                        <span>Categorías</span>
+                                    </StatItem>
+                                    <StatItem>
+                                        <span className="number">★4.9</span>
+                                        <span>Rating</span>
+                                    </StatItem>
+                                </StatsContainer>
+                            </CardContent>
                         </CardOverlay>
-                    </LargeCard> */}
-                    <LargeCard onClick={() => handleCardClick("Ambas")} src="/ejercicios.webp">
-                        <CardOverlay>
-                            <CardTitle>Ejercicios</CardTitle>
-                        </CardOverlay>
-                    </LargeCard>
-                    <LargeCard onClick={() => navigate("/recipes")} src="/comidas.jpeg">
-                        <CardOverlay>
-                            <CardTitle>Recetas</CardTitle>
-                        </CardOverlay>
-                    </LargeCard>
+                        <FloatingElements>
+                            <FloatingShape
+                                style={{ width: 50, height: 50, top: '30%', left: '85%' }}
+                                variants={floatingVariants}
+                                animate="animate"
+                            />
+                            <FloatingShape
+                                style={{ width: 35, height: 35, top: '60%', left: '5%' }}
+                                variants={floatingVariants}
+                                animate="animate"
+                            />
+                        </FloatingElements>
+                    </Card>
                 </CardGrid>
             </Main>
         </Container>

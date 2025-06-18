@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { motion, AnimatePresence } from "framer-motion";
 import recipesData from "../data/recipesData.json";
 
 const Container = styled.div`
@@ -9,43 +10,81 @@ const Container = styled.div`
     min-height: 100vh;
     max-width: 480px;
     margin: 0 auto;
-    background-color: #f8f9fa;
+    background: linear-gradient(
+        135deg,
+        ${props => props.theme.colors.background} 0%,
+        ${props => props.theme.colors.backgroundDark} 100%
+    );
+    border-radius: ${props => props.theme.borderRadius["2xl"]};
+    box-shadow: ${props => props.theme.colors.shadow};
+    overflow: hidden;
 `;
 
 const Header = styled.div`
-    padding: 20px;
-    background-color: white;
+    padding: ${props => props.theme.spacing.xl} ${props => props.theme.spacing.lg};
+    background: ${props => props.theme.colors.surface};
     position: relative;
+    border-radius: ${props => props.theme.borderRadius["2xl"]} ${props => props.theme.borderRadius["2xl"]} 0 0;
+
+    &::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, ${props => props.theme.colors.border}, transparent);
+    }
 `;
 
-const BackButton = styled.button`
+const BackButton = styled(motion.button)`
     position: absolute;
-    left: 20px;
-    top: 20px;
-    background: none;
-    border: none;
-    font-size: 18px;
+    left: ${props => props.theme.spacing.lg};
+    top: ${props => props.theme.spacing.xl};
+    background: ${props => props.theme.colors.surface};
+    border: 2px solid ${props => props.theme.colors.border};
+    border-radius: ${props => props.theme.borderRadius.lg};
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: ${props => props.theme.fontSizes.lg};
     cursor: pointer;
-    color: #333;
+    color: ${props => props.theme.colors.text};
+    transition: ${props => props.theme.transitions.base};
+    box-shadow: ${props => props.theme.colors.shadow};
+
+    &:hover {
+        color: ${props => props.theme.colors.primarySolid};
+        border-color: ${props => props.theme.colors.primarySolid};
+        background: ${props => props.theme.colors.primarySolid}10;
+        transform: translateX(-2px);
+    }
 `;
 
 const HeaderContent = styled.div`
     text-align: center;
-    margin-top: 20px;
-`;
-
-const PlanTitle = styled.h2`
-    font-size: 20px;
-    font-weight: 600;
-    color: #333;
-    margin: 15px 0 5px 0;
+    margin-top: ${props => props.theme.spacing.lg};
 `;
 
 const Title = styled.h1`
-    font-size: 24px;
-    font-weight: 600;
-    color: #333;
+    font-size: ${props => props.theme.fontSizes["3xl"]};
+    font-weight: 700;
+    background: ${props => props.theme.colors.primary};
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0 0 ${props => props.theme.spacing.sm} 0;
+    font-family: ${props => props.theme.fonts.display};
+    letter-spacing: -0.02em;
+`;
+
+const Subtitle = styled.p`
+    color: ${props => props.theme.colors.textLight};
+    font-size: ${props => props.theme.fontSizes.base};
     margin: 0;
+    font-weight: 400;
 `;
 
 const FilterContainer = styled.div`
@@ -78,92 +117,187 @@ const FilterButton = styled.button`
 `;
 
 const Main = styled.div`
-    padding: 20px;
+    padding: ${props => props.theme.spacing.lg};
     flex: 1;
+    background: ${props => props.theme.colors.background};
 `;
 
-const RecipesGrid = styled.div`
+const RecipesGrid = styled(motion.div)`
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    margin-bottom: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: ${props => props.theme.spacing.lg};
+    margin-bottom: ${props => props.theme.spacing.xl};
 `;
 
-const RecipeCard = styled.div`
-    background: white;
-    border-radius: 12px;
+const RecipeCard = styled(motion.div)`
+    background: ${props => props.theme.colors.surface};
+    border-radius: ${props => props.theme.borderRadius["2xl"]};
     overflow: hidden;
     cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: ${props => props.theme.transitions.slow};
+    box-shadow: ${props => props.theme.colors.shadow};
+    border: 1px solid ${props => props.theme.colors.border};
+    position: relative;
 
     &:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        transform: translateY(-8px);
+        box-shadow: ${props => props.theme.colors.shadowHover};
     }
+`;
+
+const RecipeImageContainer = styled.div`
+    position: relative;
+    width: 100%;
+    height: 160px;
+    overflow: hidden;
 `;
 
 const RecipeImage = styled.div`
     width: 100%;
-    height: 100px;
-    background-image: url(${(props) => props.image});
+    height: 100%;
+    background-image: url(${props => props.image});
     background-size: cover;
     background-position: center;
+    transition: ${props => props.theme.transitions.slow};
     position: relative;
+
+    ${RecipeCard}:hover & {
+        transform: scale(1.1);
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+            135deg,
+            rgba(102, 126, 234, 0.1) 0%,
+            rgba(118, 75, 162, 0.1) 100%
+        );
+        opacity: 0;
+        transition: ${props => props.theme.transitions.base};
+    }
+
+    ${RecipeCard}:hover &::after {
+        opacity: 1;
+    }
 `;
 
-const DifficultyBadge = styled.div`
+const RecipeOverlay = styled.div`
     position: absolute;
-    top: 8px;
-    right: 8px;
-    background: rgba(0, 0, 0, 0.7);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        180deg,
+        transparent 0%,
+        rgba(0, 0, 0, 0.1) 50%,
+        rgba(0, 0, 0, 0.6) 100%
+    );
+    display: flex;
+    align-items: flex-end;
+    padding: ${props => props.theme.spacing.md};
+`;
+
+const QuickInfo = styled.div`
+    display: flex;
+    gap: ${props => props.theme.spacing.sm};
+`;
+
+const InfoChip = styled.div`
+    background: ${props => props.theme.colors.glass};
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     color: white;
-    padding: 4px 8px;
-    border-radius: 12px;
-    font-size: 10px;
+    padding: ${props => props.theme.spacing.xs} ${props => props.theme.spacing.sm};
+    border-radius: ${props => props.theme.borderRadius.md};
+    font-size: ${props => props.theme.fontSizes.xs};
     font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 4px;
 `;
 
 const RecipeInfo = styled.div`
-    padding: 12px;
+    padding: ${props => props.theme.spacing.lg};
 `;
 
 const RecipeName = styled.h3`
-    font-size: 12px;
+    font-size: ${props => props.theme.fontSizes.base};
     font-weight: 600;
-    color: #333;
-    margin: 0 0 4px 0;
-    line-height: 1.2;
-    overflow: hidden;
+    color: ${props => props.theme.colors.text};
+    margin: 0 0 ${props => props.theme.spacing.sm} 0;
+    line-height: 1.3;
+    font-family: ${props => props.theme.fonts.display};
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
+    overflow: hidden;
 `;
 
 const RecipeDetails = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 10px;
-    color: #666;
-    margin-top: 4px;
+    font-size: ${props => props.theme.fontSizes.sm};
+    color: ${props => props.theme.colors.textLight};
 `;
 
-const CaloriesInfo = styled.span`
-    font-weight: 500;
-    color: #4ade80;
-`;
-
-const TimeInfo = styled.span`
+const CaloriesInfo = styled.div`
     display: flex;
     align-items: center;
-    gap: 2px;
+    gap: ${props => props.theme.spacing.xs};
+    font-weight: 600;
+    color: ${props => props.theme.colors.successSolid};
 `;
 
-const EmptyState = styled.div`
+const TimeInfo = styled.div`
+    display: flex;
+    align-items: center;
+    gap: ${props => props.theme.spacing.xs};
+    font-weight: 500;
+
+    svg {
+        width: 14px;
+        height: 14px;
+        opacity: 0.7;
+    }
+`;
+
+const EmptyState = styled(motion.div)`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: ${props => props.theme.spacing["3xl"]} ${props => props.theme.spacing.lg};
     text-align: center;
-    padding: 40px 20px;
-    color: #666;
+    background: ${props => props.theme.colors.surface};
+    border-radius: ${props => props.theme.borderRadius["2xl"]};
+    box-shadow: ${props => props.theme.colors.shadow};
+    border: 1px solid ${props => props.theme.colors.border};
+
+    .icon {
+        font-size: ${props => props.theme.fontSizes["4xl"]};
+        margin-bottom: ${props => props.theme.spacing.lg};
+        opacity: 0.5;
+    }
+
+    h3 {
+        color: ${props => props.theme.colors.text};
+        font-size: ${props => props.theme.fontSizes.xl};
+        font-weight: 600;
+        margin-bottom: ${props => props.theme.spacing.sm};
+    }
+
+    p {
+        color: ${props => props.theme.colors.textLight};
+        font-size: ${props => props.theme.fontSizes.base};
+        max-width: 280px;
+    }
 `;
 
 const RecipesPage = () => {
@@ -190,41 +324,83 @@ const RecipesPage = () => {
     return (
         <Container>
             <Header>
-                <BackButton onClick={handleBackClick}>←</BackButton>
+                <BackButton
+                    onClick={handleBackClick}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                >
+                    ←
+                </BackButton>
                 <HeaderContent>
-                    <PlanTitle>Comidas</PlanTitle>
+                    <Title>Recetas Saludables</Title>
+                    <Subtitle>Deliciosas opciones nutritivas para ti</Subtitle>
                 </HeaderContent>
             </Header>
 
             <Main>
                 {filteredRecipes.length > 0 ? (
-                    <RecipesGrid>
-                        {filteredRecipes.map((recipe) => (
-                            <RecipeCard key={recipe.id} onClick={() => handleRecipeClick(recipe.id)}>
-                                <RecipeImage image={recipe.image}>
-                                    {/* <DifficultyBadge>
-                                        {recipe.difficulty}
-                                    </DifficultyBadge> */}
-                                </RecipeImage>
-                                <RecipeInfo>
-                                    <RecipeName>{recipe.name}</RecipeName>
-                                    <RecipeDetails>
-                                        {/* <CaloriesInfo>{recipe.calories} cal</CaloriesInfo> */}
-                                        <TimeInfo>
-                                            <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
-                                                <circle cx="12" cy="12" r="10" />
-                                                <polyline points="12,6 12,12 16,14" />
-                                            </svg>
-                                            {recipe.preparationTime}min
-                                        </TimeInfo>
-                                    </RecipeDetails>
-                                </RecipeInfo>
-                            </RecipeCard>
-                        ))}
+                    <RecipesGrid
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.2 }}
+                    >
+                        <AnimatePresence>
+                            {filteredRecipes.map((recipe, index) => (
+                                <RecipeCard
+                                    key={recipe.id}
+                                    initial={{ opacity: 0, scale: 0.9 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    exit={{ opacity: 0, scale: 0.9 }}
+                                    transition={{ delay: index * 0.1 }}
+                                    onClick={() => handleRecipeClick(recipe.id)}
+                                    whileHover={{ scale: 1.02 }}
+                                    whileTap={{ scale: 0.98 }}
+                                >
+                                    <RecipeImageContainer>
+                                        <RecipeImage image={recipe.image} />
+                                        <RecipeOverlay>
+                                            <QuickInfo>
+                                                <InfoChip>
+                                                    ⏱ {recipe.preparationTime}m
+                                                </InfoChip>
+                                                {recipe.difficulty && (
+                                                    <InfoChip>
+                                                        ⭐ {recipe.difficulty}
+                                                    </InfoChip>
+                                                )}
+                                            </QuickInfo>
+                                        </RecipeOverlay>
+                                    </RecipeImageContainer>
+                                    
+                                    <RecipeInfo>
+                                        <RecipeName>{recipe.name}</RecipeName>
+                                        <RecipeDetails>
+                                            {recipe.calories && (
+                                                <CaloriesInfo>
+                                                    🔥 {recipe.calories}
+                                                </CaloriesInfo>
+                                            )}
+                                            <TimeInfo>
+                                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                                    <circle cx="12" cy="12" r="10" />
+                                                    <polyline points="12,6 12,12 16,14" stroke="currentColor" strokeWidth="2" fill="none" />
+                                                </svg>
+                                                {recipe.preparationTime}min
+                                            </TimeInfo>
+                                        </RecipeDetails>
+                                    </RecipeInfo>
+                                </RecipeCard>
+                            ))}
+                        </AnimatePresence>
                     </RecipesGrid>
                 ) : (
-                    <EmptyState>
-                        <p>No se encontraron recetas en esta categoría</p>
+                    <EmptyState
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                    >
+                        <div className="icon">🍽️</div>
+                        <h3>No hay recetas disponibles</h3>
+                        <p>No se encontraron recetas en esta categoría. Prueba con otra categoría.</p>
                     </EmptyState>
                 )}
             </Main>

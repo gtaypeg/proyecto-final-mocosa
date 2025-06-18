@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { motion, AnimatePresence } from "framer-motion";
 import exerciseData from "../data/exerciseData.json";
 import { useProgress } from "../contexts/ProgressContext";
 
@@ -10,157 +11,262 @@ const Container = styled.div`
     min-height: 100vh;
     max-width: 480px;
     margin: 0 auto;
-    background-color: white;
+    background: linear-gradient(
+        135deg,
+        ${props => props.theme.colors.background} 0%,
+        ${props => props.theme.colors.backgroundDark} 100%
+    );
+    border-radius: ${props => props.theme.borderRadius["2xl"]};
+    box-shadow: ${props => props.theme.colors.shadow};
+    overflow: hidden;
 `;
 
 const Header = styled.div`
-    padding: 15px 20px;
+    padding: ${props => props.theme.spacing.lg} ${props => props.theme.spacing.lg};
     display: flex;
     align-items: center;
-    gap: 15px;
-    background-color: white;
-    border-bottom: 1px solid #f0f0f0;
+    justify-content: space-between;
+    background: ${props => props.theme.colors.surface};
+    border-radius: ${props => props.theme.borderRadius["2xl"]} ${props => props.theme.borderRadius["2xl"]} 0 0;
+    border-bottom: 1px solid ${props => props.theme.colors.border};
 `;
 
-const HeaderIcon = styled.div`
-    width: 32px;
-    height: 32px;
-    background-color: #f0f0f0;
-    border-radius: 8px;
+const CloseButton = styled(motion.button)`
+    background: ${props => props.theme.colors.surface};
+    border: 2px solid ${props => props.theme.colors.border};
+    border-radius: ${props => props.theme.borderRadius.lg};
+    width: 44px;
+    height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 16px;
+    font-size: ${props => props.theme.fontSizes.lg};
     cursor: pointer;
+    color: ${props => props.theme.colors.text};
+    transition: ${props => props.theme.transitions.base};
+    box-shadow: ${props => props.theme.colors.shadow};
+
+    &:hover {
+        color: ${props => props.theme.colors.primarySolid};
+        border-color: ${props => props.theme.colors.primarySolid};
+        background: ${props => props.theme.colors.primarySolid}10;
+    }
 `;
 
-const HeaderActions = styled.div`
-    display: flex;
-    gap: 10px;
-    margin-left: auto;
+const HeaderTitle = styled.h1`
+    font-size: ${props => props.theme.fontSizes.xl};
+    font-weight: 600;
+    color: ${props => props.theme.colors.text};
+    margin: 0;
+    font-family: ${props => props.theme.fonts.display};
 `;
 
-const ExerciseImageContainer = styled.div`
+const ExerciseSection = styled.div`
     flex: 1;
     display: flex;
+    flex-direction: column;
+    padding: ${props => props.theme.spacing.xl} ${props => props.theme.spacing.lg};
+    background: ${props => props.theme.colors.background};
+`;
+
+const ExerciseImageContainer = styled(motion.div)`
+    display: flex;
     align-items: center;
     justify-content: center;
-    padding: 40px 20px;
-    /* background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); */
-    background-color: #fff;
+    margin-bottom: ${props => props.theme.spacing.xl};
+    background: ${props => props.theme.colors.surface};
+    border-radius: ${props => props.theme.borderRadius["2xl"]};
+    padding: ${props => props.theme.spacing["2xl"]};
+    box-shadow: ${props => props.theme.colors.shadow};
+    border: 1px solid ${props => props.theme.colors.border};
+    position: relative;
+    overflow: hidden;
+    min-height: 300px;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    }
 `;
 
 const ExerciseImage = styled.div`
-    width: 200px;
-    height: 300px;
-    background-color: #f0f0f0;
-    border-radius: 16px;
+    width: 220px;
+    height: 280px;
+    background: ${props => props.theme.colors.backgroundDark};
+    border-radius: ${props => props.theme.borderRadius["2xl"]};
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #666;
-    font-size: 14px;
+    color: ${props => props.theme.colors.textLight};
+    font-size: ${props => props.theme.fontSizes.base};
+    position: relative;
+    overflow: hidden;
+    box-shadow: ${props => props.theme.colors.shadow};
 
     img {
         width: 100%;
         height: 100%;
         object-fit: cover;
+        border-radius: ${props => props.theme.borderRadius["2xl"]};
     }
 `;
 
-const PrepareText = styled.div`
+const PrepareScreen = styled(motion.div)`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    margin-bottom: 20px;
+    height: 100%;
 `;
 
-const PrepareTitle = styled.h1`
-    font-size: 28px;
+const PrepareTitle = styled.h2`
+    font-size: ${props => props.theme.fontSizes["4xl"]};
     font-weight: 700;
-    color: #333;
-    margin: 0 0 10px 0;
+    background: ${props => props.theme.colors.primary};
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0 0 ${props => props.theme.spacing.lg} 0;
+    font-family: ${props => props.theme.fonts.display};
+    letter-spacing: -0.02em;
 `;
 
-const SoundIcon = styled.div`
+const PrepareSubtitle = styled.p`
+    color: ${props => props.theme.colors.textLight};
+    font-size: ${props => props.theme.fontSizes.lg};
+    margin: 0 0 ${props => props.theme.spacing.xl} 0;
+`;
+
+const SoundIcon = styled(motion.div)`
+    width: 80px;
+    height: 80px;
+    background: ${props => props.theme.colors.glass};
+    backdrop-filter: blur(20px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 30px;
-    font-size: 24px;
-    color: #666;
+    font-size: ${props => props.theme.fontSizes["2xl"]};
+    color: ${props => props.theme.colors.primarySolid};
+    box-shadow: ${props => props.theme.colors.shadowHover};
 `;
 
 const Footer = styled.div`
-    padding: 20px;
-    background-color: white;
+    padding: ${props => props.theme.spacing.xl} ${props => props.theme.spacing.lg};
+    background: ${props => props.theme.colors.surface};
+    border-radius: 0 0 ${props => props.theme.borderRadius["2xl"]} ${props => props.theme.borderRadius["2xl"]};
+    border-top: 1px solid ${props => props.theme.colors.border};
 `;
 
 const ExerciseInfo = styled.div`
-    margin-bottom: 20px;
+    margin-bottom: ${props => props.theme.spacing.xl};
+    text-align: center;
 `;
 
 const ExerciseName = styled.h3`
-    font-size: 16px;
+    font-size: ${props => props.theme.fontSizes.xl};
     font-weight: 600;
-    color: #333;
-    margin: 0 0 8px 0;
+    color: ${props => props.theme.colors.text};
+    margin: 0 0 ${props => props.theme.spacing.sm} 0;
+    font-family: ${props => props.theme.fonts.display};
 `;
 
 const ExerciseProgress = styled.div`
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 15px;
+    background: ${props => props.theme.colors.glass};
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: ${props => props.theme.borderRadius.full};
+    padding: ${props => props.theme.spacing.sm} ${props => props.theme.spacing.lg};
+    display: inline-block;
+    font-size: ${props => props.theme.fontSizes.sm};
+    font-weight: 500;
+    color: ${props => props.theme.colors.textLight};
 `;
 
-const Timer = styled.div`
+const TimerSection = styled.div`
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: ${props => props.theme.spacing.xl};
 `;
 
-const TimerDisplay = styled.div`
-    font-size: 48px;
+const TimerDisplay = styled(motion.div)`
+    font-size: ${props => props.theme.fontSizes["5xl"]};
     font-weight: 300;
-    color: #333;
-    font-family: "Courier New", monospace;
-    margin-bottom: 8px;
-`;
+    font-family: 'Courier New', monospace;
+    margin-bottom: ${props => props.theme.spacing.lg};
+    background: ${props => props.theme.colors.primary};
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.02em;
+    position: relative;
 
-const CaloriesDisplay = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 20px;
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background: ${props => props.theme.colors.primary};
+        border-radius: ${props => props.theme.borderRadius.full};
+    }
 `;
 
 const Controls = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 30px;
-    padding: 20px 0;
-    background-color: #f8f9fa;
-    border-radius: 20px;
+    gap: ${props => props.theme.spacing.xl};
+    padding: ${props => props.theme.spacing.xl} 0;
+    background: ${props => props.theme.colors.glass};
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: ${props => props.theme.borderRadius["2xl"]};
+    box-shadow: ${props => props.theme.colors.shadow};
 `;
 
-const ControlButton = styled.button`
-    width: 48px;
-    height: 48px;
+const ControlButton = styled(motion.button)`
+    width: 56px;
+    height: 56px;
     border: none;
     border-radius: 50%;
-    background-color: ${(props) => (props.primary ? "#333" : "#e5e7eb")};
-    color: ${(props) => (props.primary ? "white" : "#666")};
+    background: ${props => 
+        props.primary 
+            ? props.theme.colors.primary
+            : props.theme.colors.surface
+    };
+    color: ${props => 
+        props.primary 
+            ? 'white' 
+            : props.theme.colors.text
+    };
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 18px;
-    transition: all 0.2s ease;
+    font-size: ${props => props.theme.fontSizes.lg};
+    transition: ${props => props.theme.transitions.bounce};
+    box-shadow: ${props => 
+        props.primary 
+            ? props.theme.colors.shadowHover
+            : props.theme.colors.shadow
+    };
+    border: 2px solid ${props => 
+        props.primary 
+            ? 'transparent'
+            : props.theme.colors.border
+    };
 
     &:hover {
-        transform: scale(1.05);
-        background-color: ${(props) => (props.primary ? "#1f2937" : "#d1d5db")};
+        transform: scale(1.1);
     }
 
     &:active {
@@ -170,36 +276,78 @@ const ControlButton = styled.button`
     &:disabled {
         opacity: 0.5;
         cursor: not-allowed;
+        transform: none;
     }
 `;
 
 const PlayButton = styled(ControlButton)`
-    width: 60px;
-    height: 60px;
-    font-size: 20px;
+    width: 72px;
+    height: 72px;
+    font-size: ${props => props.theme.fontSizes.xl};
 `;
 
-const NextButton = styled.button`
+const NextButton = styled(motion.button)`
     width: 100%;
-    background-color: #333;
+    background: ${props => props.theme.colors.primary};
     color: white;
     border: none;
-    border-radius: 30px;
-    padding: 16px;
-    font-size: 16px;
+    border-radius: ${props => props.theme.borderRadius.xl};
+    padding: ${props => props.theme.spacing.lg} ${props => props.theme.spacing.xl};
+    font-size: ${props => props.theme.fontSizes.base};
     font-weight: 600;
+    font-family: ${props => props.theme.fonts.main};
     cursor: pointer;
-    margin-top: 20px;
-    transition: all 0.2s ease;
+    margin-top: ${props => props.theme.spacing.lg};
+    transition: ${props => props.theme.transitions.base};
+    box-shadow: ${props => props.theme.colors.shadow};
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.2),
+            transparent
+        );
+        transition: left 0.5s;
+    }
 
     &:hover {
-        background-color: #1f2937;
+        transform: translateY(-2px);
+        box-shadow: ${props => props.theme.colors.shadowHover};
+
+        &::before {
+            left: 100%;
+        }
     }
 
     &:disabled {
-        background-color: #d1d5db;
+        opacity: 0.6;
         cursor: not-allowed;
+        transform: none;
     }
+`;
+
+const ProgressIndicator = styled(motion.div)`
+    width: 100%;
+    height: 6px;
+    background: ${props => props.theme.colors.backgroundDark};
+    border-radius: ${props => props.theme.borderRadius.full};
+    overflow: hidden;
+    margin-bottom: ${props => props.theme.spacing.lg};
+`;
+
+const ProgressFill = styled(motion.div)`
+    height: 100%;
+    background: ${props => props.theme.colors.primary};
+    border-radius: ${props => props.theme.borderRadius.full};
 `;
 
 const ExercisePage = () => {
@@ -299,69 +447,116 @@ const ExercisePage = () => {
     return (
         <Container>
             <Header>
-                {/* <HeaderIcon onClick={handleBack}>🔊</HeaderIcon> */}
-                {/* <HeaderIcon>⚠️</HeaderIcon>
-        <HeaderIcon>ℹ️</HeaderIcon> */}
-                <HeaderActions>
-                    {/* <HeaderIcon>✚</HeaderIcon> */}
-                    <HeaderIcon onClick={handleBack}>✕</HeaderIcon>
-                </HeaderActions>
+                <CloseButton 
+                    onClick={handleBack}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                >
+                    ✕
+                </CloseButton>
+                <HeaderTitle>Ejercicio</HeaderTitle>
             </Header>
 
-            <ExerciseImageContainer>
-                {preparing && (
-                    <div>
-                        <PrepareText>
-                            <PrepareTitle>¡Prepárate ahora!</PrepareTitle>
-                        </PrepareText>
-                        <SoundIcon>🔊</SoundIcon>
-                    </div>
-                )}
+            <ExerciseSection>
+                <ExerciseImageContainer>
+                    <AnimatePresence>
+                        {preparing && (
+                            <PrepareScreen
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0, scale: 0.9 }}
+                                transition={{ duration: 0.5 }}
+                            >
+                                <PrepareTitle>¡Prepárate ahora!</PrepareTitle>
+                                <PrepareSubtitle>Prepárate para comenzar el ejercicio</PrepareSubtitle>
+                                <SoundIcon
+                                    animate={{ 
+                                        scale: [1, 1.1, 1],
+                                        rotate: [0, 5, -5, 0]
+                                    }}
+                                    transition={{ 
+                                        duration: 2, 
+                                        repeat: Infinity,
+                                        ease: "easeInOut"
+                                    }}
+                                >
+                                    🔊
+                                </SoundIcon>
+                            </PrepareScreen>
+                        )}
+                    </AnimatePresence>
 
-                {!preparing && (
-                    <ExerciseImage>
-                        <img src={currentExercise.image} alt={currentExercise.name} />
-                        {/* Ejercicio: {currentExercise.name} */}
-                    </ExerciseImage>
-                )}
-            </ExerciseImageContainer>
+                    {!preparing && (
+                        <ExerciseImage>
+                            <img src={currentExercise.image} alt={currentExercise.name} />
+                        </ExerciseImage>
+                    )}
+                </ExerciseImageContainer>
 
-            <Footer>
-                <ExerciseInfo>
-                    <ExerciseName>{currentExercise.name}</ExerciseName>
-                    <ExerciseProgress>
-                        Saltar {currentIndex + 1}/{totalExercises}
-                    </ExerciseProgress>
-                </ExerciseInfo>
+                <Footer>
+                    <ExerciseInfo>
+                        <ExerciseName>{currentExercise.name}</ExerciseName>
+                        <ExerciseProgress>
+                            Saltar {currentIndex + 1}/{totalExercises}
+                        </ExerciseProgress>
+                    </ExerciseInfo>
 
-                <Timer>
-                    <TimerDisplay>{formatTime(timeLeft)}</TimerDisplay>
-                    {/* <CaloriesDisplay> */}
-                    {/* <span>🔥 {calories.toFixed(1)} kcal</span> */}
-                    {/* <span>⏱ {formatTime(timeLeft)}</span> */}
-                    {/* </CaloriesDisplay> */}
-                </Timer>
+                    <TimerSection>
+                        <TimerDisplay
+                            key={timeLeft}
+                            initial={{ scale: 0.9 }}
+                            animate={{ scale: 1 }}
+                            transition={{ type: "spring", stiffness: 200 }}
+                        >
+                            {formatTime(timeLeft)}
+                        </TimerDisplay>
+                    </TimerSection>
 
-                <Controls>
-                    <ControlButton onClick={handlePrevious} disabled={currentIndex === 0}>
-                        ⏮
-                    </ControlButton>
-                    <ControlButton style={{ opacity: 0, pointerEvents: "none" }}></ControlButton>
-                    <PlayButton primary onClick={handlePlayPause}>
-                        {isRunning ? "⏸" : "▶"}
-                    </PlayButton>
-                    <ControlButton style={{ opacity: 0, pointerEvents: "none" }}></ControlButton>
-                    <ControlButton onClick={handleNext} disabled={currentIndex === 0 && !isRunning}>
-                        ⏭
-                    </ControlButton>
-                </Controls>
+                    <Controls>
+                        <ControlButton 
+                            onClick={handlePrevious} 
+                            disabled={currentIndex === 0}
+                            whileHover={{ scale: currentIndex === 0 ? 1 : 1.1 }}
+                            whileTap={{ scale: currentIndex === 0 ? 1 : 0.95 }}
+                        >
+                            ⏮
+                        </ControlButton>
+                        <ControlButton style={{ opacity: 0, pointerEvents: "none" }}></ControlButton>
+                        <PlayButton 
+                            primary 
+                            onClick={handlePlayPause}
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.95 }}
+                        >
+                            {isRunning ? "⏸" : "▶"}
+                        </PlayButton>
+                        <ControlButton style={{ opacity: 0, pointerEvents: "none" }}></ControlButton>
+                        <ControlButton 
+                            onClick={handleNext} 
+                            disabled={currentIndex === 0 && !isRunning}
+                            whileHover={{ scale: (currentIndex === 0 && !isRunning) ? 1 : 1.1 }}
+                            whileTap={{ scale: (currentIndex === 0 && !isRunning) ? 1 : 0.95 }}
+                        >
+                            ⏭
+                        </ControlButton>
+                    </Controls>
 
-                {isCompleted && (
-                    <NextButton onClick={handleNext}>
-                        {currentIndex + 1 < totalExercises ? "Siguiente Ejercicio" : "Finalizar Día"}
-                    </NextButton>
-                )}
-            </Footer>
+                                    <AnimatePresence>
+                    {isCompleted && (
+                        <NextButton 
+                            onClick={handleNext}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: 20 }}
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                        >
+                            {currentIndex + 1 < totalExercises ? "Siguiente Ejercicio" : "Finalizar Día"}
+                        </NextButton>
+                    )}
+                </AnimatePresence>
+                </Footer>
+            </ExerciseSection>
         </Container>
     );
 };
