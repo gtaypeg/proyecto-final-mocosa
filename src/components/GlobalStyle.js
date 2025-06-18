@@ -15,12 +15,16 @@ const GlobalStyle = createGlobalStyle`
   }
 
   html {
+    height: 100%;
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
   }
 
   body {
+    min-height: 100vh;
+    height: 100%;
     font-family: ${props => props.theme.fonts.main};
     color: ${props => props.theme.colors.text};
     background: ${props => props.theme.colors.background};
@@ -37,6 +41,13 @@ const GlobalStyle = createGlobalStyle`
     /* Better touch/tap handling */
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
+  }
+
+  #root {
+    min-height: 100vh;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
   }
 
   button {
@@ -200,6 +211,37 @@ const GlobalStyle = createGlobalStyle`
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  /* Responsive viewport handling */
+  @media (max-width: 480px) {
+    /* Mobile viewport optimization */
+    html {
+      height: 100vh;
+      height: -webkit-fill-available;
+    }
+    
+    body {
+      min-height: 100vh;
+      min-height: -webkit-fill-available;
+    }
+    
+    #root {
+      min-height: 100vh;
+      min-height: -webkit-fill-available;
+    }
+  }
+
+  /* Prevent zoom on iOS when focusing inputs */
+  @media (max-width: 768px) {
+    input[type="text"],
+    input[type="number"],
+    input[type="email"],
+    input[type="password"],
+    textarea,
+    select {
+      font-size: 16px;
+    }
   }
 `;
 

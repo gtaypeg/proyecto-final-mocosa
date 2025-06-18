@@ -5,18 +5,13 @@ import { motion } from "framer-motion";
 import { Container, Main, Title, Button } from "../components/StyledComponents";
 
 const WelcomeContainer = styled(Container)`
-    background: linear-gradient(
-        135deg, 
-        rgba(102, 126, 234, 0.1) 0%, 
-        rgba(118, 75, 162, 0.1) 100%
-    ), url("/imagen-final.jpeg");
+    background: url("/imagen-final.jpeg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     height: 100vh !important;
     min-height: 100vh;
     border-radius: 0;
-    backdrop-filter: blur(10px);
     position: relative;
     overflow: hidden;
 
@@ -29,10 +24,12 @@ const WelcomeContainer = styled(Container)`
         height: 100%;
         background: linear-gradient(
             135deg,
-            rgba(102, 126, 234, 0.8) 0%,
-            rgba(118, 75, 162, 0.6) 50%,
-            rgba(76, 99, 210, 0.8) 100%
+            rgba(45, 90, 61, 0.92) 0%,
+            rgba(74, 124, 89, 0.85) 30%,
+            rgba(30, 61, 40, 0.90) 70%,
+            rgba(45, 90, 61, 0.95) 100%
         );
+        backdrop-filter: blur(2px);
         z-index: 1;
     }
 
@@ -60,15 +57,17 @@ const LogoContainer = styled(motion.div)`
 const AppIcon = styled.div`
     width: 120px;
     height: 120px;
-    background: ${props => props.theme.colors.glass};
+    background: rgba(255, 255, 255, 0.25);
     backdrop-filter: blur(20px);
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.4);
     border-radius: ${props => props.theme.borderRadius["2xl"]};
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 auto ${props => props.theme.spacing.xl} auto;
-    box-shadow: ${props => props.theme.colors.shadowHover};
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
     position: relative;
     overflow: hidden;
 
@@ -82,7 +81,7 @@ const AppIcon = styled.div`
         background: linear-gradient(
             45deg,
             transparent,
-            rgba(255, 255, 255, 0.1),
+            rgba(255, 255, 255, 0.15),
             transparent
         );
         animation: shimmer 3s infinite;
@@ -96,18 +95,22 @@ const AppIcon = styled.div`
     svg {
         width: 60px;
         height: 60px;
-        color: white;
+        color: #ffffff;
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
     }
 `;
 
 const WelcomeText = styled(motion.h1)`
     font-size: ${props => props.theme.fontSizes["5xl"]};
     font-weight: 800;
-    color: white;
+    color: #ffffff;
     margin-bottom: ${props => props.theme.spacing.md};
     font-family: ${props => props.theme.fonts.display};
     letter-spacing: -0.03em;
-    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    text-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.8),
+        0 4px 20px rgba(0, 0, 0, 0.6),
+        0 0 40px rgba(0, 0, 0, 0.4);
     line-height: 1.1;
 
     @media (max-width: 480px) {
@@ -117,11 +120,13 @@ const WelcomeText = styled(motion.h1)`
 
 const Tagline = styled(motion.p)`
     font-size: ${props => props.theme.fontSizes.xl};
-    color: rgba(255, 255, 255, 0.9);
+    color: #ffffff;
     margin-bottom: ${props => props.theme.spacing["2xl"]};
-    font-weight: 400;
+    font-weight: 500;
     letter-spacing: 0.01em;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    text-shadow: 
+        0 1px 2px rgba(0, 0, 0, 0.8),
+        0 2px 10px rgba(0, 0, 0, 0.5);
     line-height: 1.4;
     max-width: 320px;
 
@@ -131,18 +136,21 @@ const Tagline = styled(motion.p)`
 `;
 
 const StartButton = styled(motion(Button))`
-    background: ${props => props.theme.colors.glass};
+    background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(20px);
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    color: ${props => props.theme.colors.primarySolid};
     font-size: ${props => props.theme.fontSizes.lg};
-    font-weight: 600;
+    font-weight: 700;
     padding: ${props => props.theme.spacing.lg} ${props => props.theme.spacing["2xl"]};
     border-radius: ${props => props.theme.borderRadius.full};
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
     position: relative;
     overflow: hidden;
     min-width: 200px;
+    text-shadow: none;
 
     &::before {
         content: '';
@@ -154,7 +162,7 @@ const StartButton = styled(motion(Button))`
         background: linear-gradient(
             90deg,
             transparent,
-            rgba(255, 255, 255, 0.2),
+            rgba(45, 90, 61, 0.1),
             transparent
         );
         transition: left 0.5s;
@@ -162,8 +170,11 @@ const StartButton = styled(motion(Button))`
 
     &:hover {
         transform: translateY(-4px);
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
-        border-color: rgba(255, 255, 255, 0.5);
+        box-shadow: 
+            0 12px 40px rgba(0, 0, 0, 0.5),
+            inset 0 1px 0 rgba(255, 255, 255, 0.9);
+        border-color: rgba(255, 255, 255, 1);
+        background: rgba(255, 255, 255, 0.95);
 
         &::before {
             left: 100%;
@@ -187,19 +198,25 @@ const FeatureItem = styled.div`
     display: flex;
     align-items: center;
     gap: ${props => props.theme.spacing.sm};
-    background: ${props => props.theme.colors.glassDark};
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
     border-radius: ${props => props.theme.borderRadius.lg};
     padding: ${props => props.theme.spacing.sm} ${props => props.theme.spacing.md};
-    color: rgba(255, 255, 255, 0.9);
+    color: #ffffff;
     font-size: ${props => props.theme.fontSizes.sm};
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    box-shadow: 
+        0 4px 16px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
 
     svg {
         width: 16px;
         height: 16px;
-        color: rgba(255, 255, 255, 0.8);
+        color: #ffffff;
         flex-shrink: 0;
+        filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
     }
 `;
 

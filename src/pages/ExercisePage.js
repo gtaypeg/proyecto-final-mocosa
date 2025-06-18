@@ -8,16 +8,15 @@ import { useProgress } from "../contexts/ProgressContext";
 const Container = styled.div`
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
-    max-width: 480px;
-    margin: 0 auto;
+    min-height: calc(100vh - 2.125rem);
     background: linear-gradient(
         135deg,
-        ${props => props.theme.colors.background} 0%,
-        ${props => props.theme.colors.backgroundDark} 100%
+        ${(props) => props.theme.colors.background} 0%,
+        ${(props) => props.theme.colors.backgroundDark} 100%
     );
-    border-radius: ${props => props.theme.borderRadius["2xl"]};
-    box-shadow: ${props => props.theme.colors.shadow};
+    position: relative;
+    border-radius: ${(props) => props.theme.borderRadius["2xl"]};
+    box-shadow: ${(props) => props.theme.colors.shadow};
     overflow: hidden;
 `;
 
@@ -195,7 +194,7 @@ const TimerSection = styled.div`
     margin-bottom: ${props => props.theme.spacing.xl};
 `;
 
-const TimerDisplay = styled(motion.div)`
+const TimerDisplay = styled.div`
     font-size: ${props => props.theme.fontSizes["5xl"]};
     font-weight: 300;
     font-family: 'Courier New', monospace;
@@ -454,7 +453,6 @@ const ExercisePage = () => {
                 >
                     ✕
                 </CloseButton>
-                <HeaderTitle>Ejercicio</HeaderTitle>
             </Header>
 
             <ExerciseSection>
@@ -502,12 +500,7 @@ const ExercisePage = () => {
                     </ExerciseInfo>
 
                     <TimerSection>
-                        <TimerDisplay
-                            key={timeLeft}
-                            initial={{ scale: 0.9 }}
-                            animate={{ scale: 1 }}
-                            transition={{ type: "spring", stiffness: 200 }}
-                        >
+                        <TimerDisplay>
                             {formatTime(timeLeft)}
                         </TimerDisplay>
                     </TimerSection>
@@ -521,7 +514,6 @@ const ExercisePage = () => {
                         >
                             ⏮
                         </ControlButton>
-                        <ControlButton style={{ opacity: 0, pointerEvents: "none" }}></ControlButton>
                         <PlayButton 
                             primary 
                             onClick={handlePlayPause}
@@ -530,7 +522,6 @@ const ExercisePage = () => {
                         >
                             {isRunning ? "⏸" : "▶"}
                         </PlayButton>
-                        <ControlButton style={{ opacity: 0, pointerEvents: "none" }}></ControlButton>
                         <ControlButton 
                             onClick={handleNext} 
                             disabled={currentIndex === 0 && !isRunning}

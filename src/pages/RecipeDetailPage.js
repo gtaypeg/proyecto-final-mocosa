@@ -40,9 +40,9 @@ const HeaderOverlay = styled.div`
     bottom: 0;
     background: linear-gradient(
         135deg,
-        rgba(102, 126, 234, 0.4) 0%,
-        rgba(118, 75, 162, 0.3) 50%,
-        rgba(76, 99, 210, 0.6) 100%
+                    rgba(45, 90, 61, 0.4) 0%,
+                        rgba(74, 124, 89, 0.3) 50%,
+            rgba(30, 61, 40, 0.6) 100%
     );
     backdrop-filter: blur(2px);
 `;
@@ -674,7 +674,7 @@ const RecipeDetailPage = () => {
                     >
                         Preparación
                     </Tab>
-                    {recipe.nutritionalInfo && (
+                    {/* {recipe.nutritionalInfo && (
                         <Tab 
                             active={activeTab === "nutrition"} 
                             onClick={() => setActiveTab("nutrition")}
@@ -683,7 +683,7 @@ const RecipeDetailPage = () => {
                         >
                             Nutrición
                         </Tab>
-                    )}
+                    )} */}
                 </TabContainer>
 
                 <TabContent key={activeTab}>

@@ -6,9 +6,7 @@ import { motion } from "framer-motion";
 const Container = styled.div`
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
-    max-width: 480px;
-    margin: 0 auto;
+    min-height: calc(100vh - 2.125rem);
     background: linear-gradient(
         135deg,
         ${props => props.theme.colors.background} 0%,
@@ -63,7 +61,6 @@ const Subtitle = styled.p`
 const Main = styled.div`
     padding: ${props => props.theme.spacing.xl} ${props => props.theme.spacing.lg};
     flex: 1;
-    background: ${props => props.theme.colors.background};
 `;
 
 const CardGrid = styled.div`
@@ -74,7 +71,6 @@ const CardGrid = styled.div`
 
 const Card = styled(motion.div)`
     position: relative;
-    height: 280px;
     border-radius: ${props => props.theme.borderRadius["2xl"]};
     overflow: hidden;
     cursor: pointer;
@@ -106,16 +102,15 @@ const CardBackground = styled.div`
 `;
 
 const CardOverlay = styled.div`
-    position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     background: linear-gradient(
         135deg,
-        rgba(102, 126, 234, 0.8) 0%,
-        rgba(118, 75, 162, 0.6) 50%,
-        rgba(76, 99, 210, 0.8) 100%
+                    rgba(45, 90, 61, 0.8) 0%,
+            rgba(74, 124, 89, 0.6) 50%,
+            rgba(30, 61, 40, 0.8) 100%
     );
     display: flex;
     flex-direction: column;
@@ -159,7 +154,7 @@ const CardTitle = styled.h2`
     color: white;
     font-size: ${props => props.theme.fontSizes["3xl"]};
     font-weight: 700;
-    margin: 0 0 ${props => props.theme.spacing.sm} 0;
+    margin: ${props => props.theme.spacing.sm} 0 ${props => props.theme.spacing.sm} 0;
     font-family: ${props => props.theme.fonts.display};
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     letter-spacing: -0.02em;
@@ -306,18 +301,6 @@ const DiscoverPage = () => {
                                 </StatsContainer>
                             </CardContent>
                         </CardOverlay>
-                        <FloatingElements>
-                            <FloatingShape
-                                style={{ width: 60, height: 60, top: '20%', left: '80%' }}
-                                variants={floatingVariants}
-                                animate="animate"
-                            />
-                            <FloatingShape
-                                style={{ width: 40, height: 40, top: '70%', left: '10%' }}
-                                variants={floatingVariants}
-                                animate="animate"
-                            />
-                        </FloatingElements>
                     </Card>
 
                     <Card
@@ -359,18 +342,6 @@ const DiscoverPage = () => {
                                 </StatsContainer>
                             </CardContent>
                         </CardOverlay>
-                        <FloatingElements>
-                            <FloatingShape
-                                style={{ width: 50, height: 50, top: '30%', left: '85%' }}
-                                variants={floatingVariants}
-                                animate="animate"
-                            />
-                            <FloatingShape
-                                style={{ width: 35, height: 35, top: '60%', left: '5%' }}
-                                variants={floatingVariants}
-                                animate="animate"
-                            />
-                        </FloatingElements>
                     </Card>
                 </CardGrid>
             </Main>

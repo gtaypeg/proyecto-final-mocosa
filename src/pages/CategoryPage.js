@@ -8,21 +8,20 @@ import { useProgress } from "../contexts/ProgressContext";
 const Container = styled.div`
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
-    max-width: 480px;
-    margin: 0 auto;
+    min-height: calc(100vh - 2.125rem);
     background: linear-gradient(
         135deg,
         ${props => props.theme.colors.background} 0%,
         ${props => props.theme.colors.backgroundDark} 100%
     );
+    position: relative;
     border-radius: ${props => props.theme.borderRadius["2xl"]};
     box-shadow: ${props => props.theme.colors.shadow};
     overflow: hidden;
 `;
 
 const Header = styled.div`
-    padding: ${props => props.theme.spacing.xl} ${props => props.theme.spacing.lg};
+    padding: ${props => props.theme.spacing["2xl"]} ${props => props.theme.spacing.lg} ${props => props.theme.spacing.lg};
     background: ${props => props.theme.colors.surface};
     position: relative;
     border-radius: ${props => props.theme.borderRadius["2xl"]} ${props => props.theme.borderRadius["2xl"]} 0 0;
@@ -66,17 +65,16 @@ const BackButton = styled(motion.button)`
 
 const HeaderContent = styled.div`
     text-align: center;
-    margin-top: ${props => props.theme.spacing.lg};
 `;
 
 const Title = styled.h1`
-    font-size: ${props => props.theme.fontSizes["3xl"]};
+   font-size: ${props => props.theme.fontSizes["3xl"]};
     font-weight: 700;
     background: ${props => props.theme.colors.primary};
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    margin: 0 0 ${props => props.theme.spacing.sm} 0;
+    margin: 0;
     font-family: ${props => props.theme.fonts.display};
     letter-spacing: -0.02em;
 `;
@@ -84,14 +82,13 @@ const Title = styled.h1`
 const Subtitle = styled.p`
     color: ${props => props.theme.colors.textLight};
     font-size: ${props => props.theme.fontSizes.base};
-    margin: 0;
+    margin: ${props => props.theme.spacing.sm} 0 0 0;
     font-weight: 400;
 `;
 
 const Main = styled.div`
-    padding: ${props => props.theme.spacing.lg};
+    padding: ${props => props.theme.spacing.xl} ${props => props.theme.spacing.lg};
     flex: 1;
-    background: ${props => props.theme.colors.background};
 `;
 
 const ExercisesList = styled(motion.div)`
@@ -135,16 +132,11 @@ const ExerciseBackground = styled.div`
 `;
 
 const ExerciseOverlay = styled.div`
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
     background: linear-gradient(
         135deg,
-        rgba(102, 126, 234, 0.8) 0%,
-        rgba(118, 75, 162, 0.6) 50%,
-        rgba(76, 99, 210, 0.8) 100%
+                    rgba(45, 90, 61, 0.8) 0%,
+            rgba(74, 124, 89, 0.6) 50%,
+            rgba(30, 61, 40, 0.8) 100%
     );
     padding: ${props => props.theme.spacing.xl};
     display: flex;
@@ -181,6 +173,7 @@ const ExerciseName = styled.h3`
     font-family: ${props => props.theme.fonts.display};
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     letter-spacing: -0.01em;
+    color: white;
 `;
 
 const ExerciseDescription = styled.p`
@@ -197,17 +190,22 @@ const ExerciseStats = styled.div`
 `;
 
 const StatChip = styled.div`
-    background: ${props => props.theme.colors.glassDark};
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: ${props => props.theme.borderRadius.lg};
-    padding: ${props => props.theme.spacing.xs} ${props => props.theme.spacing.sm};
-    font-size: ${props => props.theme.fontSizes.xs};
-    font-weight: 500;
-    color: white;
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: ${props => props.theme.spacing.sm};
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: ${props => props.theme.borderRadius.lg};
+    padding: ${props => props.theme.spacing.xs} ${props => props.theme.spacing.sm};
+    color: #ffffff;
+    font-size: ${props => props.theme.fontSizes.sm};
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    box-shadow: 
+        0 4px 16px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+
 `;
 
 const FloatingBadge = styled(motion.div)`
@@ -236,7 +234,7 @@ const StatsCard = styled(motion.div)`
 
     .stats-grid {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
         gap: ${props => props.theme.spacing.md};
         text-align: center;
     }
@@ -315,10 +313,10 @@ const CategoryPage = () => {
                             <h4>{Object.keys(categoryData.exercises).length}</h4>
                             <p>Ejercicios</p>
                         </div>
-                        <div className="stat-item">
+                        {/* <div className="stat-item">
                             <h4>4</h4>
                             <p>Categorías</p>
-                        </div>
+                        </div> */}
                         <div className="stat-item">
                             <h4>24/7</h4>
                             <p>Acceso</p>
@@ -344,27 +342,27 @@ const CategoryPage = () => {
                             >
                                 <ExerciseBackground src={`/fondos/${exerciseSlug}.png`} />
                                 <ExerciseOverlay>
-                                    <ExerciseIcon>{getCategoryIcon(exerciseData.category)}</ExerciseIcon>
+                                    {/* <ExerciseIcon>{getCategoryIcon(exerciseData.category)}</ExerciseIcon> */}
                                     <ExerciseContent>
                                         <ExerciseName>{exerciseData.name}</ExerciseName>
                                         <ExerciseDescription>{exerciseData.description}</ExerciseDescription>
                                         <ExerciseStats>
                                             <StatChip>
-                                                💪 {exerciseData.category}
+                                              {exerciseData.category}
                                             </StatChip>
                                             <StatChip>
-                                                ⏱ Múltiples días
+                                                Múltiples días
                                             </StatChip>
                                         </ExerciseStats>
                                     </ExerciseContent>
                                 </ExerciseOverlay>
-                                <FloatingBadge
+                                {/* <FloatingBadge
                                     initial={{ scale: 0 }}
                                     animate={{ scale: 1 }}
                                     transition={{ delay: 0.2 * index + 0.5, type: "spring" }}
                                 >
                                     NUEVO
-                                </FloatingBadge>
+                                </FloatingBadge> */}
                             </ExerciseCard>
                         );
                     })}

@@ -63,7 +63,7 @@ const SearchInput = styled.input`
 `;
 
 const SearchButton = styled.button`
-  background: linear-gradient(135deg, #4ade80, #a855f7);
+      background: ${props => props.theme.colors.primary};
   color: white;
   border: none;
   border-radius: 20px;
@@ -91,7 +91,7 @@ const FilterButton = styled.button`
   transition: all 0.2s ease;
   
   &:hover {
-    border-color: #4ade80;
+    border-color: ${props => props.theme.colors.primarySolid};
   }
 `;
 
@@ -146,15 +146,15 @@ const ActivitiesPage = () => {
   const navigate = useNavigate();
 
   const activities = [
-    { name: "Caminar", gradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)" },
-    { name: "Nadar", gradient: "linear-gradient(135deg, #74b9ff 0%, #0984e3 100%)" },
-    { name: "Meditar", gradient: "linear-gradient(135deg, #fd79a8 0%, #e84393 100%)" },
-    { name: "Montar bici", gradient: "linear-gradient(135deg, #00b894 0%, #00a085 100%)" },
-    { name: "Bailar", gradient: "linear-gradient(135deg, #ff7675 0%, #d63031 100%)" },
-    { name: "Yoga", gradient: "linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%)" },
-    { name: "Técnicas de respiración", gradient: "linear-gradient(135deg, #55a3ff 0%, #3742fa 100%)" },
-    { name: "Pilates", gradient: "linear-gradient(135deg, #ff9ff3 0%, #f368e0 100%)" },
-    { name: "Acuaerobicos", gradient: "linear-gradient(135deg, #54a0ff 0%, #2e86de 100%)" }
+    { name: "Caminar", gradient: "linear-gradient(135deg, #2d5a3d 0%, #4a7c59 100%)" },
+    { name: "Nadar", gradient: "linear-gradient(135deg, #4a7c59 0%, #6b8e6b 100%)" },
+    { name: "Meditar", gradient: "linear-gradient(135deg, #7c9885 0%, #9bb99e 100%)" },
+    { name: "Montar bici", gradient: "linear-gradient(135deg, #2d5a3d 0%, #4a7c59 100%)" },
+    { name: "Bailar", gradient: "linear-gradient(135deg, #6b8e6b 0%, #8ab08a 100%)" },
+    { name: "Yoga", gradient: "linear-gradient(135deg, #8ab08a 0%, #7c9885 100%)" },
+    { name: "Técnicas de respiración", gradient: "linear-gradient(135deg, #9bb99e 0%, #6b8e6b 100%)" },
+    { name: "Pilates", gradient: "linear-gradient(135deg, #5a7a5a 0%, #4a7c59 100%)" },
+    { name: "Acuaerobicos", gradient: "linear-gradient(135deg, #4a7c59 0%, #2d5a3d 100%)" }
   ];
 
   const handleActivityClick = (activityName) => {

@@ -1,111 +1,231 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 import { 
-  Container, 
-  Header, 
-  Main, 
-  Title, 
-  Button, 
-  Progress,
-  ProgressStep,
-  BackButton,
-  Subtitle,
-  SliderContainer,
-  Slider,
-  FooterText
+    Title, 
+    Button,
+    Subtitle,
+    ModernPageContainer
 } from '../components/StyledComponents';
 
-const FlexibilityVisual = styled.div`
-  margin: 40px 0;
-  width: 100%;
-  height: 200px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
+const HeaderSection = styled.div`
+    padding: ${props => props.theme.spacing.xl} ${props => props.theme.spacing.lg} 0;
+    text-align: center;
 `;
 
-const FlexibilityFigure = styled.div`
-  width: 60px;
-  height: 40px;
-  position: relative;
-  
-  &:before {
-    content: "";
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    background-color: ${props => props.theme.colors.primary};
-    border-radius: 50%;
-    top: 0;
-    left: 20px;
-  }
-  
-  &:after {
-    content: "";
-    position: absolute;
-    width: 60px;
-    height: 30px;
-    background-color: ${props => props.theme.colors.primary};
-    bottom: 0;
-    border-radius: ${props => props.level === 'excellent' ? '30px 30px 0 0' : '0'};
-    transform-origin: center bottom;
-    transform: ${props => {
-      switch(props.level) {
-        case 'poor':
-          return 'rotate(0deg)';
-        case 'good':
-          return 'rotate(-45deg)';
-        case 'excellent':
-          return 'rotate(-90deg)';
-        default:
-          return 'rotate(0deg)';
-      }
-    }};
-  }
+const ContentSection = styled(motion.div)`
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: ${props => props.theme.spacing.xl} ${props => props.theme.spacing.lg};
+    background: ${props => props.theme.colors.surface};
+    border-radius: ${props => props.theme.borderRadius["2xl"]};
+    margin: ${props => props.theme.spacing.lg};
+    box-shadow: ${props => props.theme.colors.shadow};
+    border: 1px solid ${props => props.theme.colors.border};
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    }
 `;
 
-const BaseLine = styled.div`
-  width: 60px;
-  height: 2px;
-  background-color: ${props => props.theme.colors.primary};
-  margin-top: 10px;
+const FlexibilityVisual = styled(motion.div)`
+    margin: 0 0 auto 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 `;
 
-const FlexibilityStatusText = styled.div`
-  font-size: 28px;
-  font-weight: bold;
-  margin: 20px 0;
-  color: ${props => props.theme.colors.text};
-`;
-
-const FlexibilityMessage = styled.div`
-  font-size: 16px;
-  color: ${props => props.theme.colors.darkGray};
-  margin: 10px 0 30px 0;
-  text-align: center;
-  max-width: 280px;
-  min-height: 57px;
-`;
-
-const FlexibilityLabels = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  margin-top: 10px;
-`;
-
-const FlexibilityLabel = styled.div`
-  font-size: 14px;
-  color: ${props => props.theme.colors.darkGray};
+const FlexibilityFigure = styled(motion.div)`
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: ${props => props.theme.borderRadius.full};
+    background: ${props => props.theme.colors.primarySolid}15;
+    backdrop-filter: blur(10px);
+    border: 3px solid ${props => props.theme.colors.primarySolid}30;
+    margin-bottom: ${props => props.theme.spacing.md};
+    position: relative;
+    overflow: hidden;
 `;
 
 const FlexibilityImage = styled.img`
-  width: 12.5rem;
-  height: 12.5rem;
-  object-fit: cover;
-  mix-blend-mode: multiply;
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: ${props => props.theme.borderRadius.lg};
+`;
+
+const FlexibilityStatusText = styled(motion.div)`
+    font-size: ${props => props.theme.fontSizes["2xl"]};
+    font-weight: 700;
+    color: ${props => props.theme.colors.text};
+    font-family: ${props => props.theme.fonts.heading};
+    background: ${props => props.theme.colors.primary};
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: ${props => props.theme.spacing.sm};
+`;
+
+const FlexibilityDescription = styled(motion.div)`
+    font-size: ${props => props.theme.fontSizes.md};
+    color: ${props => props.theme.colors.textLight};
+    text-align: center;
+    max-width: 380px;
+    line-height: 1.6;
+    margin-bottom: ${props => props.theme.spacing.xl};
+`;
+
+const SliderSection = styled(motion.div)`
+    width: 100%;
+    max-width: 450px;
+    padding: 0 ${props => props.theme.spacing.xl} 35px;
+`;
+
+const SliderContainer = styled.div`
+    width: 100%;
+    position: relative;
+    margin: ${props => props.theme.spacing.lg} 0;
+`;
+
+const SliderTrack = styled.div`
+    width: 100%;
+    height: 12px;
+    background: ${props => props.theme.colors.backgroundDark};
+    border-radius: 6px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.15);
+`;
+
+const SliderFill = styled(motion.div)`
+    height: 100%;
+    background: ${props => props.theme.colors.primary};
+    border-radius: 6px;
+    position: relative;
+    box-shadow: 0 2px 8px ${props => props.theme.colors.primarySolid}40;
+    transition: all 0.3s ease;
+`;
+
+const SliderThumb = styled(motion.div)`
+    width: 28px;
+    height: 28px;
+    background: white;
+    border: 4px solid ${props => props.theme.colors.primarySolid};
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 10;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:hover {
+        transform: translate(-50%, -50%) scale(1.1);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25), 0 0 0 8px ${props => props.theme.colors.primarySolid}20;
+    }
+
+    &:active {
+        transform: translate(-50%, -50%) scale(1.15);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25), 0 0 0 12px ${props => props.theme.colors.primarySolid}30;
+    }
+`;
+
+const HiddenSlider = styled.input`
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    
+    -webkit-appearance: none;
+    appearance: none;
+    
+    &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 28px;
+        height: 28px;
+        cursor: pointer;
+    }
+    
+    &::-moz-range-thumb {
+        width: 28px;
+        height: 28px;
+        cursor: pointer;
+        border: none;
+        background: transparent;
+    }
+`;
+
+const SliderLabels = styled.div`
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: ${props => props.theme.spacing.lg};
+    padding: 0 ${props => props.theme.spacing.sm};
+`;
+
+const SliderLabel = styled.span`
+    font-size: ${props => props.theme.fontSizes.sm};
+    color: ${props => props.theme.colors.textLight};
+    font-weight: 500;
+    text-align: center;
+    min-width: 80px;
+`;
+
+const NavigationContainer = styled.div`
+    padding: ${props => props.theme.spacing.lg};
+    background: ${props => props.theme.colors.surface};
+    border-radius: 0 0 ${props => props.theme.borderRadius["2xl"]} ${props => props.theme.borderRadius["2xl"]};
+    border-top: 1px solid ${props => props.theme.colors.border};
+`;
+
+const NextButton = styled(Button)`
+    width: 100%;
+    font-size: ${props => props.theme.fontSizes.lg};
+    padding: ${props => props.theme.spacing.lg} ${props => props.theme.spacing.xl};
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.2),
+            transparent
+        );
+        transition: left 0.5s;
+    }
+
+    &:hover::before {
+        left: 100%;
+    }
 `;
 
 const images = {
@@ -117,16 +237,6 @@ const images = {
 const FlexibilityInput = () => {
   const navigate = useNavigate();
   const [flexibility, setFlexibility] = useState(50);
-  const [step] = useState(6);
-  const totalSteps = 7;
-
-  const renderProgressSteps = () => {
-    const steps = [];
-    for (let i = 0; i < totalSteps; i++) {
-      steps.push(<ProgressStep key={i} active={i < step} />);
-    }
-    return steps;
-  };
 
   const handleFlexibilityChange = (e) => {
     setFlexibility(parseInt(e.target.value));
@@ -161,7 +271,7 @@ const FlexibilityInput = () => {
     const level = getFlexibilityLevel();
     switch(level) {
       case 'poor':
-        return 'El 70% de nuestros usuarios también lo experimenta. Estamos aquí para ayudarte a mejorar.';
+        return 'Nuestro plan fácil de seguir llevará tu flexibilidad al siguiente nivel';
       case 'good':
         return 'Nuestro plan fácil de seguir llevará tu flexibilidad al siguiente nivel';
       case 'excellent':
@@ -171,48 +281,135 @@ const FlexibilityInput = () => {
     }
   };
 
-
   const handleNext = () => {
     navigate('/aerobic');
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0.8,
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  };
+
   return (
-    <Container>
-      {/* <Header>
-        <BackButton to="/injuries">←</BackButton>
-        <Progress>{renderProgressSteps()}</Progress>
-        
-      </Header> */}
-      
-      <Main>
-        <Title>Tu flexibilidad</Title>
-        <Subtitle>¿Cómo de lejos están las manos de los dedos de los pies?</Subtitle>
-        
-        <FlexibilityVisual>
-          <div>
-            <FlexibilityImage src={getFlexibilityImage()} alt="Flexibilidad" />
-          </div>
-        </FlexibilityVisual>
-        
-        <FlexibilityStatusText>{getFlexibilityStatus()}</FlexibilityStatusText>
-        <FlexibilityMessage>{getFlexibilityMessage()}</FlexibilityMessage>
-        
-        <SliderContainer>
-          <Slider 
-            min={0}
-            max={100}
-            value={flexibility}
-            onChange={handleFlexibilityChange}
-          />
-          <FlexibilityLabels>
-            <FlexibilityLabel>Lejos</FlexibilityLabel>
-            <FlexibilityLabel>Toque</FlexibilityLabel>
-          </FlexibilityLabels>
-        </SliderContainer>
-        
-        <Button onClick={handleNext}>Siguiente</Button>
-      </Main>
-    </Container>
+    <ModernPageContainer>
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        style={{ flex: 1, display: 'flex', flexDirection: 'column' }}
+      >
+        <HeaderSection>
+          <motion.div variants={itemVariants}>
+            <Title gradient>Tu flexibilidad</Title>
+            <Subtitle>¿Cómo de lejos están las manos de los dedos de los pies?</Subtitle>
+          </motion.div>
+        </HeaderSection>
+
+        <ContentSection variants={itemVariants}>
+          <FlexibilityVisual
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 0.3 }}
+          >
+            <FlexibilityFigure 
+              animate={{ 
+                scale: [1, 1.05, 1],
+                rotate: [0, 2, -2, 0]
+              }}
+              transition={{ 
+                duration: 3, 
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            >
+              <FlexibilityImage 
+                src={getFlexibilityImage()} 
+                alt="Flexibilidad"
+              />
+            </FlexibilityFigure>
+            <FlexibilityStatusText
+              key={getFlexibilityStatus()}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+            >
+              {getFlexibilityStatus()}
+            </FlexibilityStatusText>
+          </FlexibilityVisual>
+
+          <FlexibilityDescription
+            key={getFlexibilityMessage()}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.4 }}
+          >
+            {getFlexibilityMessage()}
+          </FlexibilityDescription>
+
+          <SliderSection
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.4 }}
+          >
+            <SliderContainer>
+              <SliderTrack>
+                <SliderFill 
+                  style={{ width: `${flexibility}%` }}
+                  layout
+                />
+                <SliderThumb 
+                  style={{ left: `${flexibility}%` }}
+                  whileHover={{ scale: 1.2 }}
+                  whileTap={{ scale: 0.9 }}
+                />
+                <HiddenSlider 
+                  type="range"
+                  min={0}
+                  max={100}
+                  value={flexibility}
+                  onChange={handleFlexibilityChange}
+                />
+              </SliderTrack>
+              
+              <SliderLabels>
+                <SliderLabel>Lejos</SliderLabel>
+                <SliderLabel>Toque</SliderLabel>
+              </SliderLabels>
+            </SliderContainer>
+          </SliderSection>
+        </ContentSection>
+
+        <NavigationContainer>
+          <motion.div variants={itemVariants}>
+            <NextButton 
+              onClick={handleNext}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              Continuar
+            </NextButton>
+          </motion.div>
+        </NavigationContainer>
+      </motion.div>
+    </ModernPageContainer>
   );
 };
 

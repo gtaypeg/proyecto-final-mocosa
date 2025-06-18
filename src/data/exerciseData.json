@@ -4,7 +4,7 @@
             "name": "Hipertenso",
             "slug": "hipertenso",
             "description": "Ejercicios especializados para personas con hipertensión",
-            "color": "#667eea",
+            "color": "#2d5a3d",
             "exercises": {
                 "caminar": {
                     "name": "Caminar",

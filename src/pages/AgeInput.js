@@ -1,25 +1,13 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { 
-  Container, 
   Title, 
   Button, 
-  Subtitle
+  Subtitle,
+  ModernPageContainer
 } from '../components/StyledComponents';
-
-const ModernContainer = styled(Container)`
-    background: linear-gradient(
-        135deg,
-        ${props => props.theme.colors.background} 0%,
-        ${props => props.theme.colors.backgroundDark} 100%
-    );
-    backdrop-filter: blur(20px);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-`;
 
 const HeaderSection = styled.div`
     padding: ${props => props.theme.spacing.xl} ${props => props.theme.spacing.lg} 0;
@@ -85,128 +73,98 @@ const AgeDisplay = styled(motion.div)`
     }
 `;
 
-const AgeListContainer = styled.div`
-    width: 100%;
-    max-width: 300px;
-    height: 400px;
+const WheelPickerContainer = styled.div`
+    width: 200px;
+    height: 300px;
     position: relative;
-    background: linear-gradient(
-        135deg,
-        ${props => props.theme.colors.backgroundDark} 0%,
-        ${props => props.theme.colors.background} 100%
-    );
-    border-radius: ${props => props.theme.borderRadius["2xl"]};
-    overflow: hidden;
-    box-shadow: inset 0 4px 20px rgba(0, 0, 0, 0.1);
+    background: ${props => props.theme.colors.surface};
+    border-radius: ${props => props.theme.borderRadius.xl};
     border: 2px solid ${props => props.theme.colors.border};
-    margin: 0 auto;
+    overflow: hidden;
+    box-shadow: 
+        inset 0 2px 10px rgba(0, 0, 0, 0.1),
+        0 4px 20px rgba(0, 0, 0, 0.1);
 `;
 
-const AgeListWrapper = styled.div`
-    width: 100%;
+const WheelPicker = styled.div`
     height: 100%;
     overflow: hidden;
-    overflow-y: scroll;
-    padding-top: 180px;
-    padding-bottom: 180px;
     position: relative;
-    scroll-behavior: smooth;
+    cursor: grab;
+    user-select: none;
 
-    /* Hide scrollbar */
-    ::-webkit-scrollbar {
-        display: none;
+    &:active {
+        cursor: grabbing;
     }
-    scrollbar-width: none;
-    -ms-overflow-style: none;
 
-    /* Center indicator */
+    /* Selection indicator */
     &::before {
         content: '';
         position: absolute;
         top: 50%;
-        left: 20px;
-        right: 20px;
-        height: 4px;
-        background: ${props => props.theme.colors.primary};
-        z-index: 10;
+        left: 0;
+        right: 0;
+        height: 50px;
         transform: translateY(-50%);
-        border-radius: ${props => props.theme.borderRadius.full};
-        box-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+        background: ${props => props.theme.colors.primarySolid}10;
+        border-top: 2px solid ${props => props.theme.colors.primarySolid};
+        border-bottom: 2px solid ${props => props.theme.colors.primarySolid};
+        z-index: 2;
+        pointer-events: none;
     }
 
-    /* Pointer arrow */
+    /* Fade gradients */
     &::after {
         content: '';
         position: absolute;
-        top: 50%;
-        right: 15px;
-        width: 0;
-        height: 0;
-        border-left: 10px solid ${props => props.theme.colors.primarySolid};
-        border-top: 8px solid transparent;
-        border-bottom: 8px solid transparent;
-        z-index: 11;
-        transform: translateY(-50%);
-        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+            to bottom,
+            ${props => props.theme.colors.surface} 0%,
+            transparent 25%,
+            transparent 75%,
+            ${props => props.theme.colors.surface} 100%
+        );
+        pointer-events: none;
+        z-index: 1;
     }
 `;
 
-const AgeList = styled.div`
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0 ${props => props.theme.spacing.lg};
+const PickerContent = styled.div`
+    padding: 125px 0;
+    transform: translateY(${props => props.offset}px);
+    transition: transform ${props => props.isAnimating ? '0.3s ease-out' : '0s'};
 `;
 
-const AgeItem = styled.div`
-    width: 100%;
-    height: 60px;
+const PickerItem = styled.div`
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: ${props => props.theme.fontSizes.xl};
-    font-weight: 600;
+    font-size: ${props => {
+        if (props.isSelected) return props.theme.fontSizes["2xl"];
+        if (props.isAdjacent) return props.theme.fontSizes.xl;
+        return props.theme.fontSizes.lg;
+    }};
+    font-weight: ${props => props.isSelected ? 700 : (props.isAdjacent ? 600 : 400)};
+    color: ${props => {
+        if (props.isSelected) return props.theme.colors.primarySolid;
+        if (props.isAdjacent) return props.theme.colors.text;
+        return props.theme.colors.textLight;
+    }};
     font-family: ${props => props.theme.fonts.display};
-    color: ${props => props.theme.colors.text};
+    opacity: ${props => {
+        if (props.isSelected) return 1;
+        if (props.isAdjacent) return 0.8;
+        return 0.4;
+    }};
+    transition: all 0.2s ease;
+    transform: scale(${props => props.isSelected ? 1.1 : 1});
     position: relative;
-    transition: all ${props => props.theme.transitions.base};
-    cursor: pointer;
-    margin: 2px 0;
-    border-radius: ${props => props.theme.borderRadius.lg};
-
-    /* Special styling for milestone ages */
-    ${props => ([18, 21, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80].includes(props.age)) && `
-        &::before {
-            content: '';
-            position: absolute;
-            left: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 8px;
-            height: 8px;
-            background: ${props.theme.colors.primarySolid};
-            border-radius: 50%;
-            box-shadow: 0 0 10px ${props.theme.colors.primarySolid}50;
-        }
-        
-        font-weight: 700;
-        color: ${props.theme.colors.primarySolid};
-    `}
-
-    &:hover {
-        background: ${props => props.theme.colors.glass};
-        backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        transform: scale(1.05);
-        color: ${props => props.theme.colors.primarySolid};
-    }
-
-    /* Fade effect for distant items */
-    ${props => props.distance > 5 && `
-        opacity: ${Math.max(0.3, 1 - (props.distance - 5) * 0.1)};
-        transform: scale(${Math.max(0.8, 1 - (props.distance - 5) * 0.02)});
-    `}
+    z-index: 3;
 `;
 
 const PersonVisualization = styled(motion.div)`
@@ -303,11 +261,156 @@ const NextButton = styled(Button)`
 const AgeInput = () => {
     const navigate = useNavigate();
     const [selectedAge, setSelectedAge] = useState(25);
-    const [centerAge, setCenterAge] = useState(25);
-    const ageListRef = useRef(null);
+    const [offset, setOffset] = useState(0);
+    const [isAnimating, setIsAnimating] = useState(false);
+    const [isDragging, setIsDragging] = useState(false);
+    const [startY, setStartY] = useState(0);
+    const [startOffset, setStartOffset] = useState(0);
+    const [velocity, setVelocity] = useState(0);
+    const [lastMoveTime, setLastMoveTime] = useState(0);
+    const [lastMoveY, setLastMoveY] = useState(0);
+
+    const wheelRef = useRef(null);
 
     // Generate ages from 13 to 100
     const ageOptions = Array.from({ length: 88 }, (_, i) => i + 13);
+    const itemHeight = 50;
+
+    const getAgeFromOffset = useCallback((currentOffset) => {
+        const index = Math.round(-currentOffset / itemHeight);
+        const clampedIndex = Math.max(0, Math.min(ageOptions.length - 1, index));
+        return ageOptions[clampedIndex];
+    }, [ageOptions]);
+
+    const getOffsetFromAge = useCallback((targetAge) => {
+        const index = ageOptions.indexOf(targetAge);
+        return -index * itemHeight;
+    }, [ageOptions]);
+
+    const snapToNearest = useCallback(() => {
+        const targetAge = getAgeFromOffset(offset);
+        const targetOffset = getOffsetFromAge(targetAge);
+        
+        setIsAnimating(true);
+        setOffset(targetOffset);
+        setSelectedAge(targetAge);
+        
+        setTimeout(() => setIsAnimating(false), 300);
+    }, [offset, getAgeFromOffset, getOffsetFromAge]);
+
+    const handleMouseDown = (e) => {
+        setIsDragging(true);
+        setStartY(e.clientY);
+        setStartOffset(offset);
+        setVelocity(0);
+        setLastMoveTime(Date.now());
+        setLastMoveY(e.clientY);
+        setIsAnimating(false);
+    };
+
+    const handleTouchStart = (e) => {
+        setIsDragging(true);
+        setStartY(e.touches[0].clientY);
+        setStartOffset(offset);
+        setVelocity(0);
+        setLastMoveTime(Date.now());
+        setLastMoveY(e.touches[0].clientY);
+        setIsAnimating(false);
+    };
+
+    const handleMove = (clientY) => {
+        if (!isDragging) return;
+
+        const currentTime = Date.now();
+        const deltaY = clientY - startY;
+        const newOffset = startOffset + deltaY;
+        
+        // Calculate velocity for momentum
+        const timeDiff = currentTime - lastMoveTime;
+        if (timeDiff > 0) {
+            const positionDiff = clientY - lastMoveY;
+            setVelocity(positionDiff / timeDiff);
+        }
+        
+        setLastMoveTime(currentTime);
+        setLastMoveY(clientY);
+
+        // Constrain offset
+        const minOffset = -(ageOptions.length - 1) * itemHeight;
+        const maxOffset = 0;
+        const constrainedOffset = Math.max(minOffset, Math.min(maxOffset, newOffset));
+        
+        setOffset(constrainedOffset);
+        setSelectedAge(getAgeFromOffset(constrainedOffset));
+    };
+
+    const handleMouseMove = (e) => {
+        handleMove(e.clientY);
+    };
+
+    const handleTouchMove = (e) => {
+        e.preventDefault();
+        handleMove(e.touches[0].clientY);
+    };
+
+    const handleEnd = () => {
+        if (!isDragging) return;
+        setIsDragging(false);
+        
+        // Apply momentum if velocity is significant
+        if (Math.abs(velocity) > 0.5) {
+            const momentumOffset = offset + velocity * 100;
+            const targetAge = getAgeFromOffset(momentumOffset);
+            const finalOffset = getOffsetFromAge(targetAge);
+            
+            setIsAnimating(true);
+            setOffset(finalOffset);
+            setSelectedAge(targetAge);
+            setTimeout(() => setIsAnimating(false), 300);
+        } else {
+            snapToNearest();
+        }
+    };
+
+    const handleWheel = (e) => {
+        e.preventDefault();
+        const delta = e.deltaY > 0 ? 1 : -1;
+        const currentIndex = ageOptions.indexOf(selectedAge);
+        const newIndex = Math.max(0, Math.min(ageOptions.length - 1, currentIndex + delta));
+        const newAge = ageOptions[newIndex];
+        const newOffset = getOffsetFromAge(newAge);
+        
+        setIsAnimating(true);
+        setOffset(newOffset);
+        setSelectedAge(newAge);
+        setTimeout(() => setIsAnimating(false), 200);
+    };
+
+    useEffect(() => {
+        const handleMouseUp = () => handleEnd();
+        const handleMouseMoveGlobal = (e) => handleMouseMove(e);
+        const handleTouchEnd = () => handleEnd();
+        const handleTouchMoveGlobal = (e) => handleTouchMove(e);
+
+        if (isDragging) {
+            document.addEventListener('mousemove', handleMouseMoveGlobal);
+            document.addEventListener('mouseup', handleMouseUp);
+            document.addEventListener('touchmove', handleTouchMoveGlobal, { passive: false });
+            document.addEventListener('touchend', handleTouchEnd);
+        }
+
+        return () => {
+            document.removeEventListener('mousemove', handleMouseMoveGlobal);
+            document.removeEventListener('mouseup', handleMouseUp);
+            document.removeEventListener('touchmove', handleTouchMoveGlobal);
+            document.removeEventListener('touchend', handleTouchEnd);
+        };
+    }, [isDragging, handleMouseMove, handleTouchMove, handleEnd]);
+
+    useEffect(() => {
+        // Initialize position
+        setOffset(getOffsetFromAge(selectedAge));
+    }, []);
 
     const handleNext = () => {
         navigate('/injuries');
@@ -328,54 +431,6 @@ const AgeInput = () => {
         if (selectedAge < 61) return 'Adulto maduro';
         return 'Adulto mayor';
     };
-
-    useEffect(() => {
-        const targetElement = ageListRef.current;
-        if (!targetElement) return;
-
-        const children = targetElement.querySelectorAll(".age-item");
-        let currentAgeElement = null;
-
-        const setValueOnScroll = (e) => {
-            const scroll = e.target.scrollTop + 180;
-            const closestChild = [...children].reduce((prev, curr) => {
-                return Math.abs(curr.offsetTop - scroll) < Math.abs(prev.offsetTop - scroll) ? curr : prev;
-            }, children[0]);
-
-            const newAge = parseInt(closestChild.getAttribute("data-age"));
-            setSelectedAge(newAge);
-            setCenterAge(newAge);
-            currentAgeElement = closestChild;
-        };
-
-        const handleScrollEnd = () => {
-            if (currentAgeElement) {
-                targetElement.scrollTo({
-                    top: currentAgeElement.offsetTop - 180,
-                    behavior: 'smooth'
-                });
-            }
-        };
-
-        targetElement.addEventListener("scroll", setValueOnScroll);
-        targetElement.addEventListener("scrollend", handleScrollEnd);
-
-        // Initialize scroll position
-        setTimeout(() => {
-            const initialElement = targetElement.querySelector(`[data-age="${selectedAge}"]`);
-            if (initialElement) {
-                targetElement.scrollTo({
-                    top: initialElement.offsetTop - 180,
-                    behavior: 'smooth'
-                });
-            }
-        }, 100);
-
-        return () => {
-            targetElement.removeEventListener("scroll", setValueOnScroll);
-            targetElement.removeEventListener("scrollend", handleScrollEnd);
-        };
-    }, [selectedAge]);
 
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -401,7 +456,7 @@ const AgeInput = () => {
     };
 
     return (
-        <ModernContainer>
+        <ModernPageContainer>
             <motion.div
                 variants={containerVariants}
                 initial="hidden"
@@ -426,38 +481,35 @@ const AgeInput = () => {
                         <span className="unit">años</span>
                     </AgeDisplay>
 
-                    <AgeListContainer>
-                        <AgeListWrapper ref={ageListRef}>
-                            <AgeList>
-                                {ageOptions.map((age) => {
-                                    const distance = Math.abs(age - centerAge);
+                    <WheelPickerContainer>
+                        <WheelPicker
+                            ref={wheelRef}
+                            onMouseDown={handleMouseDown}
+                            onTouchStart={handleTouchStart}
+                            onWheel={handleWheel}
+                        >
+                            <PickerContent
+                                offset={offset}
+                                isAnimating={isAnimating}
+                            >
+                                {ageOptions.map((age, index) => {
+                                    const currentIndex = ageOptions.indexOf(selectedAge);
+                                    const isSelected = index === currentIndex;
+                                    const isAdjacent = Math.abs(index - currentIndex) === 1;
+                                    
                                     return (
-                                        <AgeItem
+                                        <PickerItem
                                             key={age}
-                                            className="age-item"
-                                            data-age={age}
-                                            age={age}
-                                            distance={distance}
+                                            isSelected={isSelected}
+                                            isAdjacent={isAdjacent}
                                         >
                                             {age}
-                                        </AgeItem>
+                                        </PickerItem>
                                     );
                                 })}
-                            </AgeList>
-                        </AgeListWrapper>
-                    </AgeListContainer>
-
-                    <PersonVisualization>
-                        <PersonIcon
-                            animate={{ 
-                                scale: [1, 1.05, 1],
-                                transition: { duration: 3, repeat: Infinity, ease: "easeInOut" }
-                            }}
-                        >
-                            <span className="emoji">{getPersonEmoji()}</span>
-                        </PersonIcon>
-                        <AgeLabel>{getAgeDescription()}</AgeLabel>
-                    </PersonVisualization>
+                            </PickerContent>
+                        </WheelPicker>
+                    </WheelPickerContainer>
                 </AgeSection>
 
                 <NavigationContainer>
@@ -472,7 +524,7 @@ const AgeInput = () => {
                     </motion.div>
                 </NavigationContainer>
             </motion.div>
-        </ModernContainer>
+        </ModernPageContainer>
     );
 };
 

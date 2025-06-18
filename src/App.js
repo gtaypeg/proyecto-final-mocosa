@@ -38,47 +38,47 @@ import {
 
 const theme = {
     colors: {
-        // Primary gradient system
-        primary: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-        primarySolid: "#667eea",
-        primaryLight: "#8b9cf5",
-        primaryDark: "#4c63d2",
+        // Primary gradient system - Natural Green
+        primary: "linear-gradient(135deg, #2d5a3d 0%, #4a7c59 100%)",
+        primarySolid: "#2d5a3d",
+        primaryLight: "#4a7c59",
+        primaryDark: "#1e3d28",
         
-        // Secondary gradient system  
-        secondary: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
-        secondarySolid: "#f093fb",
-        secondaryLight: "#f3a7fc",
-        secondaryDark: "#ed7ff0",
+        // Secondary gradient system - Sage Green
+        secondary: "linear-gradient(135deg, #6b8e6b 0%, #8ab08a 100%)",
+        secondarySolid: "#6b8e6b",
+        secondaryLight: "#8ab08a",
+        secondaryDark: "#5a7a5a",
         
-        // Accent colors
-        accent: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)",
-        accentSolid: "#4facfe",
-        success: "linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)",
-        successSolid: "#43e97b",
-        warning: "linear-gradient(135deg, #fa709a 0%, #fee140 100%)",
-        warningSolid: "#fa709a",
+        // Accent colors - Earth Tones
+        accent: "linear-gradient(135deg, #7c9885 0%, #9bb99e 100%)",
+        accentSolid: "#7c9885",
+        success: "linear-gradient(135deg, #4a7c59 0%, #6b8e6b 100%)",
+        successSolid: "#4a7c59",
+        warning: "linear-gradient(135deg, #d4a574 0%, #e6c2a6 100%)",
+        warningSolid: "#d4a574",
         
-        // Neutral system
-        text: "#1a202c",
-        textLight: "#4a5568",
-        textLighter: "#718096",
-        background: "#f7fafc",
-        backgroundDark: "#edf2f7",
+        // Neutral system - Natural Palette
+        text: "#2d3e2d",
+        textLight: "#5a6b5a",
+        textLighter: "#8a9b8a",
+        background: "#f7f4f0",
+        backgroundDark: "#f0ebe4",
         surface: "#ffffff",
-        surfaceLight: "rgba(255, 255, 255, 0.8)",
+        surfaceLight: "rgba(255, 255, 255, 0.9)",
         
-        // Glass morphism
-        glass: "rgba(255, 255, 255, 0.25)",
-        glassDark: "rgba(255, 255, 255, 0.1)",
+        // Glass morphism - Natural Glass
+        glass: "rgba(247, 244, 240, 0.75)",
+        glassDark: "rgba(240, 235, 228, 0.5)",
         
-        // Shadows
-        shadow: "0 10px 25px rgba(0, 0, 0, 0.1)",
-        shadowHover: "0 20px 40px rgba(0, 0, 0, 0.15)",
-        shadowActive: "0 5px 15px rgba(0, 0, 0, 0.2)",
+        // Shadows - Softer Natural Shadows
+        shadow: "0 8px 32px rgba(45, 90, 61, 0.1)",
+        shadowHover: "0 16px 48px rgba(45, 90, 61, 0.15)",
+        shadowActive: "0 4px 16px rgba(45, 90, 61, 0.2)",
         
-        // Borders
-        border: "#e2e8f0",
-        borderLight: "#f1f5f9",
+        // Borders - Natural Borders
+        border: "#e8e1d8",
+        borderLight: "#f2ede6",
     },
     fonts: {
         main: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif",
@@ -92,7 +92,7 @@ const theme = {
         xl: "1.25rem",     // 20px
         "2xl": "1.5rem",   // 24px
         "3xl": "1.875rem", // 30px
-        "4xl": "2.25rem",  // 36px
+        "4xl": "2rem",  // 36px
         "5xl": "3rem",     // 48px
     },
     spacing: {
@@ -120,6 +120,86 @@ const theme = {
     },
 };
 
+// Responsive app wrapper
+const AppWrapper = styled.div`
+    min-height: 100vh;
+    width: 100%;
+    background: ${props => props.theme.colors.background};
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 0;
+    
+    /* Mobile first - full width */
+    @media (max-width: 480px) {
+        padding: 0;
+    }
+    
+    /* Tablet and up - centered with max width */
+    @media (min-width: 481px) {
+        padding: ${props => props.theme.spacing.md};
+    }
+    
+    /* Large screens - add side padding */
+    @media (min-width: 1024px) {
+        padding: ${props => props.theme.spacing.xl};
+    }
+`;
+
+const AppContainer = styled.div`
+    width: 100%;
+    max-width: 480px;
+    min-height: 100vh;
+    background: ${props => props.theme.colors.surface};
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    
+    /* Mobile - full height and width */
+    @media (max-width: 480px) {
+        border-radius: 0;
+        box-shadow: none;
+        border: none;
+    }
+    
+    /* Tablet and up - card-like appearance */
+    @media (min-width: 481px) {
+        border-radius: ${props => props.theme.borderRadius["2xl"]};
+        box-shadow: ${props => props.theme.colors.shadow};
+        border: 1px solid ${props => props.theme.colors.border};
+        min-height: calc(100vh - ${props => props.theme.spacing.xl});
+    }
+`;
+
+const ScrollableContent = styled.div`
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    
+    /* Custom scrollbar for better UX */
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+    
+    &::-webkit-scrollbar-track {
+        background: ${props => props.theme.colors.backgroundDark};
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background: ${props => props.theme.colors.primarySolid};
+        border-radius: ${props => props.theme.borderRadius.full};
+    }
+    
+    &::-webkit-scrollbar-thumb:hover {
+        background: ${props => props.theme.colors.primaryDark};
+    }
+`;
+
 // Create a wrapper component to use useLocation
 const AnimatedRoutes = () => {
     const location = useLocation();
@@ -141,65 +221,64 @@ const AnimatedRoutes = () => {
     const isApp = location.pathname.includes("discover") || location.pathname.includes("activities") || location.pathname.includes("category") || location.pathname.includes("recipes");
 
     return (
-        <AnimatePresence mode="wait">
-            <div
-                style={{
-                    background: "white",
-                    width: "480px",
-                    margin: "0 auto",
-                }}
-            >
-                {location.pathname !== "/" && location.pathname !== "/goal" && !isApp && (
-                    <Header>
-                        <BackButton to={pageSteps[activeIndex - 1] || "/"}>
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="16"
-                                height="16"
-                                fill="currentColor"
-                                class="bi bi-arrow-left"
-                                viewBox="0 0 16 16"
-                            >
-                                <path
-                                    fill-rule="evenodd"
-                                    d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"
-                                />
-                            </svg>
-                        </BackButton>
-                        <Progress>{renderProgressSteps()}</Progress>
-                    </Header>
-                )}
+        <AppWrapper>
+            <AppContainer>
+                <AnimatePresence mode="wait">
+                    {location.pathname !== "/" && location.pathname !== "/goal" && !isApp && (
+                        <Header>
+                            <BackButton to={pageSteps[activeIndex - 1] || "/"}>
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="16"
+                                    height="16"
+                                    fill="currentColor"
+                                    class="bi bi-arrow-left"
+                                    viewBox="0 0 16 16"
+                                >
+                                    <path
+                                        fill-rule="evenodd"
+                                        d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"
+                                    />
+                                </svg>
+                            </BackButton>
+                            <Progress>{renderProgressSteps()}</Progress>
+                        </Header>
+                    )}
 
-                <motion.div
-                    key={location.pathname}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.5 }}
-                >
-                    <Routes location={location}>
-                        <Route path="/" element={<Onboarding />} />
-                        <Route path="/goal" element={<GoalSelection />} />
-                        <Route path="/height" element={<HeightInput />} />
-                        <Route path="/weight" element={<WeightInput />} />
-                        <Route path="/age" element={<AgeInput />} />
-                        <Route path="/injuries" element={<InjuriesInput />} />
-                        <Route path="/activity" element={<ActivityLevelInput />} />
-                        <Route path="/flexibility" element={<FlexibilityInput />} />
-                        <Route path="/aerobic" element={<AerobicInput />} />
-                        <Route path="/discover" element={<DiscoverPage />} />
-                        <Route path="/activities" element={<ActivitiesPage />} />
-                        <Route path="/category/:category" element={<CategoryPage />} />
-                        <Route path="/category/:category/exercise/:exercise" element={<ExerciseDaysPage />} />
-                        <Route path="/category/:category/exercise/:exercise/day/:day" element={<DayPage />} />
-                        <Route path="/category/:category/exercise/:exercise/day/:day/exercise/:exerciseIndex" element={<ExercisePage />} />
-                        <Route path="/category/:category/exercise/:exercise/day/:day/completed" element={<CompletionPage />} />
-                        <Route path="/recipes" element={<RecipesPage />} />
-                        <Route path="/recipes/:recipeId" element={<RecipeDetailPage />} />
-                    </Routes>
-                </motion.div>
-            </div>
-        </AnimatePresence>
+                    <ScrollableContent>
+                        <motion.div
+                            key={location.pathname}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.5 }}
+                            style={{ flex: 1, display: 'flex', flexDirection: 'column' }}
+                        >
+                            <Routes location={location}>
+                                <Route path="/" element={<Onboarding />} />
+                                <Route path="/goal" element={<GoalSelection />} />
+                                <Route path="/height" element={<HeightInput />} />
+                                <Route path="/weight" element={<WeightInput />} />
+                                <Route path="/age" element={<AgeInput />} />
+                                <Route path="/injuries" element={<InjuriesInput />} />
+                                <Route path="/activity" element={<ActivityLevelInput />} />
+                                <Route path="/flexibility" element={<FlexibilityInput />} />
+                                <Route path="/aerobic" element={<AerobicInput />} />
+                                <Route path="/discover" element={<DiscoverPage />} />
+                                <Route path="/activities" element={<ActivitiesPage />} />
+                                <Route path="/category/:category" element={<CategoryPage />} />
+                                <Route path="/category/:category/exercise/:exercise" element={<ExerciseDaysPage />} />
+                                <Route path="/category/:category/exercise/:exercise/day/:day" element={<DayPage />} />
+                                <Route path="/category/:category/exercise/:exercise/day/:day/exercise/:exerciseIndex" element={<ExercisePage />} />
+                                <Route path="/category/:category/exercise/:exercise/day/:day/completed" element={<CompletionPage />} />
+                                <Route path="/recipes" element={<RecipesPage />} />
+                                <Route path="/recipes/:recipeId" element={<RecipeDetailPage />} />
+                            </Routes>
+                        </motion.div>
+                    </ScrollableContent>
+                </AnimatePresence>
+            </AppContainer>
+        </AppWrapper>
     );
 };
 

@@ -4,18 +4,14 @@ import { Link } from 'react-router-dom';
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  min-height: calc(100vh - 54px);
-  padding: ${props => props.theme.spacing.lg};
-  max-width: 480px;
-  margin: 0 auto;
+  width: 100%;
+  min-height: 100%;
   position: relative;
-  background: ${props => props.theme.colors.surface};
-  border-radius: ${props => props.theme.borderRadius["2xl"]};
-  box-shadow: ${props => props.theme.colors.shadow};
-  backdrop-filter: blur(20px);
-  border: 1px solid ${props => props.theme.colors.border};
+  background: transparent;
+  
+  /* Remove any height constraints that might interfere with scrolling */
+  height: auto;
+  flex: 1;
 `;
 
 export const Header = styled.header`
@@ -499,17 +495,6 @@ export const HealthMetric = styled.div`
   p {
     font-size: ${props => props.theme.fontSizes.base};
     color: ${props => props.theme.colors.textLight};
-    line-height: 1.5;
-  }
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 4px;
-    height: 100%;
-    background: ${props => props.theme.colors.primary};
   }
 `;
 
@@ -555,4 +540,25 @@ export const FloatingButton = styled.button`
   &:active {
     transform: scale(0.95);
   }
+`;
+
+// Responsive Modern Container for all pages
+export const ModernPageContainer = styled(Container)`
+    background: linear-gradient(
+        135deg,
+        ${props => props.theme.colors.background} 0%,
+        ${props => props.theme.colors.backgroundDark} 100%
+    );
+    backdrop-filter: blur(20px);
+    min-height: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    
+    /* Ensure proper scrolling behavior */
+    overflow-y: auto;
+    overflow-x: hidden;
+    
+    /* Remove any fixed height constraints */
+    max-height: none;
 `; 

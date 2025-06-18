@@ -3,14 +3,21 @@ import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import exerciseData from "../data/exerciseData.json";
 import { useProgress } from "../contexts/ProgressContext";
+import { motion } from "framer-motion";
 
 const Container = styled.div`
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
-    max-width: 480px;
-    margin: 0 auto;
-    background-color: #f8f9fa;
+    min-height: calc(100vh - 2.125rem);
+    background: linear-gradient(
+        135deg,
+        ${(props) => props.theme.colors.background} 0%,
+        ${(props) => props.theme.colors.backgroundDark} 100%
+    );
+    position: relative;
+    border-radius: ${(props) => props.theme.borderRadius["2xl"]};
+    box-shadow: ${(props) => props.theme.colors.shadow};
+    overflow: hidden;
 `;
 
 const Header = styled.div`
@@ -41,15 +48,29 @@ const Header = styled.div`
     }
 `;
 
-const BackButton = styled.button`
+const BackButton = styled(motion.button)`
     position: absolute;
-    left: 20px;
-    top: 20px;
-    background: none;
-    border: none;
-    font-size: 18px;
+    left: ${(props) => props.theme.spacing.lg};
+    top: ${(props) => props.theme.spacing.xl};
+    background: ${(props) => props.theme.colors.surface};
+    border: 2px solid ${(props) => props.theme.colors.border};
+    border-radius: ${(props) => props.theme.borderRadius.lg};
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: ${(props) => props.theme.fontSizes.lg};
     cursor: pointer;
-    color: #fff;
+    color: ${(props) => props.theme.colors.text};
+    transition: ${(props) => props.theme.transitions.base};
+    box-shadow: ${(props) => props.theme.colors.shadow};
+
+    &:hover {
+        color: ${(props) => props.theme.colors.primarySolid};
+        border-color: ${(props) => props.theme.colors.primarySolid};
+        transform: translateX(-2px);
+    }
 `;
 
 const HeaderContent = styled.div`
@@ -79,7 +100,7 @@ const BrandText = styled.span`
 `;
 
 const AiIcon = styled.span`
-    background: linear-gradient(135deg, #4ade80, #a855f7);
+    background: ${(props) => props.theme.colors.primary};
     color: white;
     padding: 4px 8px;
     border-radius: 8px;
@@ -158,13 +179,13 @@ const DayCard = styled.div`
 const DayIcon = styled.div`
     width: 24px;
     height: 24px;
-    border: 2px solid ${(props) => (props.completed ? "#4ade80" : "#e5e7eb")};
+    border: 2px solid ${(props) => (props.completed ? props.theme.colors.primarySolid : "#e5e7eb")};
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    background: ${(props) => (props.completed ? "#4ade80" : "transparent")};
+    background: ${(props) => (props.completed ? props.theme.colors.primarySolid : "transparent")};
     color: ${(props) => (props.completed ? "white" : "#666")};
     font-size: 12px;
     font-weight: bold;
@@ -216,7 +237,7 @@ const ProgressBar = styled.div`
 
 const ProgressFill = styled.div`
     height: 100%;
-    background-color: #4ade80;
+    background-color: ${(props) => props.theme.colors.primarySolid};
     width: ${(props) => props.progress}%;
     transition: width 0.3s ease;
 `;
@@ -269,7 +290,9 @@ const ExerciseDaysPage = () => {
     return (
         <Container>
             <Header src={`/fondos/${exercise}.png`}>
-                <BackButton onClick={handleBackClick}>←</BackButton>
+                <BackButton onClick={handleBackClick} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                    ←
+                </BackButton>
                 <HeaderContent>
                     <CategoryBadge color={categoryData.color}>{exerciseData2.name}</CategoryBadge>
                 </HeaderContent>

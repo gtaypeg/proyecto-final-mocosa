@@ -7,10 +7,16 @@ import { useProgress } from "../contexts/ProgressContext";
 const Container = styled.div`
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
-    max-width: 480px;
-    margin: 0 auto;
-    background-color: #f8f9fa;
+    min-height: calc(100vh - 2.125rem);
+    background: linear-gradient(
+        135deg,
+        ${props => props.theme.colors.background} 0%,
+        ${props => props.theme.colors.backgroundDark} 100%
+    );
+    position: relative;
+    border-radius: ${props => props.theme.borderRadius["2xl"]};
+    box-shadow: ${props => props.theme.colors.shadow};
+    overflow: hidden;
 `;
 
 const Header = styled.div`
@@ -43,13 +49,27 @@ const Header = styled.div`
 
 const BackButton = styled.button`
     position: absolute;
-    left: 20px;
-    top: 20px;
-    background: none;
-    border: none;
-    font-size: 18px;
+    left: ${(props) => props.theme.spacing.lg};
+    top: ${(props) => props.theme.spacing.xl};
+    background: ${(props) => props.theme.colors.surface};
+    border: 2px solid ${(props) => props.theme.colors.border};
+    border-radius: ${(props) => props.theme.borderRadius.lg};
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: ${(props) => props.theme.fontSizes.lg};
     cursor: pointer;
-    color: #fff;
+    color: ${(props) => props.theme.colors.text};
+    transition: ${(props) => props.theme.transitions.base};
+    box-shadow: ${(props) => props.theme.colors.shadow};
+
+    &:hover {
+        color: ${(props) => props.theme.colors.primarySolid};
+        border-color: ${(props) => props.theme.colors.primarySolid};
+        transform: translateX(-2px);
+    }
 `;
 
 const HeaderContent = styled.div`
@@ -161,7 +181,7 @@ const WarmupTitle = styled.h4`
 `;
 
 const WarmupCount = styled.span`
-    color: #4ade80;
+    color: ${props => props.theme.colors.primarySolid};
     font-size: 14px;
     font-weight: 600;
 `;
@@ -170,7 +190,7 @@ const ToggleSwitch = styled.div`
     position: relative;
     width: 44px;
     height: 24px;
-    background-color: ${(props) => (props.active ? "#4ade80" : "#e5e7eb")};
+    background-color: ${(props) => (props.active ? props.theme.colors.primarySolid : "#e5e7eb")};
     border-radius: 12px;
     cursor: pointer;
     transition: background-color 0.2s;
@@ -233,7 +253,7 @@ const ExerciseType = styled.span`
 
 const ExerciseDuration = styled.span`
     font-size: 12px;
-    color: #4ade80;
+    color: ${props => props.theme.colors.primarySolid};
     font-weight: 600;
 `;
 

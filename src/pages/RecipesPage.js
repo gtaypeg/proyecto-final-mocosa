@@ -99,9 +99,9 @@ const FilterContainer = styled.div`
 `;
 
 const FilterButton = styled.button`
-    background: ${(props) => (props.active ? "linear-gradient(135deg, #4ade80, #a855f7)" : "white")};
+    background: ${(props) => (props.active ? props.theme.colors.primary : "white")};
     color: ${(props) => (props.active ? "white" : "#666")};
-    border: 2px solid ${(props) => (props.active ? "#4ade80" : "#e0e0e0")};
+    border: 2px solid ${(props) => (props.active ? props.theme.colors.primarySolid : "#e0e0e0")};
     border-radius: 20px;
     padding: 8px 16px;
     font-size: 14px;
@@ -174,8 +174,8 @@ const RecipeImage = styled.div`
         bottom: 0;
         background: linear-gradient(
             135deg,
-            rgba(102, 126, 234, 0.1) 0%,
-            rgba(118, 75, 162, 0.1) 100%
+            rgba(45, 90, 61, 0.1) 0%,
+            rgba(74, 124, 89, 0.1) 100%
         );
         opacity: 0;
         transition: ${props => props.theme.transitions.base};

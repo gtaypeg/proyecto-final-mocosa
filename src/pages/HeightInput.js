@@ -1,29 +1,17 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import {
-    Container,
-    Header,
-    Main,
     Title,
     Button,
-    Progress,
-    ProgressStep,
-    BackButton,
     Subtitle,
+    ModernPageContainer,
 } from "../components/StyledComponents";
 
-const ModernContainer = styled(Container)`
-    background: linear-gradient(
-        135deg,
-        ${props => props.theme.colors.background} 0%,
-        ${props => props.theme.colors.backgroundDark} 100%
-    );
-    backdrop-filter: blur(20px);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+const HeaderSection = styled.div`
+    padding: ${props => props.theme.spacing.xl} ${props => props.theme.spacing.lg} 0;
+    text-align: center;
 `;
 
 const HeightSection = styled(motion.div)`
@@ -88,171 +76,98 @@ const HeightValueDisplay = styled(motion.div)`
     }
 `;
 
-const RulerContainer = styled.div`
-    width: 120px;
-    height: 400px;
+const WheelPickerContainer = styled.div`
+    width: 200px;
+    height: 300px;
     position: relative;
-    background: linear-gradient(
-        135deg,
-        ${props => props.theme.colors.backgroundDark} 0%,
-        ${props => props.theme.colors.background} 100%
-    );
-    border-radius: ${props => props.theme.borderRadius["2xl"]};
-    overflow: hidden;
-    box-shadow: inset 0 4px 20px rgba(0, 0, 0, 0.1);
+    background: ${props => props.theme.colors.surface};
+    border-radius: ${props => props.theme.borderRadius.xl};
     border: 2px solid ${props => props.theme.colors.border};
-    margin: 0 auto;
+    overflow: hidden;
+    box-shadow: 
+        inset 0 2px 10px rgba(0, 0, 0, 0.1),
+        0 4px 20px rgba(0, 0, 0, 0.1);
 `;
 
-const MeasurementRulerWrapper = styled.div`
-    width: 100%;
+const WheelPicker = styled.div`
     height: 100%;
     overflow: hidden;
-    overflow-y: scroll;
-    padding-top: 200px;
-    padding-bottom: 200px;
     position: relative;
-    scroll-behavior: smooth;
+    cursor: grab;
+    user-select: none;
 
-    /* Hide scrollbar */
-    ::-webkit-scrollbar {
-        display: none;
+    &:active {
+        cursor: grabbing;
     }
-    scrollbar-width: none;
-    -ms-overflow-style: none;
 
-    /* Center indicator line */
+    /* Selection indicator */
     &::before {
         content: '';
         position: absolute;
         top: 50%;
-        left: 20px;
-        right: 20px;
-        height: 4px;
-        background: ${props => props.theme.colors.primary};
-        z-index: 10;
+        left: 0;
+        right: 0;
+        height: 50px;
         transform: translateY(-50%);
-        border-radius: ${props => props.theme.borderRadius.full};
-        box-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+        background: ${props => props.theme.colors.primarySolid}10;
+        border-top: 2px solid ${props => props.theme.colors.primarySolid};
+        border-bottom: 2px solid ${props => props.theme.colors.primarySolid};
+        z-index: 2;
+        pointer-events: none;
     }
 
-    /* Pointer arrow */
-    &::after {
-        content: '';
-        position: absolute;
-        top: 50%;
-        right: 15px;
-        width: 0;
-        height: 0;
-        border-left: 10px solid ${props => props.theme.colors.primarySolid};
-        border-top: 8px solid transparent;
-        border-bottom: 8px solid transparent;
-        z-index: 11;
-        transform: translateY(-50%);
-        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
-    }
-`;
-
-const MeasurementRuler = styled.div`
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding-left: ${props => props.theme.spacing.lg};
-`;
-
-const MeasurementRulerLine = styled.div`
-    height: 2px;
-    background: ${props => 
-        props.major 
-            ? props.theme.colors.text
-            : props.theme.colors.textLighter
-    };
-    position: relative;
-    width: ${props => props.major ? '60px' : (props.medium ? '40px' : '25px')};
-    margin: 4px 0;
-    transition: ${props => props.theme.transitions.fast};
-    border-radius: ${props => props.theme.borderRadius.full};
-
-    ${props => props.major && `
-        background: ${props.theme.colors.primarySolid};
-        height: 3px;
-    `}
-
-    span {
-        position: absolute;
-        left: 70px;
-        font-size: ${props => props.theme.fontSizes.sm};
-        top: 50%;
-        transform: translateY(-50%);
-        color: ${props => props.theme.colors.text};
-        font-weight: 700;
-        font-family: ${props => props.theme.fonts.display};
-        display: ${props => props.major ? 'block' : 'none'};
-        background: ${props => props.theme.colors.surface};
-        padding: 4px 8px;
-        border-radius: ${props => props.theme.borderRadius.md};
-        box-shadow: ${props => props.theme.colors.shadow};
-        border: 1px solid ${props => props.theme.colors.border};
-        white-space: nowrap;
-        letter-spacing: -0.02em;
-    }
-`;
-
-const PersonVisualization = styled.div`
-    margin-top: ${props => props.theme.spacing.xl};
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: ${props => props.theme.spacing.md};
-`;
-
-const PersonIcon = styled(motion.div)`
-    width: 80px;
-    height: ${props => Math.max(80, (props.height / 200) * 120)}px;
-    background: linear-gradient(
-        135deg,
-        ${props => props.theme.colors.primarySolid}20 0%,
-        ${props => props.theme.colors.primarySolid}10 100%
-    );
-    border: 3px solid ${props => props.theme.colors.primarySolid};
-    border-radius: ${props => props.theme.borderRadius.xl};
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-    box-shadow: ${props => props.theme.colors.shadow};
-
-    &::before {
-        content: '👤';
-        font-size: 32px;
-        position: absolute;
-        bottom: 8px;
-    }
-
+    /* Fade gradients */
     &::after {
         content: '';
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
-        height: 3px;
-        background: ${props => props.theme.colors.primary};
-        border-radius: ${props => props.theme.borderRadius.full};
+        bottom: 0;
+        background: linear-gradient(
+            to bottom,
+            ${props => props.theme.colors.surface} 0%,
+            transparent 25%,
+            transparent 75%,
+            ${props => props.theme.colors.surface} 100%
+        );
+        pointer-events: none;
+        z-index: 1;
     }
 `;
 
-const HeightLabel = styled.div`
-    background: ${props => props.theme.colors.glass};
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: ${props => props.theme.borderRadius.lg};
-    padding: ${props => props.theme.spacing.sm} ${props => props.theme.spacing.md};
-    color: ${props => props.theme.colors.text};
-    font-size: ${props => props.theme.fontSizes.sm};
-    font-weight: 600;
-    text-align: center;
+const PickerContent = styled.div`
+    padding: 125px 0;
+    transform: translateY(${props => props.offset}px);
+    transition: transform ${props => props.isAnimating ? '0.3s ease-out' : '0s'};
+`;
+
+const PickerItem = styled.div`
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: ${props => {
+        if (props.isSelected) return props.theme.fontSizes["2xl"];
+        if (props.isAdjacent) return props.theme.fontSizes.xl;
+        return props.theme.fontSizes.lg;
+    }};
+    font-weight: ${props => props.isSelected ? 700 : (props.isAdjacent ? 600 : 400)};
+    color: ${props => {
+        if (props.isSelected) return props.theme.colors.primarySolid;
+        if (props.isAdjacent) return props.theme.colors.text;
+        return props.theme.colors.textLight;
+    }};
+    font-family: ${props => props.theme.fonts.display};
+    opacity: ${props => {
+        if (props.isSelected) return 1;
+        if (props.isAdjacent) return 0.8;
+        return 0.4;
+    }};
+    transition: all 0.2s ease;
+    transform: scale(${props => props.isSelected ? 1.1 : 1});
+    position: relative;
+    z-index: 3;
 `;
 
 const NavigationContainer = styled.div`
@@ -290,68 +205,165 @@ const NextButton = styled(Button)`
     }
 `;
 
-const HeaderSection = styled.div`
-    padding: ${props => props.theme.spacing.xl} ${props => props.theme.spacing.lg} 0;
-    text-align: center;
-`;
-
 const HeightInput = () => {
     const navigate = useNavigate();
     const [height, setHeight] = useState(170);
     const [unit] = useState("cm");
+    const [offset, setOffset] = useState(0);
+    const [isAnimating, setIsAnimating] = useState(false);
+    const [isDragging, setIsDragging] = useState(false);
+    const [startY, setStartY] = useState(0);
+    const [startOffset, setStartOffset] = useState(0);
+    const [velocity, setVelocity] = useState(0);
+    const [lastMoveTime, setLastMoveTime] = useState(0);
+    const [lastMoveY, setLastMoveY] = useState(0);
 
-    const measurementRulerRef = useRef(null);
+    const wheelRef = useRef(null);
+    const animationRef = useRef(null);
+
+    // Generate height values from 100 to 230 cm
+    const heights = Array.from({ length: 131 }, (_, i) => i + 100);
+    const itemHeight = 50;
+
+    const getHeightFromOffset = useCallback((currentOffset) => {
+        const index = Math.round(-currentOffset / itemHeight);
+        const clampedIndex = Math.max(0, Math.min(heights.length - 1, index));
+        return heights[clampedIndex];
+    }, [heights]);
+
+    const getOffsetFromHeight = useCallback((targetHeight) => {
+        const index = heights.indexOf(targetHeight);
+        return -index * itemHeight;
+    }, [heights]);
+
+    const snapToNearest = useCallback(() => {
+        const targetHeight = getHeightFromOffset(offset);
+        const targetOffset = getOffsetFromHeight(targetHeight);
+        
+        setIsAnimating(true);
+        setOffset(targetOffset);
+        setHeight(targetHeight);
+        
+        setTimeout(() => setIsAnimating(false), 300);
+    }, [offset, getHeightFromOffset, getOffsetFromHeight]);
+
+    const handleMouseDown = (e) => {
+        setIsDragging(true);
+        setStartY(e.clientY);
+        setStartOffset(offset);
+        setVelocity(0);
+        setLastMoveTime(Date.now());
+        setLastMoveY(e.clientY);
+        setIsAnimating(false);
+    };
+
+    const handleTouchStart = (e) => {
+        setIsDragging(true);
+        setStartY(e.touches[0].clientY);
+        setStartOffset(offset);
+        setVelocity(0);
+        setLastMoveTime(Date.now());
+        setLastMoveY(e.touches[0].clientY);
+        setIsAnimating(false);
+    };
+
+    const handleMove = (clientY) => {
+        if (!isDragging) return;
+
+        const currentTime = Date.now();
+        const deltaY = clientY - startY;
+        const newOffset = startOffset + deltaY;
+        
+        // Calculate velocity for momentum
+        const timeDiff = currentTime - lastMoveTime;
+        if (timeDiff > 0) {
+            const positionDiff = clientY - lastMoveY;
+            setVelocity(positionDiff / timeDiff);
+        }
+        
+        setLastMoveTime(currentTime);
+        setLastMoveY(clientY);
+
+        // Constrain offset
+        const minOffset = -(heights.length - 1) * itemHeight;
+        const maxOffset = 0;
+        const constrainedOffset = Math.max(minOffset, Math.min(maxOffset, newOffset));
+        
+        setOffset(constrainedOffset);
+        setHeight(getHeightFromOffset(constrainedOffset));
+    };
+
+    const handleMouseMove = (e) => {
+        handleMove(e.clientY);
+    };
+
+    const handleTouchMove = (e) => {
+        e.preventDefault();
+        handleMove(e.touches[0].clientY);
+    };
+
+    const handleEnd = () => {
+        if (!isDragging) return;
+        setIsDragging(false);
+        
+        // Apply momentum if velocity is significant
+        if (Math.abs(velocity) > 0.5) {
+            const momentumOffset = offset + velocity * 100; // Adjust multiplier for momentum strength
+            const targetHeight = getHeightFromOffset(momentumOffset);
+            const finalOffset = getOffsetFromHeight(targetHeight);
+            
+            setIsAnimating(true);
+            setOffset(finalOffset);
+            setHeight(targetHeight);
+            setTimeout(() => setIsAnimating(false), 300);
+        } else {
+            snapToNearest();
+        }
+    };
+
+    const handleWheel = (e) => {
+        e.preventDefault();
+        const delta = e.deltaY > 0 ? 1 : -1;
+        const currentIndex = heights.indexOf(height);
+        const newIndex = Math.max(0, Math.min(heights.length - 1, currentIndex + delta));
+        const newHeight = heights[newIndex];
+        const newOffset = getOffsetFromHeight(newHeight);
+        
+        setIsAnimating(true);
+        setOffset(newOffset);
+        setHeight(newHeight);
+        setTimeout(() => setIsAnimating(false), 200);
+    };
+
+    useEffect(() => {
+        const handleMouseUp = () => handleEnd();
+        const handleMouseMoveGlobal = (e) => handleMouseMove(e);
+        const handleTouchEnd = () => handleEnd();
+        const handleTouchMoveGlobal = (e) => handleTouchMove(e);
+
+        if (isDragging) {
+            document.addEventListener('mousemove', handleMouseMoveGlobal);
+            document.addEventListener('mouseup', handleMouseUp);
+            document.addEventListener('touchmove', handleTouchMoveGlobal, { passive: false });
+            document.addEventListener('touchend', handleTouchEnd);
+        }
+
+        return () => {
+            document.removeEventListener('mousemove', handleMouseMoveGlobal);
+            document.removeEventListener('mouseup', handleMouseUp);
+            document.removeEventListener('touchmove', handleTouchMoveGlobal);
+            document.removeEventListener('touchend', handleTouchEnd);
+        };
+    }, [isDragging, handleMouseMove, handleTouchMove, handleEnd]);
+
+    useEffect(() => {
+        // Initialize position
+        setOffset(getOffsetFromHeight(height));
+    }, []);
 
     const handleNext = () => {
         navigate("/weight");
     };
-
-    useEffect(() => {
-        const targetElement = measurementRulerRef.current;
-        if (!targetElement) return;
-
-        const children = targetElement.querySelectorAll(".line");
-        let currentHeightElement = null;
-
-        const setValueOnScroll = (e) => {
-            const scroll = e.target.scrollTop + 200;
-            const closestChild = [...children].reduce((prev, curr) => {
-                return Math.abs(curr.offsetTop - scroll) < Math.abs(prev.offsetTop - scroll) ? curr : prev;
-            }, children[0]);
-
-            const newHeight = parseInt(closestChild.getAttribute("data-value"));
-            setHeight(newHeight);
-            currentHeightElement = closestChild;
-        };
-
-        const handleScrollEnd = () => {
-            if (currentHeightElement) {
-                targetElement.scrollTo({
-                    top: currentHeightElement.offsetTop - 200,
-                    behavior: 'smooth'
-                });
-            }
-        };
-
-        targetElement.addEventListener("scroll", setValueOnScroll);
-        targetElement.addEventListener("scrollend", handleScrollEnd);
-
-        // Initialize scroll position
-        setTimeout(() => {
-            const initialElement = targetElement.querySelector(`[data-value="${height}"]`);
-            if (initialElement) {
-                targetElement.scrollTo({
-                    top: initialElement.offsetTop - 200,
-                    behavior: 'smooth'
-                });
-            }
-        }, 100);
-
-        return () => {
-            targetElement.removeEventListener("scroll", setValueOnScroll);
-            targetElement.removeEventListener("scrollend", handleScrollEnd);
-        };
-    }, [height]);
 
     const containerVariants = {
         hidden: { opacity: 0 },
@@ -377,7 +389,7 @@ const HeightInput = () => {
     };
 
     return (
-        <ModernContainer>
+        <ModernPageContainer>
             <motion.div
                 variants={containerVariants}
                 initial="hidden"
@@ -387,7 +399,7 @@ const HeightInput = () => {
                 <HeaderSection>
                     <motion.div variants={itemVariants}>
                         <Title gradient>¿Cuál es tu altura?</Title>
-                        <Subtitle>Desliza en la regla para ajustar tu altura</Subtitle>
+                        <Subtitle>Desliza o usa la rueda para seleccionar tu altura</Subtitle>
                     </motion.div>
                 </HeaderSection>
 
@@ -402,42 +414,35 @@ const HeightInput = () => {
                         <span className="unit">{unit}</span>
                     </HeightValueDisplay>
 
-                    <RulerContainer>
-                        <MeasurementRulerWrapper ref={measurementRulerRef}>
-                            <MeasurementRuler>
-                                {Array.from({ length: 130 }).map((_, i) => {
-                                    const value = 230 - i;
-                                    if (value < 100) return null;
-
-                                    const isMajor = value % 10 === 0;
-                                    const isMedium = value % 5 === 0;
-
+                    <WheelPickerContainer>
+                        <WheelPicker
+                            ref={wheelRef}
+                            onMouseDown={handleMouseDown}
+                            onTouchStart={handleTouchStart}
+                            onWheel={handleWheel}
+                        >
+                            <PickerContent
+                                offset={offset}
+                                isAnimating={isAnimating}
+                            >
+                                {heights.map((value, index) => {
+                                    const currentIndex = heights.indexOf(height);
+                                    const isSelected = index === currentIndex;
+                                    const isAdjacent = Math.abs(index - currentIndex) === 1;
+                                    
                                     return (
-                                        <MeasurementRulerLine 
-                                            className="line" 
-                                            key={i} 
-                                            data-value={value}
-                                            major={isMajor}
-                                            medium={isMedium}
+                                        <PickerItem
+                                            key={value}
+                                            isSelected={isSelected}
+                                            isAdjacent={isAdjacent}
                                         >
-                                            {isMajor && <span>{value}</span>}
-                                        </MeasurementRulerLine>
+                                            {value}
+                                        </PickerItem>
                                     );
                                 })}
-                            </MeasurementRuler>
-                        </MeasurementRulerWrapper>
-                    </RulerContainer>
-
-                    <PersonVisualization>
-                        <PersonIcon 
-                            height={height}
-                            animate={{ 
-                                scale: [1, 1.02, 1],
-                                transition: { duration: 3, repeat: Infinity, ease: "easeInOut" }
-                            }}
-                        />
-                        <HeightLabel>Tu altura: {height} {unit}</HeightLabel>
-                    </PersonVisualization>
+                            </PickerContent>
+                        </WheelPicker>
+                    </WheelPickerContainer>
                 </HeightSection>
 
                 <NavigationContainer>
@@ -452,7 +457,7 @@ const HeightInput = () => {
                     </motion.div>
                 </NavigationContainer>
             </motion.div>
-        </ModernContainer>
+        </ModernPageContainer>
     );
 };
 

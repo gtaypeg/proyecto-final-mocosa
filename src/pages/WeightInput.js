@@ -1,373 +1,520 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { motion } from "framer-motion";
 import {
-    Container,
-    Header,
-    Main,
     Title,
     Button,
-    Progress,
-    ProgressStep,
-    BackButton,
     Subtitle,
-    UnitToggle,
-    UnitOption,
-    ValueDisplay,
-    SliderContainer,
-    Slider,
-    HealthMetric,
+    ModernPageContainer,
 } from "../components/StyledComponents";
 
-const WeightScale = styled.div`
-    display: flex;
-    width: 100%;
-    height: 40px;
-    background-color: ${(props) => props.theme.colors.lightGray};
-    border-radius: 20px;
-    margin: 40px 0;
-    position: relative;
+const HeaderSection = styled.div`
+    padding: ${props => props.theme.spacing.xl} ${props => props.theme.spacing.lg} 0;
+    text-align: center;
 `;
 
-const WeightMarker = styled.div`
-    position: absolute;
-    width: 4px;
-    height: 15px;
-    background-color: ${(props) => props.theme.colors.darkGray};
-    top: -15px;
-    left: ${(props) => props.position}%;
+const WeightSection = styled(motion.div)`
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: ${props => props.theme.spacing.xl} ${props => props.theme.spacing.lg};
+    background: ${props => props.theme.colors.surface};
+    border-radius: ${props => props.theme.borderRadius["2xl"]};
+    margin: ${props => props.theme.spacing.lg};
+    box-shadow: ${props => props.theme.colors.shadow};
+    border: 1px solid ${props => props.theme.colors.border};
+    position: relative;
+    overflow: hidden;
 
-    &:after {
-        content: "${(props) => props.value}";
+    &::before {
+        content: '';
         position: absolute;
-        top: -20px;
-        left: -5px;
-        font-size: 12px;
-        color: ${(props) => props.theme.colors.darkGray};
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
     }
 `;
 
-const WeightIndicator = styled.div`
-    position: absolute;
-    width: 3px;
-    height: 40px;
-    background-color: ${(props) => props.theme.colors.primary};
-    border-radius: 2px;
-    left: ${(props) => props.position}%;
-    top: 0;
-`;
-
-const HeightMeasurement = styled.div`
-    flex: 1;
-    width: 100%;
-`;
-
-const MeasurementRulerValue = styled.div`
+const WeightValueDisplay = styled(motion.div)`
+    font-size: ${props => props.theme.fontSizes["5xl"]};
+    font-weight: 800;
+    font-family: ${props => props.theme.fonts.display};
+    background: ${props => props.theme.colors.primary};
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: ${props => props.theme.spacing.xl};
+    letter-spacing: -0.03em;
+    text-align: center;
     position: relative;
-    font-size: 36px;
-    font-weight: 700;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: ${props => props.theme.spacing.sm};
 
-    &:before {
-        content: "";
+    .unit {
+        font-size: ${props => props.theme.fontSizes.xl};
+        color: ${props => props.theme.colors.textLight};
+        font-weight: 500;
+    }
+
+    &::after {
+        content: '';
         position: absolute;
-        bottom: -45px;
+        bottom: -15px;
         left: 50%;
         transform: translateX(-50%);
-        width: 1px;
-        height: 50px;
-        background-color: rgba(255, 0, 0, 0.5);
-        z-index: 1;
-    }
-
-    span {
-        font-size: 20px;
-        font-weight: 400;
+        width: 80px;
+        height: 4px;
+        background: ${props => props.theme.colors.primary};
+        border-radius: ${props => props.theme.borderRadius.full};
     }
 `;
 
-const MeasurementRuler = styled.div`
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: flex-end;
-    gap: 10px;
-    padding-top: 15px;
-
-    & > div {
-        height: 20px;
-
-        span {
-            display: none;
-        }
-
-        &:nth-child(5n + 1) {
-            height: 30px;
-        }
-
-        &:nth-child(10n + 1) {
-            background-color: rgba(0, 0, 0, 0.9);
-
-            span {
-                display: block;
-            }
-        }
-    }
+const WheelPickerContainer = styled.div`
+    width: 200px;
+    height: 300px;
+    position: relative;
+    background: ${props => props.theme.colors.surface};
+    border-radius: ${props => props.theme.borderRadius.xl};
+    border: 2px solid ${props => props.theme.colors.border};
+    overflow: hidden;
+    box-shadow: 
+        inset 0 2px 10px rgba(0, 0, 0, 0.1),
+        0 4px 20px rgba(0, 0, 0, 0.1);
 `;
 
-const MeasurementRulerWrapper = styled.div`
-    width: 100%;
-    max-width: 440px;
+const WheelPicker = styled.div`
     height: 100%;
     overflow: hidden;
-    overflow-x: scroll;
     position: relative;
-    padding-left: 50%;
-    padding-right: 50%;
-    // smooth scroll
-    // hide scrollbar all browsers
-    ::-webkit-scrollbar {
-        display: none;
+    cursor: grab;
+    user-select: none;
+
+    &:active {
+        cursor: grabbing;
     }
 
-    // hide scrollbar firefox
-    scrollbar-width: none;
-
-    // hide scrollbar edge
-    -ms-overflow-style: none;
-
-    // hide scrollbar chrome
-    ::-webkit-scrollbar-thumb {
-        display: none;
+    /* Selection indicator */
+    &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 50px;
+        transform: translateY(-50%);
+        background: ${props => props.theme.colors.primarySolid}10;
+        border-top: 2px solid ${props => props.theme.colors.primarySolid};
+        border-bottom: 2px solid ${props => props.theme.colors.primarySolid};
+        z-index: 2;
+        pointer-events: none;
     }
 
-    // hide scrollbar safari
-    ::-webkit-scrollbar-track {
-        display: none;
+    /* Fade gradients */
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+            to bottom,
+            ${props => props.theme.colors.surface} 0%,
+            transparent 25%,
+            transparent 75%,
+            ${props => props.theme.colors.surface} 100%
+        );
+        pointer-events: none;
+        z-index: 1;
     }
-
-    // hide scrollbar opera
-    scrollbar-color: transparent transparent;
-
-    // hide scrollbar internet explorer
-    -ms-overflow-style: none;
 `;
 
-const MeasurementRulerLine = styled.div`
-    width: 1px;
-    flex-shrink: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    position: relative;
+const PickerContent = styled.div`
+    padding: 125px 0;
+    transform: translateY(${props => props.offset}px);
+    transition: transform ${props => props.isAnimating ? '0.3s ease-out' : '0s'};
+`;
 
-    span {
+const PickerItem = styled.div`
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: ${props => {
+        if (props.isSelected) return props.theme.fontSizes["2xl"];
+        if (props.isAdjacent) return props.theme.fontSizes.xl;
+        return props.theme.fontSizes.lg;
+    }};
+    font-weight: ${props => props.isSelected ? 700 : (props.isAdjacent ? 600 : 400)};
+    color: ${props => {
+        if (props.isSelected) return props.theme.colors.primarySolid;
+        if (props.isAdjacent) return props.theme.colors.text;
+        return props.theme.colors.textLight;
+    }};
+    font-family: ${props => props.theme.fonts.display};
+    opacity: ${props => {
+        if (props.isSelected) return 1;
+        if (props.isAdjacent) return 0.8;
+        return 0.4;
+    }};
+    transition: all 0.2s ease;
+    transform: scale(${props => props.isSelected ? 1.1 : 1});
+    position: relative;
+    z-index: 3;
+`;
+
+const BMIContainer = styled(motion.div)`
+    margin-top: ${props => props.theme.spacing.xl};
+    background: ${props => props.theme.colors.glass};
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: ${props => props.theme.borderRadius.xl};
+    padding: ${props => props.theme.spacing.lg};
+    text-align: center;
+    box-shadow: ${props => props.theme.colors.shadow};
+    max-width: 300px;
+    width: 100%;
+
+    h3 {
+        color: ${props => props.theme.colors.text};
+        font-size: ${props => props.theme.fontSizes.lg};
+        font-weight: 600;
+        margin-bottom: ${props => props.theme.spacing.sm};
+        background: ${props => props.theme.colors.primary};
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .bmi-value {
+        font-size: ${props => props.theme.fontSizes["2xl"]};
+        font-weight: 700;
+        color: ${props => props.theme.colors.primarySolid};
+        margin-bottom: ${props => props.theme.spacing.xs};
+    }
+
+    p {
+        color: ${props => props.theme.colors.textLight};
+        font-size: ${props => props.theme.fontSizes.sm};
+        line-height: 1.5;
+    }
+`;
+
+const NavigationContainer = styled.div`
+    padding: ${props => props.theme.spacing.lg};
+    background: ${props => props.theme.colors.surface};
+    border-radius: 0 0 ${props => props.theme.borderRadius["2xl"]} ${props => props.theme.borderRadius["2xl"]};
+    border-top: 1px solid ${props => props.theme.colors.border};
+`;
+
+const NextButton = styled(Button)`
+    width: 100%;
+    font-size: ${props => props.theme.fontSizes.lg};
+    padding: ${props => props.theme.spacing.lg} ${props => props.theme.spacing.xl};
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+        content: '';
         position: absolute;
-        top: -15px;
-        font-size: 12px;
-        left: 0;
-        transform: translateX(-50%);
-        text-align: center;
-        color: ${(props) => props.theme.colors.darkGray};
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.2),
+            transparent
+        );
+        transition: left 0.5s;
+    }
+
+    &:hover::before {
+        left: 100%;
     }
 `;
 
 const WeightInput = () => {
     const navigate = useNavigate();
-    const [weight, setWeight] = useState(70);
-    const [unit, setUnit] = useState("kg"); // 'kg' or 'lbs'
-    const [step] = useState(3);
-    const totalSteps = 7;
+    const [weight, setWeight] = useState(70.0);
+    const [unit] = useState("kg");
+    const [offset, setOffset] = useState(0);
+    const [isAnimating, setIsAnimating] = useState(false);
+    const [isDragging, setIsDragging] = useState(false);
+    const [startY, setStartY] = useState(0);
+    const [startOffset, setStartOffset] = useState(0);
+    const [velocity, setVelocity] = useState(0);
+    const [lastMoveTime, setLastMoveTime] = useState(0);
+    const [lastMoveY, setLastMoveY] = useState(0);
 
-    const handleWeightChange = (e) => {
-        setWeight(parseFloat(e.target.value));
+    const wheelRef = useRef(null);
+
+    // Generate weight values from 30.0 to 200.0 kg in 0.5 kg increments
+    const weightOptions = Array.from({ length: 341 }, (_, i) => (30.0 + i * 0.5));
+    const itemHeight = 50;
+
+    const getWeightFromOffset = useCallback((currentOffset) => {
+        const index = Math.round(-currentOffset / itemHeight);
+        const clampedIndex = Math.max(0, Math.min(weightOptions.length - 1, index));
+        return weightOptions[clampedIndex];
+    }, [weightOptions]);
+
+    const getOffsetFromWeight = useCallback((targetWeight) => {
+        const index = weightOptions.findIndex(w => Math.abs(w - targetWeight) < 0.01);
+        return -index * itemHeight;
+    }, [weightOptions]);
+
+    const snapToNearest = useCallback(() => {
+        const targetWeight = getWeightFromOffset(offset);
+        const targetOffset = getOffsetFromWeight(targetWeight);
+        
+        setIsAnimating(true);
+        setOffset(targetOffset);
+        setWeight(targetWeight);
+        
+        setTimeout(() => setIsAnimating(false), 300);
+    }, [offset, getWeightFromOffset, getOffsetFromWeight]);
+
+    const handleMouseDown = (e) => {
+        setIsDragging(true);
+        setStartY(e.clientY);
+        setStartOffset(offset);
+        setVelocity(0);
+        setLastMoveTime(Date.now());
+        setLastMoveY(e.clientY);
+        setIsAnimating(false);
     };
 
-    const toggleUnit = (selectedUnit) => {
-        if (selectedUnit === unit) return;
+    const handleTouchStart = (e) => {
+        setIsDragging(true);
+        setStartY(e.touches[0].clientY);
+        setStartOffset(offset);
+        setVelocity(0);
+        setLastMoveTime(Date.now());
+        setLastMoveY(e.touches[0].clientY);
+        setIsAnimating(false);
+    };
 
-        if (selectedUnit === "kg") {
-            // Convert lbs to kg
-            setWeight(Math.round((weight / 2.205) * 10) / 10);
+    const handleMove = (clientY) => {
+        if (!isDragging) return;
+
+        const currentTime = Date.now();
+        const deltaY = clientY - startY;
+        const newOffset = startOffset + deltaY;
+        
+        // Calculate velocity for momentum
+        const timeDiff = currentTime - lastMoveTime;
+        if (timeDiff > 0) {
+            const positionDiff = clientY - lastMoveY;
+            setVelocity(positionDiff / timeDiff);
+        }
+        
+        setLastMoveTime(currentTime);
+        setLastMoveY(clientY);
+
+        // Constrain offset
+        const minOffset = -(weightOptions.length - 1) * itemHeight;
+        const maxOffset = 0;
+        const constrainedOffset = Math.max(minOffset, Math.min(maxOffset, newOffset));
+        
+        setOffset(constrainedOffset);
+        setWeight(getWeightFromOffset(constrainedOffset));
+    };
+
+    const handleMouseMove = (e) => {
+        handleMove(e.clientY);
+    };
+
+    const handleTouchMove = (e) => {
+        e.preventDefault();
+        handleMove(e.touches[0].clientY);
+    };
+
+    const handleEnd = () => {
+        if (!isDragging) return;
+        setIsDragging(false);
+        
+        // Apply momentum if velocity is significant
+        if (Math.abs(velocity) > 0.5) {
+            const momentumOffset = offset + velocity * 100;
+            const targetWeight = getWeightFromOffset(momentumOffset);
+            const finalOffset = getOffsetFromWeight(targetWeight);
+            
+            setIsAnimating(true);
+            setOffset(finalOffset);
+            setWeight(targetWeight);
+            setTimeout(() => setIsAnimating(false), 300);
         } else {
-            // Convert kg to lbs
-            setWeight(Math.round(weight * 2.205 * 10) / 10);
+            snapToNearest();
         }
-
-        setUnit(selectedUnit);
     };
 
-    const renderProgressSteps = () => {
-        const steps = [];
-        for (let i = 0; i < totalSteps; i++) {
-            steps.push(<ProgressStep key={i} active={i < step} />);
-        }
-        return steps;
+    const handleWheel = (e) => {
+        e.preventDefault();
+        const delta = e.deltaY > 0 ? 1 : -1;
+        const currentIndex = weightOptions.findIndex(w => Math.abs(w - weight) < 0.01);
+        const newIndex = Math.max(0, Math.min(weightOptions.length - 1, currentIndex + delta));
+        const newWeight = weightOptions[newIndex];
+        const newOffset = getOffsetFromWeight(newWeight);
+        
+        setIsAnimating(true);
+        setOffset(newOffset);
+        setWeight(newWeight);
+        setTimeout(() => setIsAnimating(false), 200);
     };
+
+    useEffect(() => {
+        const handleMouseUp = () => handleEnd();
+        const handleMouseMoveGlobal = (e) => handleMouseMove(e);
+        const handleTouchEnd = () => handleEnd();
+        const handleTouchMoveGlobal = (e) => handleTouchMove(e);
+
+        if (isDragging) {
+            document.addEventListener('mousemove', handleMouseMoveGlobal);
+            document.addEventListener('mouseup', handleMouseUp);
+            document.addEventListener('touchmove', handleTouchMoveGlobal, { passive: false });
+            document.addEventListener('touchend', handleTouchEnd);
+        }
+
+        return () => {
+            document.removeEventListener('mousemove', handleMouseMoveGlobal);
+            document.removeEventListener('mouseup', handleMouseUp);
+            document.removeEventListener('touchmove', handleTouchMoveGlobal);
+            document.removeEventListener('touchend', handleTouchEnd);
+        };
+    }, [isDragging, handleMouseMove, handleTouchMove, handleEnd]);
+
+    useEffect(() => {
+        // Initialize position
+        setOffset(getOffsetFromWeight(weight));
+    }, []);
 
     const handleNext = () => {
         navigate("/age");
     };
 
-    // Calculate BMI - using placeholder height of 165cm
-    const height = 1.65; // in meters
-    const bmi = (unit === "kg" ? weight : weight / 2.205) / (height * height);
+    // Calculate BMI - using placeholder height of 170cm
+    const height = 1.70; // in meters
+    const bmi = weight / (height * height);
 
-    const getWeightPosition = () => {
-        const min = unit === "kg" ? 40 : 88;
-        const max = unit === "kg" ? 120 : 264;
-        return ((weight - min) / (max - min)) * 100;
+    const getBMIStatus = () => {
+        if (bmi < 18.5) return "Bajo peso";
+        if (bmi < 25) return "Peso normal";
+        if (bmi < 30) return "Sobrepeso";
+        return "Obesidad";
     };
 
-    const measurementRulerRef = useRef(null);
-
-    useEffect(() => {
-        let isUserEvent = true;
-
-        const targetElement = measurementRulerRef.current;
-        // const refLine = document.querySelector(".ref-line");
-        const children = targetElement.querySelectorAll(".line");
-
-        let currentHeightElement = null;
-
-        const setValueOnScroll = (e) => {
-            const scroll = e.target.scrollLeft + 220;
-
-            let nextScroll = 0;
-
-            const closestChild = [...children].reduce((prev, curr) => {
-                return Math.abs(curr.offsetLeft - scroll) < Math.abs(prev.offsetLeft - scroll) ? curr : prev;
-            }, children[0]);
-
-            if (nextScroll === 0) {
-                nextScroll = closestChild.offsetLeft;
-                setWeight(parseFloat(closestChild.getAttribute("data-value")));
-                currentHeightElement = closestChild;
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                duration: 0.8,
+                staggerChildren: 0.2
             }
-        };
+        }
+    };
 
-        const handleScrollEnd = (e) => {
-            targetElement.scrollTo({
-                left: currentHeightElement.offsetLeft - 220
-            });
-        };
-
-        const handleWheel = (e) => {
-            e.preventDefault();
-            isUserEvent = true;
-            
-            // Calculate the scroll increment based on wheel delta
-            const scrollIncrement = e.deltaY > 0 ? 30 : -30;
-            const currentScroll = targetElement.scrollLeft;
-            const newScroll = currentScroll + scrollIncrement;
-            
-            targetElement.scrollTo({
-                left: newScroll,
-                behavior: 'smooth'
-            });
-        };
-
-        const handleTouchStart = () => {
-            isUserEvent = true;
-        };
-
-        const handleStartScroll = () => {
-            isUserEvent = true;
-        };
-
-        targetElement.addEventListener("scroll", setValueOnScroll);
-        targetElement.addEventListener("scrollend", handleScrollEnd);
-        targetElement.addEventListener("wheel", handleWheel);
-        targetElement.addEventListener("touchstart", handleTouchStart);
-
-        targetElement.scrollTo({
-            left: document.querySelector(`[data-value="${weight}"]`).offsetLeft - 220
-      });
-
-        return () => {
-            targetElement.removeEventListener("scroll", setValueOnScroll);
-            targetElement.removeEventListener("scrollend", handleScrollEnd);
-            targetElement.removeEventListener("wheel", handleWheel);
-            targetElement.removeEventListener("touchstart", handleTouchStart);
-        };
-    }, []);
+    const itemVariants = {
+        hidden: { opacity: 0, y: 30 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                duration: 0.6,
+                ease: "easeOut"
+            }
+        }
+    };
 
     return (
-        <Container>
-            {/* <Header>
-                <BackButton to="/height">←</BackButton>
-                <Progress>{renderProgressSteps()}</Progress>
-                
-            </Header> */}
+        <ModernPageContainer>
+            <motion.div
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+                style={{ flex: 1, display: 'flex', flexDirection: 'column' }}
+            >
+                <HeaderSection>
+                    <motion.div variants={itemVariants}>
+                        <Title gradient>¿Cuánto pesas?</Title>
+                        <Subtitle>Desliza o usa la rueda para seleccionar tu peso</Subtitle>
+                    </motion.div>
+                </HeaderSection>
 
-            <Main>
-                <Title>¿Cuánto pesas actualmente?</Title>
+                <WeightSection variants={itemVariants}>
+                    <WeightValueDisplay
+                        key={weight}
+                        initial={{ scale: 0.8 }}
+                        animate={{ scale: 1 }}
+                        transition={{ type: "spring", stiffness: 200 }}
+                    >
+                        {weight.toFixed(1)}
+                        <span className="unit">{unit}</span>
+                    </WeightValueDisplay>
 
-                {/* <UnitToggle>
-          <UnitOption 
-            active={unit === 'lbs'} 
-            onClick={() => toggleUnit('lbs')}
-          >
-            lbs
-          </UnitOption>
-          <UnitOption 
-            active={unit === 'kg'} 
-            onClick={() => toggleUnit('kg')}
-          >
-            kg
-          </UnitOption>
-        </UnitToggle> */}
+                    <WheelPickerContainer>
+                        <WheelPicker
+                            ref={wheelRef}
+                            onMouseDown={handleMouseDown}
+                            onTouchStart={handleTouchStart}
+                            onWheel={handleWheel}
+                        >
+                            <PickerContent
+                                offset={offset}
+                                isAnimating={isAnimating}
+                            >
+                                {weightOptions.map((weightValue, index) => {
+                                    const currentIndex = weightOptions.findIndex(w => Math.abs(w - weight) < 0.01);
+                                    const isSelected = index === currentIndex;
+                                    const isAdjacent = Math.abs(index - currentIndex) === 1;
+                                    
+                                    return (
+                                        <PickerItem
+                                            key={weightValue}
+                                            isSelected={isSelected}
+                                            isAdjacent={isAdjacent}
+                                        >
+                                            {weightValue.toFixed(1)}
+                                        </PickerItem>
+                                    );
+                                })}
+                            </PickerContent>
+                        </WheelPicker>
+                    </WheelPickerContainer>
 
-                <HeightMeasurement>
-                    <MeasurementRulerValue>
-                        {weight.toFixed(1)} <span>{unit}</span>
-                    </MeasurementRulerValue>
+                    {/* <BMIContainer
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.5 }}
+                    >
+                        <h3>IMC Estimado</h3>
+                        <div className="bmi-value">{bmi.toFixed(1)}</div>
+                        <p>{getBMIStatus()} - Usa esta información como referencia</p>
+                    </BMIContainer> */}
+                </WeightSection>
 
-                    <MeasurementRulerWrapper ref={measurementRulerRef}>
-                        <MeasurementRuler>
-                            {Array.from({ length: 2300 }).map((_, i) => {
-                            
-
-                                if (i < 200) {
-                                    return null;
-                                }
-
-                                return (
-                                    <MeasurementRulerLine className="line" key={i} data-value={i / 10}>
-                                        <span>{i / 10}</span>
-                                    </MeasurementRulerLine>
-                                );
-                            })}
-                        </MeasurementRuler>
-                    </MeasurementRulerWrapper>
-                </HeightMeasurement>
-
-                {/* <ValueDisplay>{weight.toFixed(1)} {unit}</ValueDisplay> */}
-
-                {/* <WeightScale>
-          <WeightIndicator position={getWeightPosition()} />
-          <WeightMarker position={0} value={unit === 'kg' ? '40' : '88'} />
-          <WeightMarker position={25} value={unit === 'kg' ? '60' : '132'} />
-          <WeightMarker position={50} value={unit === 'kg' ? '80' : '176'} />
-          <WeightMarker position={75} value={unit === 'kg' ? '100' : '220'} />
-          <WeightMarker position={100} value={unit === 'kg' ? '250' : '264'} />
-        </WeightScale> */}
-
-                {/* <SliderContainer>
-          <Slider 
-            min={unit === 'kg' ? 20 : 88}
-            max={unit === 'kg' ? 250 : 264}
-            step={0.1}
-            value={weight}
-            onChange={handleWeightChange}
-          />
-        </SliderContainer> */}
-
-                <HealthMetric>
-                    <h3>IMC ACTUAL</h3>
-                    <p>{bmi.toFixed(1)} Tienes gran potencial para ponerte en forma. ¡Adelante!</p>
-                </HealthMetric>
-
-                <Button onClick={handleNext}>Siguiente</Button>
-            </Main>
-        </Container>
+                <NavigationContainer>
+                    <motion.div variants={itemVariants}>
+                        <NextButton 
+                            onClick={handleNext}
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                        >
+                            Continuar
+                        </NextButton>
+                    </motion.div>
+                </NavigationContainer>
+            </motion.div>
+        </ModernPageContainer>
     );
 };
 
