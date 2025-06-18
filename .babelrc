@@ -1,0 +1,9 @@
+{
+    "plugins": [
+      ["styled-components", {
+        "displayName": true,
+        "ssr": true,
+        "preprocess": false
+      }]
+    ]
+  }

@@ -1,0 +1,350 @@
+[
+  {
+    "id": 1,
+    "name": "Ensalada de Pollo a la Parrilla",
+    "category": "Saludable",
+    "image": "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400&h=300&fit=crop",
+    "preparationTime": 25,
+    "servings": 2,
+    "calories": 320,
+    "difficulty": "Fácil",
+    "description": "Una deliciosa ensalada fresca con pollo a la parrilla, perfecta para una comida saludable y nutritiva.",
+    "ingredients": [
+      "2 pechugas de pollo",
+      "200g de lechuga mixta",
+      "1 tomate grande",
+      "1 pepino",
+      "1 aguacate",
+      "50g de queso feta",
+      "2 cucharadas de aceite de oliva",
+      "1 limón",
+      "Sal y pimienta al gusto"
+    ],
+    "instructions": [
+      "Sazona las pechugas de pollo con sal y pimienta.",
+      "Cocina el pollo a la parrilla por 6-8 minutos de cada lado hasta que esté bien cocido.",
+      "Deja reposar el pollo y luego córtalo en tiras.",
+      "Lava y corta la lechuga, tomate, pepino y aguacate.",
+      "En un bowl grande, mezcla todos los vegetales.",
+      "Agrega el pollo cortado sobre la ensalada.",
+      "Espolvorea el queso feta desmenuzado.",
+      "Prepara el aderezo mezclando aceite de oliva, jugo de limón, sal y pimienta.",
+      "Sirve inmediatamente con el aderezo."
+    ],
+    "nutritionalInfo": {
+      "protein": "35g",
+      "carbs": "12g",
+      "fat": "18g",
+      "fiber": "8g"
+    }
+  },
+  {
+    "id": 2,
+    "name": "Spaghetti a la Carbonara",
+    "category": "Italiana",
+    "image": "https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?w=400&h=300&fit=crop",
+    "preparationTime": 20,
+    "servings": 4,
+    "calories": 450,
+    "difficulty": "Intermedio",
+    "description": "El clásico plato italiano con una cremosa salsa de huevo, queso y panceta.",
+    "ingredients": [
+      "400g de spaghetti",
+      "200g de panceta o bacon",
+      "4 huevos",
+      "100g de queso parmesano rallado",
+      "2 dientes de ajo",
+      "Sal y pimienta negra al gusto",
+      "2 cucharadas de aceite de oliva"
+    ],
+    "instructions": [
+      "Cocina los spaghetti en agua con sal según las instrucciones del paquete.",
+      "Mientras tanto, corta la panceta en cubos pequeños.",
+      "En una sartén grande, cocina la panceta hasta que esté dorada y crujiente.",
+      "En un bowl, bate los huevos con el queso parmesano, sal y pimienta.",
+      "Escurre la pasta reservando 1 taza del agua de cocción.",
+      "Agrega la pasta caliente a la sartén con la panceta.",
+      "Retira del fuego y vierte rápidamente la mezcla de huevo, mezclando constantemente.",
+      "Agrega agua de pasta si es necesario para obtener una textura cremosa.",
+      "Sirve inmediatamente con más queso parmesano."
+    ],
+    "nutritionalInfo": {
+      "protein": "22g",
+      "carbs": "65g",
+      "fat": "18g",
+      "fiber": "3g"
+    }
+  },
+  {
+    "id": 3,
+    "name": "Tacos de Pescado",
+    "category": "Mexicana",
+    "image": "https://images.unsplash.com/photo-1565299585323-38174c8d3b9d?w=400&h=300&fit=crop",
+    "preparationTime": 30,
+    "servings": 3,
+    "calories": 380,
+    "difficulty": "Fácil",
+    "description": "Deliciosos tacos de pescado con salsa fresca y vegetales crujientes.",
+    "ingredients": [
+      "500g de filete de pescado blanco",
+      "6 tortillas de maíz",
+      "1 col morada pequeña rallada",
+      "2 tomates",
+      "1 cebolla morada",
+      "2 limas",
+      "Cilantro fresco",
+      "1 aguacate",
+      "Sal, comino y páprika"
+    ],
+    "instructions": [
+      "Sazona el pescado with sal, comino y páprika.",
+      "Cocina el pescado en una sartén con aceite por 3-4 minutos de cada lado.",
+      "Desmenuza el pescado cocido.",
+      "Pica finamente el tomate, cebolla y cilantro para hacer pico de gallo.",
+      "Calienta las tortillas en una sartén seca.",
+      "Machaca el aguacate con limón y sal.",
+      "Arma los tacos con pescado, col rallada, pico de gallo y aguacate.",
+      "Sirve con gajos de lima."
+    ],
+    "nutritionalInfo": {
+      "protein": "28g",
+      "carbs": "35g",
+      "fat": "14g",
+      "fiber": "9g"
+    }
+  },
+  {
+    "id": 4,
+    "name": "Curry de Pollo Thai",
+    "category": "Asiática",
+    "image": "https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=400&h=300&fit=crop",
+    "preparationTime": 35,
+    "servings": 4,
+    "calories": 420,
+    "difficulty": "Intermedio",
+    "description": "Un aromático curry thai con leche de coco, pollo tierno y vegetales frescos.",
+    "ingredients": [
+      "600g de pollo cortado en cubos",
+      "400ml de leche de coco",
+      "2 cucharadas de pasta de curry rojo",
+      "1 berenjena asiática",
+      "200g de judías verdes",
+      "1 pimiento rojo",
+      "Hojas de albahaca thai",
+      "2 cucharadas de salsa de pescado",
+      "1 cucharada de azúcar de palma",
+      "2 chiles thai (opcional)"
+    ],
+    "instructions": [
+      "Calienta la mitad de la leche de coco en un wok hasta que se separe el aceite.",
+      "Agrega la pasta de curry y cocina por 2 minutos hasta que sea fragante.",
+      "Agrega el pollo y cocina hasta que esté sellado.",
+      "Vierte el resto de la leche de coco y deja hervir a fuego lento.",
+      "Agrega los vegetales cortados y cocina por 10-15 minutos.",
+      "Sazona con salsa de pescado y azúcar.",
+      "Agrega las hojas de albahaca al final.",
+      "Sirve con arroz jasmine."
+    ],
+    "nutritionalInfo": {
+      "protein": "32g",
+      "carbs": "18g",
+      "fat": "24g",
+      "fiber": "6g"
+    }
+  },
+  {
+    "id": 5,
+    "name": "Ratatouille Provenzal",
+    "category": "Francesa",
+    "image": "https://images.unsplash.com/photo-1572441713132-51c75654db73?w=400&h=300&fit=crop",
+    "preparationTime": 45,
+    "servings": 6,
+    "calories": 180,
+    "difficulty": "Intermedio",
+    "description": "El clásico guiso francés de vegetales con hierbas provenzales.",
+    "ingredients": [
+      "2 berenjenas",
+      "3 calabacines",
+      "2 pimientos rojos",
+      "4 tomates grandes",
+      "1 cebolla grande",
+      "4 dientes de ajo",
+      "Hierbas provenzales",
+      "Aceite de oliva",
+      "Sal y pimienta"
+    ],
+    "instructions": [
+      "Corta todos los vegetales en cubos de tamaño similar.",
+      "Sofríe la cebolla y el ajo en aceite de oliva hasta que estén transparentes.",
+      "Agrega los pimientos y cocina por 5 minutos.",
+      "Añade las berenjenas y calabacines, cocina por 10 minutos.",
+      "Incorpora los tomates y las hierbas provenzales.",
+      "Cocina a fuego lento por 25-30 minutos, removiendo ocasionalmente.",
+      "Sazona con sal y pimienta al gusto.",
+      "Sirve caliente como plato principal o acompañante."
+    ],
+    "nutritionalInfo": {
+      "protein": "6g",
+      "carbs": "25g",
+      "fat": "8g",
+      "fiber": "12g"
+    }
+  },
+  {
+    "id": 6,
+    "name": "Sushi Bowl",
+    "category": "Japonesa",
+    "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=300&fit=crop",
+    "preparationTime": 40,
+    "servings": 2,
+    "calories": 350,
+    "difficulty": "Intermedio",
+    "description": "Un bowl nutritivo con arroz sushi, salmón fresco y vegetales marinados.",
+    "ingredients": [
+      "300g de arroz para sushi",
+      "200g de salmón fresco",
+      "1 aguacate",
+      "1 pepino",
+      "100g de edamame",
+      "2 cucharadas de vinagre de arroz",
+      "1 cucharada de azúcar",
+      "Salsa de soya",
+      "Wasabi",
+      "Jengibre encurtido",
+      "Semillas de sésamo"
+    ],
+    "instructions": [
+      "Cocina el arroz según las instrucciones y déjalo enfriar.",
+      "Mezcla el arroz con vinagre de arroz y azúcar.",
+      "Corta el salmón en cubos pequeños.",
+      "Rebana el aguacate y el pepino en tiras finas.",
+      "Cuece el edamame en agua con sal.",
+      "Arma los bowls con arroz como base.",
+      "Distribuye el salmón, aguacate, pepino y edamame.",
+      "Espolvorea con semillas de sésamo.",
+      "Sirve con salsa de soya, wasabi y jengibre."
+    ],
+    "nutritionalInfo": {
+      "protein": "25g",
+      "carbs": "45g",
+      "fat": "12g",
+      "fiber": "8g"
+    }
+  },
+  {
+    "id": 7,
+    "name": "Paella Valenciana",
+    "category": "Española",
+    "image": "https://images.unsplash.com/photo-1534080564583-6be75777b70a?w=400&h=300&fit=crop",
+    "preparationTime": 60,
+    "servings": 6,
+    "calories": 480,
+    "difficulty": "Avanzado",
+    "description": "La auténtica paella valenciana con pollo, conejo, judías verdes y azafrán.",
+    "ingredients": [
+      "400g de arroz bomba",
+      "800ml de caldo de pollo",
+      "1 pollo cortado en trozos",
+      "300g de conejo (opcional)",
+      "200g de judías verdes",
+      "100g de garrofón",
+      "2 tomates rallados",
+      "1 pimiento rojo",
+      "Azafrán en hebras",
+      "Aceite de oliva",
+      "Sal y romero"
+    ],
+    "instructions": [
+      "Calienta aceite en una paellera y dora el pollo y conejo.",
+      "Retira la carne y sofríe las judías verdes y garrofón.",
+      "Agrega el tomate rallado y el pimiento, cocina por 5 minutos.",
+      "Vuelve a poner la carne en la paellera.",
+      "Añade el arroz y remueve por 2-3 minutos.",
+      "Vierte el caldo caliente con azafrán disuelto.",
+      "Cocina a fuego fuerte 10 minutos, luego bajo 15-20 minutos.",
+      "Deja reposar 5 minutos antes de servir.",
+      "Decora con ramitas de romero."
+    ],
+    "nutritionalInfo": {
+      "protein": "28g",
+      "carbs": "55g",
+      "fat": "16g",
+      "fiber": "4g"
+    }
+  },
+  {
+    "id": 8,
+    "name": "Smoothie Bowl Tropical",
+    "category": "Desayuno",
+    "image": "https://images.unsplash.com/photo-1511690743698-d9d85f2fbf38?w=400&h=300&fit=crop",
+    "preparationTime": 15,
+    "servings": 1,
+    "calories": 280,
+    "difficulty": "Fácil",
+    "description": "Un nutritivo smoothie bowl con frutas tropicales y toppings saludables.",
+    "ingredients": [
+      "1 plátano congelado",
+      "100g de mango congelado",
+      "50g de piña",
+      "200ml de leche de coco",
+      "1 cucharada de miel",
+      "Granola",
+      "Coco rallado",
+      "Arándanos frescos",
+      "Semillas de chía",
+      "Almendras laminadas"
+    ],
+    "instructions": [
+      "Licúa el plátano, mango y piña con leche de coco hasta obtener una textura cremosa.",
+      "Agrega miel al gusto.",
+      "Vierte en un bowl.",
+      "Decora con granola, coco rallado y arándanos.",
+      "Espolvorea semillas de chía y almendras laminadas.",
+      "Sirve inmediatamente."
+    ],
+    "nutritionalInfo": {
+      "protein": "8g",
+      "carbs": "45g",
+      "fat": "12g",
+      "fiber": "9g"
+    }
+  },
+  {
+    "id": 9,
+    "name": "Hamburguesa Gourmet",
+    "category": "Americana",
+    "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=300&fit=crop",
+    "preparationTime": 25,
+    "servings": 2,
+    "calories": 520,
+    "difficulty": "Fácil",
+    "description": "Una jugosa hamburguesa gourmet con carne de res, queso y vegetales frescos.",
+    "ingredients": [
+      "400g de carne molida de res",
+      "2 panes de hamburguesa artesanales",
+      "2 lonchas de queso cheddar",
+      "Lechuga",
+      "2 tomates",
+      "1 cebolla roja",
+      "Pepinillos",
+      "Mayonesa",
+      "Mostaza",
+      "Sal y pimienta"
+    ],
+    "instructions": [
+      "Forma dos hamburguesas con la carne molida sazonada.",
+      "Cocina las hamburguesas en una plancha por 4-5 minutos de cada lado.",
+      "Agrega el queso en el último minuto de cocción.",
+      "Tuesta ligeramente los panes.",
+      "Corta el tomate y la cebolla en rodajas.",
+      "Arma las hamburguesas con mayonesa, lechuga, tomate, cebolla y pepinillos.",
+      "Sirve con papas fritas."
+    ],
+    "nutritionalInfo": {
+      "protein": "32g",
+      "carbs": "35g",
+      "fat": "26g",
+      "fiber": "4g"
+    }
+  }
+] 

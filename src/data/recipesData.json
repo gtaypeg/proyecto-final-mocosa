@@ -1,0 +1,390 @@
+[
+    {
+        "id": 1,
+        "name": "Atún con salsa de aguacate",
+        "category": "Saludable",
+        "image": "/comidas/atun-con-salsa-de-aguacate.png",
+        "preparationTime": 85,
+        "servings": 2,
+        "calories": 320,
+        "difficulty": "Fácil",
+        "description": "Delicioso plato saludable con atún fresco y salsa de aguacate, perfecto para una comida ligera y saludable.",
+        "ingredients": [
+            "1 Taza de aguacate (en cubos)",
+            "2 Cucharadas Cebolla Morada picada",
+            "2 Cucharadas de Aceite de Oliva Virgen Extra",
+            "1 Cucharada de Jugo Puro de limón",
+            "2 cucharaditas de perejil picado",
+            "4 filetes de atún (250 g cada uno)",
+            "Sal y pimienta negra al gusto"
+        ],
+        "instructions": [
+            "En un recipiente mezcle el aguacate, la cebolla, el aceite de oliva, el jugo de limón, el perejil y lleve a la heladera por 2 horas aproximadamente.",
+            "Sazone los filetes de atún con sal y pimienta negra al gusto.",
+            "Pincelar con un poco de aceite de oliva y asar los filetes por ambos lados hasta que estén dorados.",
+            "Acomoda las rebanadas en un refractario y coloca encima la salsa de aguacate."
+        ],
+        "nutritionalInfo": {
+            "protein": "35g",
+            "carbs": "12g",
+            "fat": "18g",
+            "fiber": "8g"
+        }
+    },
+    {
+        "id": 2,
+        "name": "Alas de pollo a la mostaza",
+        "category": "Italiana",
+        "image": "/comidas/alas-de-pollo-a-la-mostaza.png",
+        "preparationTime": 40,
+        "servings": 4,
+        "calories": 450,
+        "difficulty": "Intermedio",
+        "description": "Deliciosas alas de pollo marinadas en una salsa cremosa de mostaza y jengibre, perfectas para una comida sabrosa y baja en carbohidratos.",
+        "ingredients": [
+            "4 Muslos con Alitas de Pollo ",
+            "3 dientes de ajo ",
+            "5 Cucharadas de Mostaza Sin azúcar ",
+            "1 pieza de jengibre rallado ",
+            "Sal a gusto ",
+            "Aceite de Oliva Virgen Extra al gusto"
+        ],
+        "instructions": [
+            "En un bol, sofreír bien el ajo con la sal, y mezclar el jengibre y la mostaza.",
+            "Pasar la mitad de la mezcla sobre el pollo y reservar por 20 minutos.",
+            "Engrasa una fuente para horno con aceite de oliva y coloca la otra mitad de la mezcla encima de los muslos.",
+            "Llevar a horno precalentado a 200°C hasta dorar."
+        ],
+        "nutritionalInfo": {
+            "protein": "22g",
+            "carbs": "65g",
+            "fat": "18g",
+            "fiber": "3g"
+        }
+    },
+    {
+        "id": 3,
+        "name": "Albóndigas de pavo",
+        "category": "Mexicana",
+        "image": "/comidas/albondigas-de-pavo.png",
+        "preparationTime": 35,
+        "servings": 3,
+        "calories": 380,
+        "difficulty": "Fácil",
+        "description": "Deliciosas albóndigas de pavo con salsa de tomate y queso, perfectas para una comida saludable y deliciosa.",
+        "ingredients": [
+            "300g de carne de pavo picada",
+            "1 huevo cocido",
+            "1 huevo crudo",
+            "1 cebolla pequeña",
+            "Jengibre picado al gusto",
+            "1 Cucharada de Aceite de Oliva Virgen Extra",
+            "Sal y pimienta negra al gusto"
+        ],
+        "instructions": [
+            "En un recipiente, mezcle la carne, la cebolla, el jengibre picado, el huevo cocido y el huevo crudo.",
+            "Sazone con sal y pimienta al gusto.",
+            "Mezcla hasta obtener una mezcla homogénea.",
+            "Modelar bolitas creando la forma de albóndigas y tenerlas en forma untadas con un poco de aceite de oliva.",
+            "Hornear en horno precalentado a 180°C por aproximadamente 20 minutos o hasta que las albóndigas estén doradas."
+        ],
+        "nutritionalInfo": {
+            "protein": "28g",
+            "carbs": "35g",
+            "fat": "14g",
+            "fiber": "9g"
+        }
+    },
+    {
+        "id": 4,
+        "name": "Tortilla de espinacas",
+        "category": "Asiática",
+        "image": "/comidas/tortilla-de-espinacas.png",
+        "preparationTime": 15,
+        "servings": 4,
+        "calories": 420,
+        "difficulty": "Intermedio",
+        "description": "Deliciosa tortilla de espinacas con huevos, cebolla y queso, perfecta para una comida saludable y deliciosa.",
+        "ingredients": [
+            "1 taza de espinacas (picadas)",
+            "3 huevos",
+            "1/2 cebolla picada",
+            "1 Cucharada Queso Blanco Rallado",
+            "1 cucharada de perejil picado",
+            "1 Cucharadita de Aceite de Oliva",
+            "Sal y pimienta negra al gusto"
+        ],
+        "instructions": [
+            "Bate los huevos con el tenedor hasta obtener una mezcla homogénea.",
+            "En una sartén caliente con aceite de oliva, saltee la cebolla hasta que esté dorada.",
+            "Agregue la espinaca picada y deje solo hasta que se marchite.",
+            "Agrega los huevos batidos, el perejil picado y sazona con sal y pimienta negra al gusto.",
+            "Deje que se ponga firme y dorado por un lado y luego dore por el otro lado."
+        ],
+        "nutritionalInfo": {
+            "protein": "32g",
+            "carbs": "18g",
+            "fat": "24g",
+            "fiber": "6g"
+        }
+    },
+    {
+        "id": 5,
+        "name": "Tortilla con pollo",
+        "category": "Francesa",
+        "image": "/comidas/tortilla-con-pollo.png",
+        "preparationTime": 30,
+        "servings": 6,
+        "calories": 180,
+        "difficulty": "Intermedio",
+        "description": "Deliciosa tortilla con pollo, cebolla y perejil, perfecta para una comida saludable y deliciosa.",
+        "ingredients": [
+            "3 huevos",
+            "100 g de pollo cocido y desmenuzado",
+            "12 cebolla finamente picada",
+            "1 cucharadita de aceite de oliva",
+            "Perejil y orégano al gusto",
+            "Sal y pimienta negra al gusto"
+        ],
+        "instructions": [
+            "En un recipiente, bate los huevos, la cebolla, el perejil, la sal, el orégano y la pimienta negra hasta integrar bien;",
+            "Agrega el pollo y bate un poco más;",
+            "Ponga la mezcla en una sartén caliente con el aceite de oliva y déjela reposar. Gire hacia el otro lado al oro."
+        ],
+        "nutritionalInfo": {
+            "protein": "6g",
+            "carbs": "25g",
+            "fat": "8g",
+            "fiber": "12g"
+        }
+    },
+    {
+        "id": 6,
+        "name": "Minipizzas de berenjena",
+        "category": "Japonesa",
+        "image": "/comidas/minipizzas-de-berenjena.png",
+        "preparationTime": 25,
+        "servings": 2,
+        "calories": 350,
+        "difficulty": "Intermedio",
+        "description": "Deliciosas minipizzas de berenjena con tomates cherry, ricota y salsa de tomate, perfectas para una comida saludable y deliciosa.",
+        "ingredients": [
+            "2 berenjenas grandes",
+            "200g de tomates cherry en rodajas",
+            "200 g de ricota rallada",
+            "200ml de salsa de tomate",
+            "1 cucharadita de mantequilla",
+            "Orégano al gusto"
+        ],
+        "instructions": [
+            "Corta las berenjenas a lo largo",
+            "Coloque las rebanadas en una fuenteupnaora horno ligeramente untada con mantequilla y espolvoree un poco de sal y pimienta negra encima.",
+            "Llevar a horno precalentado a 180°C por 15 minutos.",
+            "Retire la bandeja para hornear del horno y rellene cada rebanada individualmente, agregando salsa de tomate, ricota rallada, rodajas de tomate cherry y orégano.",
+            "Regresar al horno por otros 15 min."
+        ],
+        "nutritionalInfo": {
+            "protein": "25g",
+            "carbs": "45g",
+            "fat": "12g",
+            "fiber": "8g"
+        }
+    },
+    {
+        "id": 7,
+        "name": "Cesta de pechuga de pavo",
+        "category": "Española",
+        "image": "/comidas/cesta-de-pechuga-de-pavo.png",
+        "preparationTime": 15,
+        "servings": 6,
+        "calories": 480,
+        "difficulty": "Avanzado",
+        "description": "Deliciosa cesta de pechuga de pavo con vegetales, perfecta para una comida saludable y deliciosa.",
+        "ingredients": [
+            "6 rebanadas de pechuga de pavo",
+            "6 huevos",
+            "3 tomates cherry cortados por la mitad",
+            "1/2 Zanahoria Rallada",
+            "orégano al gusto",
+            "Sal a gusto"
+        ],
+        "instructions": [
+            "Picar los tomates cherry por la mitad, rallar la zanahoria y reservar.",
+            "En un bowl, bate los huevos hasta que quede una mezcla uniforme.",
+            "Sazone con sal al gusto, mezcle bien y reserve.",
+            "Cubra con rebanadas de pechuga de pavo moldes individuales para pastel.",
+            "Agregue tomates cherry y zanahorias ralladas a las canastas de pechuga de pavo.",
+            "Luego coloca los huevos batidos.",
+            "Espolvorear con un poco de orégano al gusto y llevar al horno precalentado a 180°C por unos 1 5 minutos o hasta que las canastas estén doradas y los huevos firmes.",
+            "Retirar del horno y servir inmediatamente."
+        ],
+        "nutritionalInfo": {
+            "protein": "28g",
+            "carbs": "55g",
+            "fat": "16g",
+            "fiber": "4g"
+        }
+    },
+    {
+        "id": 8,
+        "name": "Bolitas de espinacas",
+        "category": "Desayuno",
+        "image": "/comidas/bolitas-de-espinacas.png",
+        "preparationTime": 30,
+        "servings": 1,
+        "calories": 280,
+        "difficulty": "Fácil",
+        "description": "Deliciosas bolitas de espinacas con queso, perfectas para una comida saludable y deliciosa.",
+        "ingredients": [
+            "2 manojos de espinacas",
+            "1 cebolla mediana picada",
+            "2 huevos",
+            "1 diente de ajo machacado",
+            "Perejil al gusto",
+            "1 cucharada de aceite de coco",
+            "Harina De Berenjena Al Punto",
+            "Sal y pimienta negra al gusto"
+        ],
+        "instructions": [
+            "Lava bien los manojos de espinacas y déjalos en remojo durante unos minutos en agua caliente.",
+            "Escurrir las espinacas y picarlas finamente.",
+            "En un recipiente, agrega las espinacas, los huevos, el ajo, el perejil, la sal, el aceite de coco y la pimienta del reino y mezcla bien.",
+            "Agrega la harina de berenjena poco a poco hasta obtener una masa firme.",
+            "Con ayuda de dos cucharas, moldea las albóndigas de espinaca y colócalas en forma engrasada.",
+            "Llevar al horno precalentado a 160°C hasta que las albóndigas estén bien doradas."
+        ],
+        "nutritionalInfo": {
+            "protein": "8g",
+            "carbs": "45g",
+            "fat": "12g",
+            "fiber": "9g"
+        }
+    },
+    {
+        "id": 9,
+        "name": "Galleta de brócoli",
+        "category": "Americana",
+        "image": "/comidas/galleta-de-brocoli.png",
+        "preparationTime": 30,
+        "servings": 2,
+        "calories": 520,
+        "difficulty": "Fácil",
+        "description": "Deliciosas albóndigas de calabacín con queso, perfectas para una comida saludable y deliciosa.",
+        "ingredients": [
+            "1 cabeza de brócoli, cocido y escurrido",
+            "1 huevo",
+            "100 gramos de mozzarella finamente rallada",
+            "Sal y pimienta negra al gusto"
+        ],
+        "instructions": [
+            "Cuece el brócoli en una cazuela con agua y una pizca de sal durante 2 minutos.",
+            "Después de la cocción, trocea el brócoli para que parezca harina.",
+            "En un bol, mezclar todos los ingredientes, hacer bolitas con la masa y colocarlas en una sartén antiadherente.",
+            "Llevar a hornear en horno medio 180°C por unos 10 a 15 minutos."
+        ],
+        "nutritionalInfo": {
+            "protein": "32g",
+            "carbs": "35g",
+            "fat": "26g",
+            "fiber": "4g"
+        }
+    },
+    {
+        "id": 10,
+        "name": "Albóndigas de calabacín con queso",
+        "category": "Americana",
+        "image": "/comidas/albondigas-de-calabacin-con-queso.png",
+        "preparationTime": 45,
+        "servings": 2,
+        "calories": 520,
+        "difficulty": "Fácil",
+        "description": "Deliciosas albóndigas de calabacín con queso, perfectas para una comida saludable y deliciosa.",
+        "ingredients": [
+            "2 calabacines",
+            "100g de queso Minas rallado",
+            "1/2 cebolla picada",
+            "2 dientes de ajo",
+            "1 cucharada (té) de sal",
+            "1/2 taza (té) de harina de almendras",
+            "1 huevo"
+        ],
+        "instructions": [
+            "Ralla los calabacines y colócalos sobre un paño de cocina limpio, haz un pequeño paquete y presiona bien los calabacines para sacarles todo el líquido.",
+            "En un recipiente disponer las calabacitas, el queso, la cebolla picada, el ajo, el huevo, la sal y la harina de almendras.",
+            "Mezclar bien.",
+            "Toma dos cucharas y con las manos presiona hasta formar un pastelito.",
+            "Disponer las albóndigas en un molde engrasado y hornear en horno precalentado a 200°C por 30 minutos aproximadamente, volteando las albóndigas a la mitad.",
+            "Mezclar bien."
+        ],
+        "nutritionalInfo": {
+            "protein": "32g",
+            "carbs": "35g",
+            "fat": "26g",
+            "fiber": "4g"
+        }
+    },
+    {
+        "id": 11,
+        "name": "Galleta de coco",
+        "category": "Americana",
+        "image": "/comidas/galleta-de-coco.png",
+        "preparationTime": 30,
+        "servings": 2,
+        "calories": 520,
+        "difficulty": "Fácil",
+        "description": "Deliciosas galletas de coco, perfectas para una comida saludable y deliciosa.",
+        "ingredients": [
+            "1 taza (té) de harina de coco (125 gramos)",
+            "1 Cucharada de Xilitol",
+            "1 taza (té) de mantequilla de coco",
+            "6 Gotas de Extracto de Vainilla",
+            "2 huevos"
+        ],
+        "instructions": [
+            "En un recipiente, mezcla bien la harina de coco, el endulzante xilitol, la manteca de coco y el extracto de vainilla.",
+            "Agrega los huevos y mezcla bien hasta obtener una mezcla homogénea.",
+            "Disponer la masa en forma engrasada con papel manteca y abrir la masa con ayuda de un rollo.",
+            "Cortar la masa en cuadrados del tamaño deseado.",
+            "Llevar a horno precalentado a 180°C por aproximadamente 25 minutos o hasta que las galletas estén doradas.",
+            "Retire del horno y deje enfriar."
+        ],
+        "nutritionalInfo": {
+            "protein": "32g",
+            "carbs": "35g",
+            "fat": "26g",
+            "fiber": "4g"
+        }
+    },
+    {
+      "id": 12,
+      "name": "Brownie de cacao",
+      "category": "Americana",
+      "image": "/comidas/brownie-de-cacao.png",
+      "preparationTime": 50,
+      "servings": 2,
+      "calories": 520,
+      "difficulty": "Fácil",
+      "description": "Deliciosos brownies de cacao, perfectas para una comida saludable y deliciosa.",
+      "ingredients": [
+        "200 g de mantequilla sin sal",
+        "260g de xilitol",
+        "1 y /2 tazas de harina de almendras",
+        "12 cucharadas de cacao en polvo",
+        "2 tazas de nueces (trituradas) ",
+        "5 gotas de esencia de vainilla",
+        "4 huevos"
+      ],
+      "instructions": [
+        "Tamizar el xilitol en el vaso de la batidora, agregar los huevos, la mantequilla y batir por 4 min.",
+        "Tamizar tambien la harina de almendras y el cacao. Batir por otros 4 min.",
+        "Agrega las nueces, la esencia de vainilla y bate un poco más solo para incorporar.",
+        "En una fuente para horno untada con mantequilla, verter la masa y hornear en horno precalentado a 250C durante aproximadamente 25 minutos."
+      ],
+      "nutritionalInfo": {
+          "protein": "32g",
+          "carbs": "35g",
+          "fat": "26g",
+          "fiber": "4g"
+      }
+  }
+]

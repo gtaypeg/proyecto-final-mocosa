@@ -1,0 +1,2596 @@
+{
+    "categories": {
+        "hipertenso": {
+            "name": "Hipertenso",
+            "slug": "hipertenso",
+            "description": "Ejercicios especializados para personas con hipertensión",
+            "color": "#667eea",
+            "exercises": {
+                "caminar": {
+                    "name": "Caminar",
+                    "slug": "caminar",
+                    "description": "Caminata suave para mejorar la circulación",
+                    "image": "/exercises/walking.jpg",
+                    "category": "cardiovascular",
+                    "days": {
+                        "1": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "12m",
+                            "calories": 110,
+                            "targetAreas": ["Cardiovascular", "Circulación"],
+                            "exercises": [
+                                {
+                                    "name": "Caminata suave hipertenso",
+                                    "duration": "12m",
+                                    "type": "ejercicio",
+                                    "instructions": "Caminata muy suave, monitorea tu presión arterial",
+                                    "image": "/exercises/walk-hypertension.jpg"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "yoga": {
+                    "name": "Yoga",
+                    "slug": "yoga",
+                    "description": "Posturas de yoga para relajación y control de presión",
+                    "image": "/exercises/yoga.jpg",
+                    "category": "relajacion",
+                    "days": {
+                        "1": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "18m",
+                            "calories": 65,
+                            "targetAreas": ["Relajación", "Presión arterial"],
+                            "exercises": [
+                                {
+                                    "name": "Yoga para hipertensión",
+                                    "duration": "18m",
+                                    "type": "relajacion",
+                                    "instructions": "Posturas suaves para reducir la presión arterial",
+                                    "image": "/exercises/yoga-hypertension.jpg"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "respiracion": {
+                    "name": "Técnicas de respiración",
+                    "slug": "respiracion",
+                    "description": "Ejercicios de respiración para reducir estrés",
+                    "image": "/exercises/breathing.jpg",
+                    "category": "relajacion",
+                    "days": {
+                        "1": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "10m",
+                            "calories": 20,
+                            "targetAreas": ["Relajación", "Control de estrés"],
+                            "exercises": [
+                                {
+                                    "name": "Respiración para hipertensión",
+                                    "duration": "10m",
+                                    "type": "respiracion",
+                                    "instructions": "Técnicas específicas para controlar la presión",
+                                    "image": "/exercises/breathing-hypertension.jpg"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "nadar": {
+                    "name": "Nadar",
+                    "slug": "nadar",
+                    "description": "Natación de bajo impacto para hipertensos",
+                    "image": "/exercises/swimming.jpg",
+                    "category": "cardiovascular",
+                    "days": {
+                        "1": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "22m",
+                            "calories": 165,
+                            "targetAreas": ["Cardiovascular", "Bajo impacto"],
+                            "exercises": [
+                                {
+                                    "name": "Natación para hipertensos",
+                                    "duration": "22m",
+                                    "type": "ejercicio",
+                                    "instructions": "Natación muy suave, evita esfuerzos intensos",
+                                    "image": "/exercises/swim-hypertension.jpg"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "meditar": {
+                    "name": "Meditar",
+                    "slug": "meditar",
+                    "description": "Meditación para control de presión arterial",
+                    "image": "/exercises/meditation.jpg",
+                    "category": "relajacion",
+                    "days": {
+                        "1": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "15m",
+                            "calories": 25,
+                            "targetAreas": ["Relajación", "Control mental"],
+                            "exercises": [
+                                {
+                                    "name": "Meditación anti-estrés",
+                                    "duration": "15m",
+                                    "type": "relajacion",
+                                    "instructions": "Meditación enfocada en reducir el estrés",
+                                    "image": "/exercises/meditation-hypertension.jpg"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "bici": {
+                    "name": "Montar bici",
+                    "slug": "bici",
+                    "description": "Ciclismo suave para hipertensos",
+                    "image": "/exercises/cycling.jpg",
+                    "category": "cardiovascular",
+                    "days": {
+                        "1": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "25m",
+                            "calories": 180,
+                            "targetAreas": ["Cardiovascular", "Piernas"],
+                            "exercises": [
+                                {
+                                    "name": "Ciclismo para hipertensos",
+                                    "duration": "25m",
+                                    "type": "ejercicio",
+                                    "instructions": "Pedalea suavemente, controla tu ritmo cardíaco",
+                                    "image": "/exercises/cycling-hypertension.jpg"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "pilates": {
+                    "name": "Pilates",
+                    "slug": "pilates",
+                    "description": "Pilates suave para hipertensos",
+                    "image": "/exercises/pilates.jpg",
+                    "category": "fuerza",
+                    "days": {
+                        "1": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "20m",
+                            "calories": 85,
+                            "targetAreas": ["Core", "Postura"],
+                            "exercises": [
+                                {
+                                    "name": "Pilates para hipertensos",
+                                    "duration": "20m",
+                                    "type": "fuerza",
+                                    "instructions": "Movimientos muy controlados y suaves",
+                                    "image": "/exercises/pilates-hypertension.jpg"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "bailar": {
+                    "name": "Bailar",
+                    "slug": "bailar",
+                    "description": "Baile terapéutico para hipertensos",
+                    "image": "/exercises/dancing.jpg",
+                    "category": "cardiovascular",
+                    "days": {
+                        "1": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "18m",
+                            "calories": 120,
+                            "targetAreas": ["Cardiovascular", "Estado de ánimo"],
+                            "exercises": [
+                                {
+                                    "name": "Baile terapéutico",
+                                    "duration": "18m",
+                                    "type": "ejercicio",
+                                    "instructions": "Movimientos suaves al ritmo de la música",
+                                    "image": "/exercises/dance-therapeutic.jpg"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "acuaerobicos": {
+                    "name": "Acuaeróbicos",
+                    "slug": "acuaerobicos",
+                    "description": "Ejercicios en agua para hipertensos",
+                    "image": "/exercises/water-aerobics.jpg",
+                    "category": "cardiovascular",
+                    "days": {
+                        "1": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "30m",
+                            "calories": 150,
+                            "targetAreas": ["Cardiovascular", "Articulaciones"],
+                            "exercises": [
+                                {
+                                    "name": "Acuaeróbicos para hipertensos",
+                                    "duration": "30m",
+                                    "type": "ejercicio",
+                                    "instructions": "Ejercicios suaves en el agua",
+                                    "image": "/exercises/water-aerobics-hypertension.jpg"
+                                }
+                            ]
+                        }
+                    }
+                }
+            },
+            "days": {
+                "1": {
+                    "name": "Día 1",
+                    "level": "Principiante",
+                    "duration": "11m 22s",
+                    "calories": 122,
+                    "targetAreas": ["Glúteos", "Pierna", "Espalda", "Tronco", "Abdomen"],
+                    "exercises": [
+                        {
+                            "name": "Extended Child Pose",
+                            "duration": "25s",
+                            "type": "calentamiento",
+                            "instructions": "Posición de relajación para comenzar",
+                            "image": "/exercises/child-pose.jpg"
+                        },
+                        {
+                            "name": "Childs pose",
+                            "duration": "25s",
+                            "type": "calentamiento",
+                            "instructions": "Mantén la posición y respira profundamente",
+                            "image": "/exercises/child-pose2.jpg"
+                        },
+                        {
+                            "name": "Cross Touch And Reach",
+                            "duration": "25s",
+                            "type": "calentamiento",
+                            "instructions": "Movimiento suave de brazos cruzados",
+                            "image": "/exercises/cross-touch.jpg"
+                        }
+                    ]
+                },
+                "2": {
+                    "name": "Día 2",
+                    "level": "Intermedio",
+                    "duration": "8m 42s",
+                    "calories": 93,
+                    "targetAreas": ["Glúteos", "Pierna", "Core"],
+                    "exercises": [
+                        {
+                            "name": "Gentle Warm Up",
+                            "duration": "30s",
+                            "type": "calentamiento",
+                            "instructions": "Calentamiento suave para hipertensos",
+                            "image": "/exercises/warmup.jpg"
+                        }
+                    ]
+                }
+            }
+        },
+        "diabeticos": {
+            "name": "Diabéticos",
+            "slug": "diabeticos",
+            "description": "Ejercicios especializados para personas con diabetes",
+            "color": "#ff9a9e",
+            "exercises": {
+                "caminar": {
+                    "name": "Caminar",
+                    "slug": "caminar",
+                    "description": "Caminata regular para control de azúcar",
+                    "image": "/exercises/walking.jpg",
+                    "category": "cardiovascular",
+                    "days": {
+                        "1": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "20m",
+                            "calories": 130,
+                            "targetAreas": ["Cardiovascular", "Control glucémico"],
+                            "exercises": [
+                                {
+                                    "name": "Caminata para diabéticos",
+                                    "duration": "20m",
+                                    "type": "ejercicio",
+                                    "instructions": "Caminata regular, controla tu glucosa antes y después",
+                                    "image": "/exercises/walk-diabetes.jpg"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "nadar": {
+                    "name": "Nadar",
+                    "slug": "nadar",
+                    "description": "Natación de bajo impacto para control glucémico",
+                    "image": "/exercises/swimming.jpg",
+                    "category": "cardiovascular",
+                    "days": {
+                        "1": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "25m",
+                            "calories": 190,
+                            "targetAreas": ["Cardiovascular", "Control glucémico"],
+                            "exercises": [
+                                {
+                                    "name": "Natación para diabéticos",
+                                    "duration": "25m",
+                                    "type": "ejercicio",
+                                    "instructions": "Natación moderada, ideal para control de azúcar",
+                                    "image": "/exercises/swim-diabetes.jpg"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "meditar": {
+                    "name": "Meditar",
+                    "slug": "meditar",
+                    "description": "Meditación para control del estrés y glucosa",
+                    "image": "/exercises/meditation.jpg",
+                    "category": "relajacion",
+                    "days": {
+                        "1": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "12m",
+                            "calories": 22,
+                            "targetAreas": ["Relajación", "Control del estrés"],
+                            "exercises": [
+                                {
+                                    "name": "Meditación para diabéticos",
+                                    "duration": "12m",
+                                    "type": "relajacion",
+                                    "instructions": "Reduce el estrés que afecta los niveles de glucosa",
+                                    "image": "/exercises/meditation-diabetes.jpg"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "bici": {
+                    "name": "Montar bici",
+                    "slug": "bici",
+                    "description": "Ciclismo para control glucémico",
+                    "image": "/exercises/cycling.jpg",
+                    "category": "cardiovascular",
+                    "days": {
+                        "1": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "28m",
+                            "calories": 210,
+                            "targetAreas": ["Cardiovascular", "Piernas", "Control glucémico"],
+                            "exercises": [
+                                {
+                                    "name": "Ciclismo para diabéticos",
+                                    "duration": "28m",
+                                    "type": "ejercicio",
+                                    "instructions": "Excelente para mejorar la sensibilidad a la insulina",
+                                    "image": "/exercises/cycling-diabetes.jpg"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "bailar": {
+                    "name": "Bailar",
+                    "slug": "bailar",
+                    "description": "Baile para mejorar control glucémico",
+                    "image": "/exercises/dancing.jpg",
+                    "category": "cardiovascular",
+                    "days": {
+                        "1": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "22m",
+                            "calories": 155,
+                            "targetAreas": ["Cardiovascular", "Coordinación"],
+                            "exercises": [
+                                {
+                                    "name": "Baile para diabéticos",
+                                    "duration": "22m",
+                                    "type": "ejercicio",
+                                    "instructions": "Ejercicio divertido que ayuda con la glucosa",
+                                    "image": "/exercises/dance-diabetes.jpg"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "yoga": {
+                    "name": "Yoga",
+                    "slug": "yoga",
+                    "description": "Yoga para diabéticos",
+                    "image": "/exercises/yoga.jpg",
+                    "category": "relajacion",
+                    "days": {
+                        "1": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "25m",
+                            "calories": 80,
+                            "targetAreas": ["Flexibilidad", "Control del estrés"],
+                            "exercises": [
+                                {
+                                    "name": "Yoga para diabéticos",
+                                    "duration": "25m",
+                                    "type": "estiramiento",
+                                    "instructions": "Posturas que ayudan al control metabólico",
+                                    "image": "/exercises/yoga-diabetes.jpg"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "respiracion": {
+                    "name": "Técnicas de respiración",
+                    "slug": "respiracion",
+                    "description": "Respiración para control del estrés diabético",
+                    "image": "/exercises/breathing.jpg",
+                    "category": "relajacion",
+                    "days": {
+                        "1": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "8m",
+                            "calories": 18,
+                            "targetAreas": ["Relajación", "Control hormonal"],
+                            "exercises": [
+                                {
+                                    "name": "Respiración para diabéticos",
+                                    "duration": "8m",
+                                    "type": "respiracion",
+                                    "instructions": "Técnicas para controlar el estrés y la glucosa",
+                                    "image": "/exercises/breathing-diabetes.jpg"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "pilates": {
+                    "name": "Pilates",
+                    "slug": "pilates",
+                    "description": "Pilates para diabéticos",
+                    "image": "/exercises/pilates.jpg",
+                    "category": "fuerza",
+                    "days": {
+                        "1": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "30m",
+                            "calories": 120,
+                            "targetAreas": ["Core", "Fuerza", "Control postural"],
+                            "exercises": [
+                                {
+                                    "name": "Pilates para diabéticos",
+                                    "duration": "30m",
+                                    "type": "fuerza",
+                                    "instructions": "Fortalecimiento que mejora el metabolismo",
+                                    "image": "/exercises/pilates-diabetes.jpg"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "acuaerobicos": {
+                    "name": "Acuaeróbicos",
+                    "slug": "acuaerobicos",
+                    "description": "Ejercicios en agua para diabéticos",
+                    "image": "/exercises/water-aerobics.jpg",
+                    "category": "cardiovascular",
+                    "days": {
+                        "1": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "35m",
+                            "calories": 175,
+                            "targetAreas": ["Cardiovascular", "Bajo impacto"],
+                            "exercises": [
+                                {
+                                    "name": "Acuaeróbicos para diabéticos",
+                                    "duration": "35m",
+                                    "type": "ejercicio",
+                                    "instructions": "Ejercicios en agua ideales para diabéticos",
+                                    "image": "/exercises/water-aerobics-diabetes.jpg"
+                                }
+                            ]
+                        }
+                    }
+                }
+            },
+            "days": {
+                "1": {
+                    "name": "Día 1",
+                    "level": "Principiante",
+                    "duration": "15m 30s",
+                    "calories": 140,
+                    "targetAreas": ["Cardiovascular", "Resistencia"],
+                    "exercises": [
+                        {
+                            "name": "Warm Up Walk",
+                            "duration": "5m",
+                            "type": "calentamiento",
+                            "instructions": "Caminata suave de calentamiento",
+                            "image": "/exercises/walk-warmup.jpg"
+                        }
+                    ]
+                }
+            }
+        },
+        "ambas": {
+            "name": "Ambas Condiciones",
+            "slug": "ambas",
+            "description": "Ejercicios seguros para personas con hipertensión y diabetes",
+            "color": "#a8edea",
+            "exercises": {
+                "caminar": {
+                    "name": "Caminar",
+                    "slug": "caminar",
+                    "description": "Caminata adaptada para ambas condiciones",
+                    "image": "/exercises/walking.jpg",
+                    "category": "cardiovascular",
+                    "days": {
+                        "1": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "15m",
+                            "calories": 120,
+                            "targetAreas": ["Cardiovascular", "Resistencia"],
+                            "exercises": [
+                                {
+                                    "name": "Estiramiento de muñecas y tobillo izquierdo",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Estiramiento de muñecas y tobillo izquierdo",
+                                    "image": "/estiramiento/estiramiento-de-munecas-y-tobillo-izquierdo.gif"
+                                },
+                                {
+                                    "name": "Estiramiento de muñecas y tobillo derecho",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Estiramiento de muñecas y tobillo derecho",
+                                    "image": "/estiramiento/estiramiento-de-munecas-y-tobillo-derecho.gif"
+                                },
+                                {
+                                    "name": "Círculos con las rodillas",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Círculos con las rodillas",
+                                    "image": "/estiramiento/circulos-con-las-rodillas.gif"
+                                },
+                                {
+                                    "name": "Flexión de rodilla de pie",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Flexión de rodilla de pie",
+                                    "image": "/estiramiento/flexion-de-rodilla-de-pie.gif"
+                                },
+                                {
+                                    "name": "Caminar",
+                                    "duration": "30m",
+                                    "type": "ejercicio",
+                                    "instructions": "Caminata suave de calentamiento",
+                                    "image": "/ejercicio/caminar.png"
+                                },
+                                {
+                                    "name": "Descanso e hidratación",
+                                    "duration": "5m",
+                                    "type": "relajacion",
+                                    "instructions": "Descanso e hidratación",
+                                    "image": "/relajacion/descanso-e-hidratacion.png"
+                                }
+                            ]
+                        },
+                        "2": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "15m",
+                            "calories": 120,
+                            "targetAreas": ["Cardiovascular", "Resistencia"],
+                            "exercises": [
+                                {
+                                    "name": "Estiramiento de muñecas y tobillo izquierdo",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Estiramiento de muñecas y tobillo izquierdo",
+                                    "image": "/estiramiento/estiramiento-de-munecas-y-tobillo-izquierdo.gif"
+                                },
+                                {
+                                    "name": "Estiramiento de muñecas y tobillo derecho",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Estiramiento de muñecas y tobillo derecho",
+                                    "image": "/estiramiento/estiramiento-de-munecas-y-tobillo-derecho.gif"
+                                },
+                                {
+                                    "name": "Círculos con las rodillas",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Círculos con las rodillas",
+                                    "image": "/estiramiento/circulos-con-las-rodillas.gif"
+                                },
+                                {
+                                    "name": "Flexión de rodilla de pie",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Flexión de rodilla de pie",
+                                    "image": "/estiramiento/flexion-de-rodilla-de-pie.gif"
+                                },
+                                {
+                                    "name": "Caminar",
+                                    "duration": "30m",
+                                    "type": "ejercicio",
+                                    "instructions": "Caminata suave de calentamiento",
+                                    "image": "/ejercicio/caminar.png"
+                                },
+                                {
+                                    "name": "Descanso e hidratación",
+                                    "duration": "5m",
+                                    "type": "relajacion",
+                                    "instructions": "Descanso e hidratación",
+                                    "image": "/relajacion/descanso-e-hidratacion.png"
+                                }
+                            ]
+                        },
+                        "3": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "15m",
+                            "calories": 120,
+                            "targetAreas": ["Cardiovascular", "Resistencia"],
+                            "exercises": [
+                                {
+                                    "name": "Estiramiento de muñecas y tobillo izquierdo",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Estiramiento de muñecas y tobillo izquierdo",
+                                    "image": "/estiramiento/estiramiento-de-munecas-y-tobillo-izquierdo.gif"
+                                },
+                                {
+                                    "name": "Estiramiento de muñecas y tobillo derecho",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Estiramiento de muñecas y tobillo derecho",
+                                    "image": "/estiramiento/estiramiento-de-munecas-y-tobillo-derecho.gif"
+                                },
+                                {
+                                    "name": "Círculos con las rodillas",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Círculos con las rodillas",
+                                    "image": "/estiramiento/circulos-con-las-rodillas.gif"
+                                },
+                                {
+                                    "name": "Flexión de rodilla de pie",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Flexión de rodilla de pie",
+                                    "image": "/estiramiento/flexion-de-rodilla-de-pie.gif"
+                                },
+                                {
+                                    "name": "Caminar",
+                                    "duration": "30m",
+                                    "type": "ejercicio",
+                                    "instructions": "Caminata suave de calentamiento",
+                                    "image": "/ejercicio/caminar.png"
+                                },
+                                {
+                                    "name": "Descanso e hidratación",
+                                    "duration": "5m",
+                                    "type": "relajacion",
+                                    "instructions": "Descanso e hidratación",
+                                    "image": "/relajacion/descanso-e-hidratacion.png"
+                                }
+                            ]
+                        },
+                        "4": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "15m",
+                            "calories": 120,
+                            "targetAreas": ["Cardiovascular", "Resistencia"],
+                            "exercises": [
+                                {
+                                    "name": "Estiramiento de muñecas y tobillo izquierdo",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Estiramiento de muñecas y tobillo izquierdo",
+                                    "image": "/estiramiento/estiramiento-de-munecas-y-tobillo-izquierdo.gif"
+                                },
+                                {
+                                    "name": "Estiramiento de muñecas y tobillo derecho",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Estiramiento de muñecas y tobillo derecho",
+                                    "image": "/estiramiento/estiramiento-de-munecas-y-tobillo-derecho.gif"
+                                },
+                                {
+                                    "name": "Círculos con las rodillas",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Círculos con las rodillas",
+                                    "image": "/estiramiento/circulos-con-las-rodillas.gif"
+                                },
+                                {
+                                    "name": "Flexión de rodilla de pie",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Flexión de rodilla de pie",
+                                    "image": "/estiramiento/flexion-de-rodilla-de-pie.gif"
+                                },
+                                {
+                                    "name": "Caminar",
+                                    "duration": "30m",
+                                    "type": "ejercicio",
+                                    "instructions": "Caminata suave de calentamiento",
+                                    "image": "/ejercicio/caminar.png"
+                                },
+                                {
+                                    "name": "Descanso e hidratación",
+                                    "duration": "5m",
+                                    "type": "relajacion",
+                                    "instructions": "Descanso e hidratación",
+                                    "image": "/relajacion/descanso-e-hidratacion.png"
+                                }
+                            ]
+                        },
+                        "6": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "15m",
+                            "calories": 120,
+                            "targetAreas": ["Cardiovascular", "Resistencia"],
+                            "exercises": [
+                                {
+                                    "name": "Estiramiento de muñecas y tobillo izquierdo",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Estiramiento de muñecas y tobillo izquierdo",
+                                    "image": "/estiramiento/estiramiento-de-munecas-y-tobillo-izquierdo.gif"
+                                },
+                                {
+                                    "name": "Estiramiento de muñecas y tobillo derecho",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Estiramiento de muñecas y tobillo derecho",
+                                    "image": "/estiramiento/estiramiento-de-munecas-y-tobillo-derecho.gif"
+                                },
+                                {
+                                    "name": "Círculos con las rodillas",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Círculos con las rodillas",
+                                    "image": "/estiramiento/circulos-con-las-rodillas.gif"
+                                },
+                                {
+                                    "name": "Flexión de rodilla de pie",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Flexión de rodilla de pie",
+                                    "image": "/estiramiento/flexion-de-rodilla-de-pie.gif"
+                                },
+                                {
+                                    "name": "Caminar",
+                                    "duration": "30m",
+                                    "type": "ejercicio",
+                                    "instructions": "Caminata suave de calentamiento",
+                                    "image": "/ejercicio/caminar.png"
+                                },
+                                {
+                                    "name": "Descanso e hidratación",
+                                    "duration": "5m",
+                                    "type": "relajacion",
+                                    "instructions": "Descanso e hidratación",
+                                    "image": "/relajacion/descanso-e-hidratacion.png"
+                                }
+                            ]
+                        },
+                        "7": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "15m",
+                            "calories": 120,
+                            "targetAreas": ["Cardiovascular", "Resistencia"],
+                            "exercises": [
+                                {
+                                    "name": "Estiramiento de muñecas y tobillo izquierdo",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Estiramiento de muñecas y tobillo izquierdo",
+                                    "image": "/estiramiento/estiramiento-de-munecas-y-tobillo-izquierdo.gif"
+                                },
+                                {
+                                    "name": "Estiramiento de muñecas y tobillo derecho",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Estiramiento de muñecas y tobillo derecho",
+                                    "image": "/estiramiento/estiramiento-de-munecas-y-tobillo-derecho.gif"
+                                },
+                                {
+                                    "name": "Círculos con las rodillas",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Círculos con las rodillas",
+                                    "image": "/estiramiento/circulos-con-las-rodillas.gif"
+                                },
+                                {
+                                    "name": "Flexión de rodilla de pie",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Flexión de rodilla de pie",
+                                    "image": "/estiramiento/flexion-de-rodilla-de-pie.gif"
+                                },
+                                {
+                                    "name": "Caminar",
+                                    "duration": "30m",
+                                    "type": "ejercicio",
+                                    "instructions": "Caminata suave de calentamiento",
+                                    "image": "/ejercicio/caminar.png"
+                                },
+                                {
+                                    "name": "Descanso e hidratación",
+                                    "duration": "5m",
+                                    "type": "relajacion",
+                                    "instructions": "Descanso e hidratación",
+                                    "image": "/relajacion/descanso-e-hidratacion.png"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "yoga": {
+                    "name": "Yoga",
+                    "slug": "yoga",
+                    "description": "Yoga adaptado para ambas condiciones",
+                    "image": "/exercises/yoga.jpg",
+                    "category": "relajacion",
+                    "days": {
+                        "1": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "15m",
+                            "calories": 60,
+                            "targetAreas": ["Flexibilidad", "Equilibrio", "Relajación"],
+                            "exercises": [
+                                {
+                                    "name": "Estiramiento de muñecas y tobillo izquierdo",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Estiramiento de muñecas y tobillo izquierdo",
+                                    "image": "/estiramiento/estiramiento-de-munecas-y-tobillo-izquierdo.gif"
+                                },
+                                {
+                                    "name": "Estiramiento de muñecas y tobillo derecho",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Estiramiento de muñecas y tobillo derecho",
+                                    "image": "/estiramiento/estiramiento-de-munecas-y-tobillo-derecho.gif"
+                                },
+                                {
+                                    "name": "Asentimientos hacia arriba y hacia abajo,",
+                                    "duration": "5m",
+                                    "type": "calentamiento",
+                                    "instructions": "Asentimientos hacia arriba y hacia abajo,",
+                                    "image": "/estiramiento/los-asentimientos-hacia-arriba-y-hacia-abajo.gif"
+                                },
+                                {
+                                    "name": "Flexión de rodilla de pie",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Flexión de rodilla de pie",
+                                    "image": "/estiramiento/flexion-de-rodilla-de-pie.gif"
+                                },
+                                {
+                                    "name": "Postura del niño",
+                                    "duration": "40m",
+                                    "type": "estiramiento",
+                                    "instructions": "Mantén cada postura respirando profundamente",
+                                    "image": "/ejercicio/postura-del-nino.png"
+                                },
+                                {
+                                    "name": "Postura de relajación acostada",
+                                    "duration": "5m",
+                                    "type": "relajacion",
+                                    "instructions": "Postura de relajación acostada",
+                                    "image": "/ejercicio/postura-de-relajacion-acostada.png"
+                                }
+                            ]
+                        },
+                        "2": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "15m",
+                            "calories": 60,
+                            "targetAreas": ["Flexibilidad", "Equilibrio", "Relajación"],
+                            "exercises": [
+                                {
+                                    "name": "Estiramiento de muñecas y tobillo izquierdo",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Estiramiento de muñecas y tobillo izquierdo",
+                                    "image": "/estiramiento/estiramiento-de-munecas-y-tobillo-izquierdo.gif"
+                                },
+                                {
+                                    "name": "Estiramiento de muñecas y tobillo derecho",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Estiramiento de muñecas y tobillo derecho",
+                                    "image": "/estiramiento/estiramiento-de-munecas-y-tobillo-derecho.gif"
+                                },
+                                {
+                                    "name": "Asentimientos hacia arriba y hacia abajo,",
+                                    "duration": "5m",
+                                    "type": "calentamiento",
+                                    "instructions": "Asentimientos hacia arriba y hacia abajo,",
+                                    "image": "/estiramiento/los-asentimientos-hacia-arriba-y-hacia-abajo.gif"
+                                },
+                                {
+                                    "name": "Flexión de rodilla de pie",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Flexión de rodilla de pie",
+                                    "image": "/estiramiento/flexion-de-rodilla-de-pie.gif"
+                                },
+                                {
+                                    "name": "Postura del niño",
+                                    "duration": "40m",
+                                    "type": "estiramiento",
+                                    "instructions": "Mantén cada postura respirando profundamente",
+                                    "image": "/ejercicio/postura-del-nino.png"
+                                },
+                                {
+                                    "name": "Postura de relajación acostada",
+                                    "duration": "5m",
+                                    "type": "relajacion",
+                                    "instructions": "Postura de relajación acostada",
+                                    "image": "/ejercicio/postura-de-relajacion-acostada.png"
+                                }
+                            ]
+                        },
+                        "3": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "15m",
+                            "calories": 60,
+                            "targetAreas": ["Flexibilidad", "Equilibrio", "Relajación"],
+                            "exercises": [
+                                {
+                                    "name": "Estiramiento de muñecas y tobillo izquierdo",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Estiramiento de muñecas y tobillo izquierdo",
+                                    "image": "/estiramiento/estiramiento-de-munecas-y-tobillo-izquierdo.gif"
+                                },
+                                {
+                                    "name": "Estiramiento de muñecas y tobillo derecho",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Estiramiento de muñecas y tobillo derecho",
+                                    "image": "/estiramiento/estiramiento-de-munecas-y-tobillo-derecho.gif"
+                                },
+                                {
+                                    "name": "Asentimientos hacia arriba y hacia abajo,",
+                                    "duration": "5m",
+                                    "type": "calentamiento",
+                                    "instructions": "Asentimientos hacia arriba y hacia abajo,",
+                                    "image": "/estiramiento/los-asentimientos-hacia-arriba-y-hacia-abajo.gif"
+                                },
+                                {
+                                    "name": "Flexión de rodilla de pie",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Flexión de rodilla de pie",
+                                    "image": "/estiramiento/flexion-de-rodilla-de-pie.gif"
+                                },
+                                {
+                                    "name": "Postura del niño",
+                                    "duration": "40m",
+                                    "type": "estiramiento",
+                                    "instructions": "Mantén cada postura respirando profundamente",
+                                    "image": "/ejercicio/postura-del-nino.png"
+                                },
+                                {
+                                    "name": "Postura de relajación acostada",
+                                    "duration": "5m",
+                                    "type": "relajacion",
+                                    "instructions": "Postura de relajación acostada",
+                                    "image": "/ejercicio/postura-de-relajacion-acostada.png"
+                                }
+                            ]
+                        },
+                        "4": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "15m",
+                            "calories": 60,
+                            "targetAreas": ["Flexibilidad", "Equilibrio", "Relajación"],
+                            "exercises": [
+                                {
+                                    "name": "Estiramiento de muñecas y tobillo izquierdo",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Estiramiento de muñecas y tobillo izquierdo",
+                                    "image": "/estiramiento/estiramiento-de-munecas-y-tobillo-izquierdo.gif"
+                                },
+                                {
+                                    "name": "Estiramiento de muñecas y tobillo derecho",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Estiramiento de muñecas y tobillo derecho",
+                                    "image": "/estiramiento/estiramiento-de-munecas-y-tobillo-derecho.gif"
+                                },
+                                {
+                                    "name": "Asentimientos hacia arriba y hacia abajo,",
+                                    "duration": "5m",
+                                    "type": "calentamiento",
+                                    "instructions": "Asentimientos hacia arriba y hacia abajo,",
+                                    "image": "/estiramiento/los-asentimientos-hacia-arriba-y-hacia-abajo.gif"
+                                },
+                                {
+                                    "name": "Flexión de rodilla de pie",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Flexión de rodilla de pie",
+                                    "image": "/estiramiento/flexion-de-rodilla-de-pie.gif"
+                                },
+                                {
+                                    "name": "Postura del niño",
+                                    "duration": "40m",
+                                    "type": "estiramiento",
+                                    "instructions": "Mantén cada postura respirando profundamente",
+                                    "image": "/ejercicio/postura-del-nino.png"
+                                },
+                                {
+                                    "name": "Postura de relajación acostada",
+                                    "duration": "5m",
+                                    "type": "relajacion",
+                                    "instructions": "Postura de relajación acostada",
+                                    "image": "/ejercicio/postura-de-relajacion-acostada.png"
+                                }
+                            ]
+                        },
+                        "5": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "15m",
+                            "calories": 60,
+                            "targetAreas": ["Flexibilidad", "Equilibrio", "Relajación"],
+                            "exercises": [
+                                {
+                                    "name": "Estiramiento de muñecas y tobillo izquierdo",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Estiramiento de muñecas y tobillo izquierdo",
+                                    "image": "/estiramiento/estiramiento-de-munecas-y-tobillo-izquierdo.gif"
+                                },
+                                {
+                                    "name": "Estiramiento de muñecas y tobillo derecho",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Estiramiento de muñecas y tobillo derecho",
+                                    "image": "/estiramiento/estiramiento-de-munecas-y-tobillo-derecho.gif"
+                                },
+                                {
+                                    "name": "Asentimientos hacia arriba y hacia abajo,",
+                                    "duration": "5m",
+                                    "type": "calentamiento",
+                                    "instructions": "Asentimientos hacia arriba y hacia abajo,",
+                                    "image": "/estiramiento/los-asentimientos-hacia-arriba-y-hacia-abajo.gif"
+                                },
+                                {
+                                    "name": "Flexión de rodilla de pie",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Flexión de rodilla de pie",
+                                    "image": "/estiramiento/flexion-de-rodilla-de-pie.gif"
+                                },
+                                {
+                                    "name": "Postura del niño",
+                                    "duration": "40m",
+                                    "type": "estiramiento",
+                                    "instructions": "Mantén cada postura respirando profundamente",
+                                    "image": "/ejercicio/postura-del-nino.png"
+                                },
+                                {
+                                    "name": "Postura de relajación acostada",
+                                    "duration": "5m",
+                                    "type": "relajacion",
+                                    "instructions": "Postura de relajación acostada",
+                                    "image": "/ejercicio/postura-de-relajacion-acostada.png"
+                                }
+                            ]
+                        },
+                        "6": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "15m",
+                            "calories": 60,
+                            "targetAreas": ["Flexibilidad", "Equilibrio", "Relajación"],
+                            "exercises": [
+                                {
+                                    "name": "Estiramiento de muñecas y tobillo izquierdo",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Estiramiento de muñecas y tobillo izquierdo",
+                                    "image": "/estiramiento/estiramiento-de-munecas-y-tobillo-izquierdo.gif"
+                                },
+                                {
+                                    "name": "Estiramiento de muñecas y tobillo derecho",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Estiramiento de muñecas y tobillo derecho",
+                                    "image": "/estiramiento/estiramiento-de-munecas-y-tobillo-derecho.gif"
+                                },
+                                {
+                                    "name": "Asentimientos hacia arriba y hacia abajo,",
+                                    "duration": "5m",
+                                    "type": "calentamiento",
+                                    "instructions": "Asentimientos hacia arriba y hacia abajo,",
+                                    "image": "/estiramiento/los-asentimientos-hacia-arriba-y-hacia-abajo.gif"
+                                },
+                                {
+                                    "name": "Flexión de rodilla de pie",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Flexión de rodilla de pie",
+                                    "image": "/estiramiento/flexion-de-rodilla-de-pie.gif"
+                                },
+                                {
+                                    "name": "Postura del niño",
+                                    "duration": "40m",
+                                    "type": "estiramiento",
+                                    "instructions": "Mantén cada postura respirando profundamente",
+                                    "image": "/ejercicio/postura-del-nino.png"
+                                },
+                                {
+                                    "name": "Postura de relajación acostada",
+                                    "duration": "5m",
+                                    "type": "relajacion",
+                                    "instructions": "Postura de relajación acostada",
+                                    "image": "/ejercicio/postura-de-relajacion-acostada.png"
+                                }
+                            ]
+                        },
+                        "7": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "15m",
+                            "calories": 60,
+                            "targetAreas": ["Flexibilidad", "Equilibrio", "Relajación"],
+                            "exercises": [
+                                {
+                                    "name": "Estiramiento de muñecas y tobillo izquierdo",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Estiramiento de muñecas y tobillo izquierdo",
+                                    "image": "/estiramiento/estiramiento-de-munecas-y-tobillo-izquierdo.gif"
+                                },
+                                {
+                                    "name": "Estiramiento de muñecas y tobillo derecho",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Estiramiento de muñecas y tobillo derecho",
+                                    "image": "/estiramiento/estiramiento-de-munecas-y-tobillo-derecho.gif"
+                                },
+                                {
+                                    "name": "Asentimientos hacia arriba y hacia abajo,",
+                                    "duration": "5m",
+                                    "type": "calentamiento",
+                                    "instructions": "Asentimientos hacia arriba y hacia abajo,",
+                                    "image": "/estiramiento/los-asentimientos-hacia-arriba-y-hacia-abajo.gif"
+                                },
+                                {
+                                    "name": "Flexión de rodilla de pie",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Flexión de rodilla de pie",
+                                    "image": "/estiramiento/flexion-de-rodilla-de-pie.gif"
+                                },
+                                {
+                                    "name": "Postura del niño",
+                                    "duration": "40m",
+                                    "type": "estiramiento",
+                                    "instructions": "Mantén cada postura respirando profundamente",
+                                    "image": "/ejercicio/postura-del-nino.png"
+                                },
+                                {
+                                    "name": "Postura de relajación acostada",
+                                    "duration": "5m",
+                                    "type": "relajacion",
+                                    "instructions": "Postura de relajación acostada",
+                                    "image": "/ejercicio/postura-de-relajacion-acostada.png"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "pilates": {
+                    "name": "Pilates",
+                    "slug": "pilates",
+                    "description": "Pilates de bajo impacto",
+                    "image": "/exercises/pilates.jpg",
+                    "category": "fuerza",
+                    "days": {
+                        "1": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "25m",
+                            "calories": 100,
+                            "targetAreas": ["Core", "Fuerza", "Flexibilidad"],
+                            "exercises": [
+                                {
+                                    "name": "Estiramiento de muñecas y tobillo izquierdo",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Estiramiento de muñecas y tobillo izquierdo",
+                                    "image": "/estiramiento/estiramiento-de-munecas-y-tobillo-izquierdo.gif"
+                                },
+                                {
+                                    "name": "Estiramiento de muñecas y tobillo derecho",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Estiramiento de muñecas y tobillo derecho",
+                                    "image": "/estiramiento/estiramiento-de-munecas-y-tobillo-derecho.gif"
+                                },
+                                {
+                                    "name": "Círculos con las rodillas",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Círculos con las rodillas",
+                                    "image": "/estiramiento/circulos-con-las-rodillas.gif"
+                                },
+                                {
+                                    "name": "Flexión de rodilla de pie",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Flexión de rodilla de pie",
+                                    "image": "/estiramiento/flexion-de-rodilla-de-pie.gif"
+                                },
+                                {
+                                    "name": "Estiramiento de gluteos izquierdo",
+                                    "duration": "15m",
+                                    "type": "ejercicio",
+                                    "instructions": "Estiramiento de gluteos izquierdo",
+                                    "image": "/ejercicio/estiramiento-de-gluteos-izquierdo.png"
+                                },
+                                {
+                                    "name": "Estiramiento de gluteos derecho",
+                                    "duration": "15m",
+                                    "type": "ejercicio",
+                                    "instructions": "Estiramiento de gluteos derecho",
+                                    "image": "/ejercicio/estiramiento-de-gluteos-derecho.png"
+                                },
+                                {
+                                    "name": "Abduccion de pierna en postura recostada",
+                                    "duration": "15m",
+                                    "type": "ejercicio",
+                                    "instructions": "Abduccion de pierna en postura recostada",
+                                    "image": "/ejercicio/abduccion-de-pierna-en-postura-recostada.png"
+                                },
+                                {
+                                    "name": "Puente",
+                                    "duration": "15m",
+                                    "type": "ejercicio",
+                                    "instructions": "Puente",
+                                    "image": "/ejercicio/puente.png"
+                                },
+                                {
+                                    "name": "Descanso e hidratación",
+                                    "duration": "5m",
+                                    "type": "relajacion",
+                                    "instructions": "Descanso e hidratación",
+                                    "image": "/relajacion/descanso-e-hidratacion.png"
+                                }
+                            ]
+                        },
+                        "2": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "25m",
+                            "calories": 100,
+                            "targetAreas": ["Core", "Fuerza", "Flexibilidad"],
+                            "exercises": [
+                                {
+                                    "name": "Estiramiento de muñecas y tobillo izquierdo",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Estiramiento de muñecas y tobillo izquierdo",
+                                    "image": "/estiramiento/estiramiento-de-munecas-y-tobillo-izquierdo.gif"
+                                },
+                                {
+                                    "name": "Estiramiento de muñecas y tobillo derecho",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Estiramiento de muñecas y tobillo derecho",
+                                    "image": "/estiramiento/estiramiento-de-munecas-y-tobillo-derecho.gif"
+                                },
+                                {
+                                    "name": "Círculos con las rodillas",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Círculos con las rodillas",
+                                    "image": "/estiramiento/circulos-con-las-rodillas.gif"
+                                },
+                                {
+                                    "name": "Flexión de rodilla de pie",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Flexión de rodilla de pie",
+                                    "image": "/estiramiento/flexion-de-rodilla-de-pie.gif"
+                                },
+                                {
+                                    "name": "Estiramiento de gluteos izquierdo",
+                                    "duration": "15m",
+                                    "type": "ejercicio",
+                                    "instructions": "Estiramiento de gluteos izquierdo",
+                                    "image": "/ejercicio/estiramiento-de-gluteos-izquierdo.png"
+                                },
+                                {
+                                    "name": "Estiramiento de gluteos derecho",
+                                    "duration": "15m",
+                                    "type": "ejercicio",
+                                    "instructions": "Estiramiento de gluteos derecho",
+                                    "image": "/ejercicio/estiramiento-de-gluteos-derecho.png"
+                                },
+                                {
+                                    "name": "Abduccion de pierna en postura recostada",
+                                    "duration": "15m",
+                                    "type": "ejercicio",
+                                    "instructions": "Abduccion de pierna en postura recostada",
+                                    "image": "/ejercicio/abduccion-de-pierna-en-postura-recostada.png"
+                                },
+                                {
+                                    "name": "Puente",
+                                    "duration": "15m",
+                                    "type": "ejercicio",
+                                    "instructions": "Puente",
+                                    "image": "/ejercicio/puente.png"
+                                },
+                                {
+                                    "name": "Descanso e hidratación",
+                                    "duration": "5m",
+                                    "type": "relajacion",
+                                    "instructions": "Descanso e hidratación",
+                                    "image": "/relajacion/descanso-e-hidratacion.png"
+                                }
+                            ]
+                        },
+                        "3": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "25m",
+                            "calories": 100,
+                            "targetAreas": ["Core", "Fuerza", "Flexibilidad"],
+                            "exercises": [
+                                {
+                                    "name": "Estiramiento de muñecas y tobillo izquierdo",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Estiramiento de muñecas y tobillo izquierdo",
+                                    "image": "/estiramiento/estiramiento-de-munecas-y-tobillo-izquierdo.gif"
+                                },
+                                {
+                                    "name": "Estiramiento de muñecas y tobillo derecho",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Estiramiento de muñecas y tobillo derecho",
+                                    "image": "/estiramiento/estiramiento-de-munecas-y-tobillo-derecho.gif"
+                                },
+                                {
+                                    "name": "Círculos con las rodillas",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Círculos con las rodillas",
+                                    "image": "/estiramiento/circulos-con-las-rodillas.gif"
+                                },
+                                {
+                                    "name": "Flexión de rodilla de pie",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Flexión de rodilla de pie",
+                                    "image": "/estiramiento/flexion-de-rodilla-de-pie.gif"
+                                },
+                                {
+                                    "name": "Estiramiento de gluteos izquierdo",
+                                    "duration": "15m",
+                                    "type": "ejercicio",
+                                    "instructions": "Estiramiento de gluteos izquierdo",
+                                    "image": "/ejercicio/estiramiento-de-gluteos-izquierdo.png"
+                                },
+                                {
+                                    "name": "Estiramiento de gluteos derecho",
+                                    "duration": "15m",
+                                    "type": "ejercicio",
+                                    "instructions": "Estiramiento de gluteos derecho",
+                                    "image": "/ejercicio/estiramiento-de-gluteos-derecho.png"
+                                },
+                                {
+                                    "name": "Abduccion de pierna en postura recostada",
+                                    "duration": "15m",
+                                    "type": "ejercicio",
+                                    "instructions": "Abduccion de pierna en postura recostada",
+                                    "image": "/ejercicio/abduccion-de-pierna-en-postura-recostada.png"
+                                },
+                                {
+                                    "name": "Puente",
+                                    "duration": "15m",
+                                    "type": "ejercicio",
+                                    "instructions": "Puente",
+                                    "image": "/ejercicio/puente.png"
+                                },
+                                {
+                                    "name": "Descanso e hidratación",
+                                    "duration": "5m",
+                                    "type": "relajacion",
+                                    "instructions": "Descanso e hidratación",
+                                    "image": "/relajacion/descanso-e-hidratacion.png"
+                                }
+                            ]
+                        },
+                        "4": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "25m",
+                            "calories": 100,
+                            "targetAreas": ["Core", "Fuerza", "Flexibilidad"],
+                            "exercises": [
+                                {
+                                    "name": "Estiramiento de muñecas y tobillo izquierdo",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Estiramiento de muñecas y tobillo izquierdo",
+                                    "image": "/estiramiento/estiramiento-de-munecas-y-tobillo-izquierdo.gif"
+                                },
+                                {
+                                    "name": "Estiramiento de muñecas y tobillo derecho",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Estiramiento de muñecas y tobillo derecho",
+                                    "image": "/estiramiento/estiramiento-de-munecas-y-tobillo-derecho.gif"
+                                },
+                                {
+                                    "name": "Círculos con las rodillas",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Círculos con las rodillas",
+                                    "image": "/estiramiento/circulos-con-las-rodillas.gif"
+                                },
+                                {
+                                    "name": "Flexión de rodilla de pie",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Flexión de rodilla de pie",
+                                    "image": "/estiramiento/flexion-de-rodilla-de-pie.gif"
+                                },
+                                {
+                                    "name": "Estiramiento de gluteos izquierdo",
+                                    "duration": "15m",
+                                    "type": "ejercicio",
+                                    "instructions": "Estiramiento de gluteos izquierdo",
+                                    "image": "/ejercicio/estiramiento-de-gluteos-izquierdo.png"
+                                },
+                                {
+                                    "name": "Estiramiento de gluteos derecho",
+                                    "duration": "15m",
+                                    "type": "ejercicio",
+                                    "instructions": "Estiramiento de gluteos derecho",
+                                    "image": "/ejercicio/estiramiento-de-gluteos-derecho.png"
+                                },
+                                {
+                                    "name": "Abduccion de pierna en postura recostada",
+                                    "duration": "15m",
+                                    "type": "ejercicio",
+                                    "instructions": "Abduccion de pierna en postura recostada",
+                                    "image": "/ejercicio/abduccion-de-pierna-en-postura-recostada.png"
+                                },
+                                {
+                                    "name": "Puente",
+                                    "duration": "15m",
+                                    "type": "ejercicio",
+                                    "instructions": "Puente",
+                                    "image": "/ejercicio/puente.png"
+                                },
+                                {
+                                    "name": "Descanso e hidratación",
+                                    "duration": "5m",
+                                    "type": "relajacion",
+                                    "instructions": "Descanso e hidratación",
+                                    "image": "/relajacion/descanso-e-hidratacion.png"
+                                }
+                            ]
+                        },
+                        "5": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "25m",
+                            "calories": 100,
+                            "targetAreas": ["Core", "Fuerza", "Flexibilidad"],
+                            "exercises": [
+                                {
+                                    "name": "Estiramiento de muñecas y tobillo izquierdo",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Estiramiento de muñecas y tobillo izquierdo",
+                                    "image": "/estiramiento/estiramiento-de-munecas-y-tobillo-izquierdo.gif"
+                                },
+                                {
+                                    "name": "Estiramiento de muñecas y tobillo derecho",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Estiramiento de muñecas y tobillo derecho",
+                                    "image": "/estiramiento/estiramiento-de-munecas-y-tobillo-derecho.gif"
+                                },
+                                {
+                                    "name": "Círculos con las rodillas",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Círculos con las rodillas",
+                                    "image": "/estiramiento/circulos-con-las-rodillas.gif"
+                                },
+                                {
+                                    "name": "Flexión de rodilla de pie",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Flexión de rodilla de pie",
+                                    "image": "/estiramiento/flexion-de-rodilla-de-pie.gif"
+                                },
+                                {
+                                    "name": "Estiramiento de gluteos izquierdo",
+                                    "duration": "15m",
+                                    "type": "ejercicio",
+                                    "instructions": "Estiramiento de gluteos izquierdo",
+                                    "image": "/ejercicio/estiramiento-de-gluteos-izquierdo.png"
+                                },
+                                {
+                                    "name": "Estiramiento de gluteos derecho",
+                                    "duration": "15m",
+                                    "type": "ejercicio",
+                                    "instructions": "Estiramiento de gluteos derecho",
+                                    "image": "/ejercicio/estiramiento-de-gluteos-derecho.png"
+                                },
+                                {
+                                    "name": "Abduccion de pierna en postura recostada",
+                                    "duration": "15m",
+                                    "type": "ejercicio",
+                                    "instructions": "Abduccion de pierna en postura recostada",
+                                    "image": "/ejercicio/abduccion-de-pierna-en-postura-recostada.png"
+                                },
+                                {
+                                    "name": "Puente",
+                                    "duration": "15m",
+                                    "type": "ejercicio",
+                                    "instructions": "Puente",
+                                    "image": "/ejercicio/puente.png"
+                                },
+                                {
+                                    "name": "Descanso e hidratación",
+                                    "duration": "5m",
+                                    "type": "relajacion",
+                                    "instructions": "Descanso e hidratación",
+                                    "image": "/relajacion/descanso-e-hidratacion.png"
+                                }
+                            ]
+                        },
+                        "6": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "25m",
+                            "calories": 100,
+                            "targetAreas": ["Core", "Fuerza", "Flexibilidad"],
+                            "exercises": [
+                                {
+                                    "name": "Estiramiento de muñecas y tobillo izquierdo",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Estiramiento de muñecas y tobillo izquierdo",
+                                    "image": "/estiramiento/estiramiento-de-munecas-y-tobillo-izquierdo.gif"
+                                },
+                                {
+                                    "name": "Estiramiento de muñecas y tobillo derecho",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Estiramiento de muñecas y tobillo derecho",
+                                    "image": "/estiramiento/estiramiento-de-munecas-y-tobillo-derecho.gif"
+                                },
+                                {
+                                    "name": "Círculos con las rodillas",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Círculos con las rodillas",
+                                    "image": "/estiramiento/circulos-con-las-rodillas.gif"
+                                },
+                                {
+                                    "name": "Flexión de rodilla de pie",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Flexión de rodilla de pie",
+                                    "image": "/estiramiento/flexion-de-rodilla-de-pie.gif"
+                                },
+                                {
+                                    "name": "Estiramiento de gluteos izquierdo",
+                                    "duration": "15m",
+                                    "type": "ejercicio",
+                                    "instructions": "Estiramiento de gluteos izquierdo",
+                                    "image": "/ejercicio/estiramiento-de-gluteos-izquierdo.png"
+                                },
+                                {
+                                    "name": "Estiramiento de gluteos derecho",
+                                    "duration": "15m",
+                                    "type": "ejercicio",
+                                    "instructions": "Estiramiento de gluteos derecho",
+                                    "image": "/ejercicio/estiramiento-de-gluteos-derecho.png"
+                                },
+                                {
+                                    "name": "Abduccion de pierna en postura recostada",
+                                    "duration": "15m",
+                                    "type": "ejercicio",
+                                    "instructions": "Abduccion de pierna en postura recostada",
+                                    "image": "/ejercicio/abduccion-de-pierna-en-postura-recostada.png"
+                                },
+                                {
+                                    "name": "Puente",
+                                    "duration": "15m",
+                                    "type": "ejercicio",
+                                    "instructions": "Puente",
+                                    "image": "/ejercicio/puente.png"
+                                },
+                                {
+                                    "name": "Descanso e hidratación",
+                                    "duration": "5m",
+                                    "type": "relajacion",
+                                    "instructions": "Descanso e hidratación",
+                                    "image": "/relajacion/descanso-e-hidratacion.png"
+                                }
+                            ]
+                        },
+                        "7": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "25m",
+                            "calories": 100,
+                            "targetAreas": ["Core", "Fuerza", "Flexibilidad"],
+                            "exercises": [
+                                {
+                                    "name": "Estiramiento de muñecas y tobillo izquierdo",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Estiramiento de muñecas y tobillo izquierdo",
+                                    "image": "/estiramiento/estiramiento-de-munecas-y-tobillo-izquierdo.gif"
+                                },
+                                {
+                                    "name": "Estiramiento de muñecas y tobillo derecho",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Estiramiento de muñecas y tobillo derecho",
+                                    "image": "/estiramiento/estiramiento-de-munecas-y-tobillo-derecho.gif"
+                                },
+                                {
+                                    "name": "Círculos con las rodillas",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Círculos con las rodillas",
+                                    "image": "/estiramiento/circulos-con-las-rodillas.gif"
+                                },
+                                {
+                                    "name": "Flexión de rodilla de pie",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Flexión de rodilla de pie",
+                                    "image": "/estiramiento/flexion-de-rodilla-de-pie.gif"
+                                },
+                                {
+                                    "name": "Estiramiento de gluteos izquierdo",
+                                    "duration": "15m",
+                                    "type": "ejercicio",
+                                    "instructions": "Estiramiento de gluteos izquierdo",
+                                    "image": "/ejercicio/estiramiento-de-gluteos-izquierdo.png"
+                                },
+                                {
+                                    "name": "Estiramiento de gluteos derecho",
+                                    "duration": "15m",
+                                    "type": "ejercicio",
+                                    "instructions": "Estiramiento de gluteos derecho",
+                                    "image": "/ejercicio/estiramiento-de-gluteos-derecho.png"
+                                },
+                                {
+                                    "name": "Abduccion de pierna en postura recostada",
+                                    "duration": "15m",
+                                    "type": "ejercicio",
+                                    "instructions": "Abduccion de pierna en postura recostada",
+                                    "image": "/ejercicio/abduccion-de-pierna-en-postura-recostada.png"
+                                },
+                                {
+                                    "name": "Puente",
+                                    "duration": "15m",
+                                    "type": "ejercicio",
+                                    "instructions": "Puente",
+                                    "image": "/ejercicio/puente.png"
+                                },
+                                {
+                                    "name": "Descanso e hidratación",
+                                    "duration": "5m",
+                                    "type": "relajacion",
+                                    "instructions": "Descanso e hidratación",
+                                    "image": "/relajacion/descanso-e-hidratacion.png"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "nadar": {
+                    "name": "Natación",
+                    "slug": "nadar",
+                    "description": "Natación suave y controlada",
+                    "image": "/exercises/swimming.jpg",
+                    "category": "cardiovascular",
+                    "days": {
+                        "1": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "20m",
+                            "calories": 180,
+                            "targetAreas": ["Glúteos", "Pierna", "Espalda", "Tronco", "Abdomen"],
+                            "exercises": [
+                                {
+                                    "name": "Asentimientos hacia arriba y hacia abajo,",
+                                    "duration": "5m",
+                                    "type": "calentamiento",
+                                    "instructions": "Asentimientos hacia arriba y hacia abajo,",
+                                    "image": "/estiramiento/los-asentimientos-hacia-arriba-y-hacia-abajo.gif"
+                                },
+                                {
+                                    "name": "Juntar las manos detrás de la espalda",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Juntar las manos detrás de la espalda",
+                                    "image": "/estiramiento/juntar-las-manos-detras-de-la-espalda.png"
+                                },
+                                {
+                                    "name": "Nadar",
+                                    "duration": "30m",
+                                    "type": "ejercicio",
+                                    "instructions": "Nadar",
+                                    "image": "/ejercicio/nadar.png"
+                                },
+
+                                {
+                                    "name": "Descanso e hidratación",
+                                    "duration": "5m",
+                                    "type": "relajacion",
+                                    "instructions": "Descanso e hidratación",
+                                    "image": "/relajacion/descanso-e-hidratacion.png"
+                                }
+                            ]
+                        },
+                        "2": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "20m",
+                            "calories": 180,
+                            "targetAreas": ["Glúteos", "Pierna", "Espalda", "Tronco", "Abdomen"],
+                            "exercises": [
+                                {
+                                    "name": "Asentimientos hacia arriba y hacia abajo,",
+                                    "duration": "5m",
+                                    "type": "calentamiento",
+                                    "instructions": "Asentimientos hacia arriba y hacia abajo,",
+                                    "image": "/estiramiento/los-asentimientos-hacia-arriba-y-hacia-abajo.gif"
+                                },
+                                {
+                                    "name": "Juntar las manos detrás de la espalda",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Juntar las manos detrás de la espalda",
+                                    "image": "/estiramiento/juntar-las-manos-detras-de-la-espalda.png"
+                                },
+                                {
+                                    "name": "Nadar",
+                                    "duration": "30m",
+                                    "type": "ejercicio",
+                                    "instructions": "Nadar",
+                                    "image": "/ejercicio/nadar.png"
+                                },
+
+                                {
+                                    "name": "Descanso e hidratación",
+                                    "duration": "5m",
+                                    "type": "relajacion",
+                                    "instructions": "Descanso e hidratación",
+                                    "image": "/relajacion/descanso-e-hidratacion.png"
+                                }
+                            ]
+                        },
+                        "3": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "20m",
+                            "calories": 180,
+                            "targetAreas": ["Glúteos", "Pierna", "Espalda", "Tronco", "Abdomen"],
+                            "exercises": [
+                                {
+                                    "name": "Asentimientos hacia arriba y hacia abajo,",
+                                    "duration": "5m",
+                                    "type": "calentamiento",
+                                    "instructions": "Asentimientos hacia arriba y hacia abajo,",
+                                    "image": "/estiramiento/los-asentimientos-hacia-arriba-y-hacia-abajo.gif"
+                                },
+                                {
+                                    "name": "Juntar las manos detrás de la espalda",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Juntar las manos detrás de la espalda",
+                                    "image": "/estiramiento/juntar-las-manos-detras-de-la-espalda.png"
+                                },
+                                {
+                                    "name": "Nadar",
+                                    "duration": "30m",
+                                    "type": "ejercicio",
+                                    "instructions": "Nadar",
+                                    "image": "/ejercicio/nadar.png"
+                                },
+
+                                {
+                                    "name": "Descanso e hidratación",
+                                    "duration": "5m",
+                                    "type": "relajacion",
+                                    "instructions": "Descanso e hidratación",
+                                    "image": "/relajacion/descanso-e-hidratacion.png"
+                                }
+                            ]
+                        },
+                        "4": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "20m",
+                            "calories": 180,
+                            "targetAreas": ["Glúteos", "Pierna", "Espalda", "Tronco", "Abdomen"],
+                            "exercises": [
+                                {
+                                    "name": "Asentimientos hacia arriba y hacia abajo,",
+                                    "duration": "5m",
+                                    "type": "calentamiento",
+                                    "instructions": "Asentimientos hacia arriba y hacia abajo,",
+                                    "image": "/estiramiento/los-asentimientos-hacia-arriba-y-hacia-abajo.gif"
+                                },
+                                {
+                                    "name": "Juntar las manos detrás de la espalda",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Juntar las manos detrás de la espalda",
+                                    "image": "/estiramiento/juntar-las-manos-detras-de-la-espalda.png"
+                                },
+                                {
+                                    "name": "Nadar",
+                                    "duration": "30m",
+                                    "type": "ejercicio",
+                                    "instructions": "Nadar",
+                                    "image": "/ejercicio/nadar.png"
+                                },
+
+                                {
+                                    "name": "Descanso e hidratación",
+                                    "duration": "5m",
+                                    "type": "relajacion",
+                                    "instructions": "Descanso e hidratación",
+                                    "image": "/relajacion/descanso-e-hidratacion.png"
+                                }
+                            ]
+                        },
+                        "5": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "20m",
+                            "calories": 180,
+                            "targetAreas": ["Glúteos", "Pierna", "Espalda", "Tronco", "Abdomen"],
+                            "exercises": [
+                                {
+                                    "name": "Asentimientos hacia arriba y hacia abajo,",
+                                    "duration": "5m",
+                                    "type": "calentamiento",
+                                    "instructions": "Asentimientos hacia arriba y hacia abajo,",
+                                    "image": "/estiramiento/los-asentimientos-hacia-arriba-y-hacia-abajo.gif"
+                                },
+                                {
+                                    "name": "Juntar las manos detrás de la espalda",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Juntar las manos detrás de la espalda",
+                                    "image": "/estiramiento/juntar-las-manos-detras-de-la-espalda.png"
+                                },
+                                {
+                                    "name": "Nadar",
+                                    "duration": "30m",
+                                    "type": "ejercicio",
+                                    "instructions": "Nadar",
+                                    "image": "/ejercicio/nadar.png"
+                                },
+
+                                {
+                                    "name": "Descanso e hidratación",
+                                    "duration": "5m",
+                                    "type": "relajacion",
+                                    "instructions": "Descanso e hidratación",
+                                    "image": "/relajacion/descanso-e-hidratacion.png"
+                                }
+                            ]
+                        },
+                        "6": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "20m",
+                            "calories": 180,
+                            "targetAreas": ["Glúteos", "Pierna", "Espalda", "Tronco", "Abdomen"],
+                            "exercises": [
+                                {
+                                    "name": "Asentimientos hacia arriba y hacia abajo,",
+                                    "duration": "5m",
+                                    "type": "calentamiento",
+                                    "instructions": "Asentimientos hacia arriba y hacia abajo,",
+                                    "image": "/estiramiento/los-asentimientos-hacia-arriba-y-hacia-abajo.gif"
+                                },
+                                {
+                                    "name": "Juntar las manos detrás de la espalda",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Juntar las manos detrás de la espalda",
+                                    "image": "/estiramiento/juntar-las-manos-detras-de-la-espalda.png"
+                                },
+                                {
+                                    "name": "Nadar",
+                                    "duration": "30m",
+                                    "type": "ejercicio",
+                                    "instructions": "Nadar",
+                                    "image": "/ejercicio/nadar.png"
+                                },
+
+                                {
+                                    "name": "Descanso e hidratación",
+                                    "duration": "5m",
+                                    "type": "relajacion",
+                                    "instructions": "Descanso e hidratación",
+                                    "image": "/relajacion/descanso-e-hidratacion.png"
+                                }
+                            ]
+                        },
+                        "7": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "20m",
+                            "calories": 180,
+                            "targetAreas": ["Glúteos", "Pierna", "Espalda", "Tronco", "Abdomen"],
+                            "exercises": [
+                                {
+                                    "name": "Asentimientos hacia arriba y hacia abajo,",
+                                    "duration": "5m",
+                                    "type": "calentamiento",
+                                    "instructions": "Asentimientos hacia arriba y hacia abajo,",
+                                    "image": "/estiramiento/los-asentimientos-hacia-arriba-y-hacia-abajo.gif"
+                                },
+                                {
+                                    "name": "Juntar las manos detrás de la espalda",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Juntar las manos detrás de la espalda",
+                                    "image": "/estiramiento/juntar-las-manos-detras-de-la-espalda.png"
+                                },
+                                {
+                                    "name": "Nadar",
+                                    "duration": "30m",
+                                    "type": "ejercicio",
+                                    "instructions": "Nadar",
+                                    "image": "/ejercicio/nadar.png"
+                                },
+
+                                {
+                                    "name": "Descanso e hidratación",
+                                    "duration": "5m",
+                                    "type": "relajacion",
+                                    "instructions": "Descanso e hidratación",
+                                    "image": "/relajacion/descanso-e-hidratacion.png"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "meditar": {
+                    "name": "Meditar",
+                    "slug": "meditar",
+                    "description": "Meditación para reducir estrés y mejorar control metabólico",
+                    "image": "/exercises/meditation.jpg",
+                    "category": "relajacion",
+                    "days": {
+                        "1": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "10m",
+                            "calories": 20,
+                            "targetAreas": ["Relajación", "Mente"],
+                            "exercises": [
+                                {
+                                    "name": "Meditación básica",
+                                    "duration": "15m",
+                                    "type": "relajacion",
+                                    "instructions": "Siéntate cómodamente y enfócate en tu respiración",
+                                    "image": "/ejercicio/meditar.png"
+                                }
+                            ]
+                        },
+                        "2": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "10m",
+                            "calories": 20,
+                            "targetAreas": ["Relajación", "Mente"],
+                            "exercises": [
+                                {
+                                    "name": "Meditación básica",
+                                    "duration": "15m",
+                                    "type": "relajacion",
+                                    "instructions": "Siéntate cómodamente y enfócate en tu respiración",
+                                    "image": "/ejercicio/meditar.png"
+                                }
+                            ]
+                        },
+                        "3": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "10m",
+                            "calories": 20,
+                            "targetAreas": ["Relajación", "Mente"],
+                            "exercises": [
+                                {
+                                    "name": "Meditación básica",
+                                    "duration": "15m",
+                                    "type": "relajacion",
+                                    "instructions": "Siéntate cómodamente y enfócate en tu respiración",
+                                    "image": "/ejercicio/meditar.png"
+                                }
+                            ]
+                        },
+                        "4": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "10m",
+                            "calories": 20,
+                            "targetAreas": ["Relajación", "Mente"],
+                            "exercises": [
+                                {
+                                    "name": "Meditación básica",
+                                    "duration": "15m",
+                                    "type": "relajacion",
+                                    "instructions": "Siéntate cómodamente y enfócate en tu respiración",
+                                    "image": "/ejercicio/meditar.png"
+                                }
+                            ]
+                        },
+                        "5": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "10m",
+                            "calories": 20,
+                            "targetAreas": ["Relajación", "Mente"],
+                            "exercises": [
+                                {
+                                    "name": "Meditación básica",
+                                    "duration": "15m",
+                                    "type": "relajacion",
+                                    "instructions": "Siéntate cómodamente y enfócate en tu respiración",
+                                    "image": "/ejercicio/meditar.png"
+                                }
+                            ]
+                        },
+                        "6": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "10m",
+                            "calories": 20,
+                            "targetAreas": ["Relajación", "Mente"],
+                            "exercises": [
+                                {
+                                    "name": "Meditación básica",
+                                    "duration": "15m",
+                                    "type": "relajacion",
+                                    "instructions": "Siéntate cómodamente y enfócate en tu respiración",
+                                    "image": "/ejercicio/meditar.png"
+                                }
+                            ]
+                        },
+                        "7": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "10m",
+                            "calories": 20,
+                            "targetAreas": ["Relajación", "Mente"],
+                            "exercises": [
+                                {
+                                    "name": "Meditación básica",
+                                    "duration": "15m",
+                                    "type": "relajacion",
+                                    "instructions": "Siéntate cómodamente y enfócate en tu respiración",
+                                    "image": "/ejercicio/meditar.png"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "bici": {
+                    "name": "Montar bici",
+                    "slug": "bici",
+                    "description": "Ciclismo adaptado y controlado",
+                    "image": "/exercises/cycling.jpg",
+                    "category": "cardiovascular",
+                    "days": {
+                        "1": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "30m",
+                            "calories": 200,
+                            "targetAreas": ["Cardiovascular", "Piernas"],
+                            "exercises": [
+                                {
+                                    "name": "Estiramiento de muñecas y tobillo izquierdo",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Estiramiento de muñecas y tobillo izquierdo",
+                                    "image": "/estiramiento/estiramiento-de-munecas-y-tobillo-izquierdo.gif"
+                                },
+                                {
+                                    "name": "Estiramiento de muñecas y tobillo derecho",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Estiramiento de muñecas y tobillo derecho",
+                                    "image": "/estiramiento/estiramiento-de-munecas-y-tobillo-derecho.gif"
+                                },
+                                {
+                                    "name": "Círculos con las rodillas",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Círculos con las rodillas",
+                                    "image": "/estiramiento/circulos-con-las-rodillas.gif"
+                                },
+                                {
+                                    "name": "Flexión de rodilla de pie",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Flexión de rodilla de pie",
+                                    "image": "/estiramiento/flexion-de-rodilla-de-pie.gif"
+                                },
+                                {
+                                    "name": "Ciclismo suave",
+                                    "duration": "60m",
+                                    "type": "ejercicio",
+                                    "instructions": "Pedalea a ritmo cómodo, monitorea tu frecuencia cardíaca",
+                                    "image": "/ejercicio/ciclismo.png"
+                                },
+                                {
+                                    "name": "Descanso e hidratación",
+                                    "duration": "5m",
+                                    "type": "relajacion",
+                                    "instructions": "Descanso e hidratación",
+                                    "image": "/relajacion/descanso-e-hidratacion.png"
+                                }
+                            ]
+                        },
+                        "2": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "30m",
+                            "calories": 200,
+                            "targetAreas": ["Cardiovascular", "Piernas"],
+                            "exercises": [
+                                {
+                                    "name": "Estiramiento de muñecas y tobillo izquierdo",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Estiramiento de muñecas y tobillo izquierdo",
+                                    "image": "/estiramiento/estiramiento-de-munecas-y-tobillo-izquierdo.gif"
+                                },
+                                {
+                                    "name": "Estiramiento de muñecas y tobillo derecho",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Estiramiento de muñecas y tobillo derecho",
+                                    "image": "/estiramiento/estiramiento-de-munecas-y-tobillo-derecho.gif"
+                                },
+                                {
+                                    "name": "Círculos con las rodillas",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Círculos con las rodillas",
+                                    "image": "/estiramiento/circulos-con-las-rodillas.gif"
+                                },
+                                {
+                                    "name": "Flexión de rodilla de pie",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Flexión de rodilla de pie",
+                                    "image": "/estiramiento/flexion-de-rodilla-de-pie.gif"
+                                },
+                                {
+                                    "name": "Ciclismo suave",
+                                    "duration": "60m",
+                                    "type": "ejercicio",
+                                    "instructions": "Pedalea a ritmo cómodo, monitorea tu frecuencia cardíaca",
+                                    "image": "/ejercicio/ciclismo.png"
+                                },
+                                {
+                                    "name": "Descanso e hidratación",
+                                    "duration": "5m",
+                                    "type": "relajacion",
+                                    "instructions": "Descanso e hidratación",
+                                    "image": "/relajacion/descanso-e-hidratacion.png"
+                                }
+                            ]
+                        },
+                        "3": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "30m",
+                            "calories": 200,
+                            "targetAreas": ["Cardiovascular", "Piernas"],
+                            "exercises": [
+                                {
+                                    "name": "Estiramiento de muñecas y tobillo izquierdo",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Estiramiento de muñecas y tobillo izquierdo",
+                                    "image": "/estiramiento/estiramiento-de-munecas-y-tobillo-izquierdo.gif"
+                                },
+                                {
+                                    "name": "Estiramiento de muñecas y tobillo derecho",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Estiramiento de muñecas y tobillo derecho",
+                                    "image": "/estiramiento/estiramiento-de-munecas-y-tobillo-derecho.gif"
+                                },
+                                {
+                                    "name": "Círculos con las rodillas",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Círculos con las rodillas",
+                                    "image": "/estiramiento/circulos-con-las-rodillas.gif"
+                                },
+                                {
+                                    "name": "Flexión de rodilla de pie",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Flexión de rodilla de pie",
+                                    "image": "/estiramiento/flexion-de-rodilla-de-pie.gif"
+                                },
+                                {
+                                    "name": "Ciclismo suave",
+                                    "duration": "60m",
+                                    "type": "ejercicio",
+                                    "instructions": "Pedalea a ritmo cómodo, monitorea tu frecuencia cardíaca",
+                                    "image": "/ejercicio/ciclismo.png"
+                                },
+                                {
+                                    "name": "Descanso e hidratación",
+                                    "duration": "5m",
+                                    "type": "relajacion",
+                                    "instructions": "Descanso e hidratación",
+                                    "image": "/relajacion/descanso-e-hidratacion.png"
+                                }
+                            ]
+                        },
+                        "4": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "30m",
+                            "calories": 200,
+                            "targetAreas": ["Cardiovascular", "Piernas"],
+                            "exercises": [
+                                {
+                                    "name": "Estiramiento de muñecas y tobillo izquierdo",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Estiramiento de muñecas y tobillo izquierdo",
+                                    "image": "/estiramiento/estiramiento-de-munecas-y-tobillo-izquierdo.gif"
+                                },
+                                {
+                                    "name": "Estiramiento de muñecas y tobillo derecho",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Estiramiento de muñecas y tobillo derecho",
+                                    "image": "/estiramiento/estiramiento-de-munecas-y-tobillo-derecho.gif"
+                                },
+                                {
+                                    "name": "Círculos con las rodillas",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Círculos con las rodillas",
+                                    "image": "/estiramiento/circulos-con-las-rodillas.gif"
+                                },
+                                {
+                                    "name": "Flexión de rodilla de pie",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Flexión de rodilla de pie",
+                                    "image": "/estiramiento/flexion-de-rodilla-de-pie.gif"
+                                },
+                                {
+                                    "name": "Ciclismo suave",
+                                    "duration": "60m",
+                                    "type": "ejercicio",
+                                    "instructions": "Pedalea a ritmo cómodo, monitorea tu frecuencia cardíaca",
+                                    "image": "/ejercicio/ciclismo.png"
+                                },
+                                {
+                                    "name": "Descanso e hidratación",
+                                    "duration": "5m",
+                                    "type": "relajacion",
+                                    "instructions": "Descanso e hidratación",
+                                    "image": "/relajacion/descanso-e-hidratacion.png"
+                                }
+                            ]
+                        },
+                        "5": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "30m",
+                            "calories": 200,
+                            "targetAreas": ["Cardiovascular", "Piernas"],
+                            "exercises": [
+                                {
+                                    "name": "Estiramiento de muñecas y tobillo izquierdo",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Estiramiento de muñecas y tobillo izquierdo",
+                                    "image": "/estiramiento/estiramiento-de-munecas-y-tobillo-izquierdo.gif"
+                                },
+                                {
+                                    "name": "Estiramiento de muñecas y tobillo derecho",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Estiramiento de muñecas y tobillo derecho",
+                                    "image": "/estiramiento/estiramiento-de-munecas-y-tobillo-derecho.gif"
+                                },
+                                {
+                                    "name": "Círculos con las rodillas",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Círculos con las rodillas",
+                                    "image": "/estiramiento/circulos-con-las-rodillas.gif"
+                                },
+                                {
+                                    "name": "Flexión de rodilla de pie",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Flexión de rodilla de pie",
+                                    "image": "/estiramiento/flexion-de-rodilla-de-pie.gif"
+                                },
+                                {
+                                    "name": "Ciclismo suave",
+                                    "duration": "60m",
+                                    "type": "ejercicio",
+                                    "instructions": "Pedalea a ritmo cómodo, monitorea tu frecuencia cardíaca",
+                                    "image": "/ejercicio/ciclismo.png"
+                                },
+                                {
+                                    "name": "Descanso e hidratación",
+                                    "duration": "5m",
+                                    "type": "relajacion",
+                                    "instructions": "Descanso e hidratación",
+                                    "image": "/relajacion/descanso-e-hidratacion.png"
+                                }
+                            ]
+                        },
+                        "6": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "30m",
+                            "calories": 200,
+                            "targetAreas": ["Cardiovascular", "Piernas"],
+                            "exercises": [
+                                {
+                                    "name": "Estiramiento de muñecas y tobillo izquierdo",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Estiramiento de muñecas y tobillo izquierdo",
+                                    "image": "/estiramiento/estiramiento-de-munecas-y-tobillo-izquierdo.gif"
+                                },
+                                {
+                                    "name": "Estiramiento de muñecas y tobillo derecho",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Estiramiento de muñecas y tobillo derecho",
+                                    "image": "/estiramiento/estiramiento-de-munecas-y-tobillo-derecho.gif"
+                                },
+                                {
+                                    "name": "Círculos con las rodillas",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Círculos con las rodillas",
+                                    "image": "/estiramiento/circulos-con-las-rodillas.gif"
+                                },
+                                {
+                                    "name": "Flexión de rodilla de pie",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Flexión de rodilla de pie",
+                                    "image": "/estiramiento/flexion-de-rodilla-de-pie.gif"
+                                },
+                                {
+                                    "name": "Ciclismo suave",
+                                    "duration": "60m",
+                                    "type": "ejercicio",
+                                    "instructions": "Pedalea a ritmo cómodo, monitorea tu frecuencia cardíaca",
+                                    "image": "/ejercicio/ciclismo.png"
+                                },
+                                {
+                                    "name": "Descanso e hidratación",
+                                    "duration": "5m",
+                                    "type": "relajacion",
+                                    "instructions": "Descanso e hidratación",
+                                    "image": "/relajacion/descanso-e-hidratacion.png"
+                                }
+                            ]
+                        },
+                        "7": {
+                            "name": "Día 1",
+                            "level": "Principiante",
+                            "duration": "30m",
+                            "calories": 200,
+                            "targetAreas": ["Cardiovascular", "Piernas"],
+                            "exercises": [
+                                {
+                                    "name": "Estiramiento de muñecas y tobillo izquierdo",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Estiramiento de muñecas y tobillo izquierdo",
+                                    "image": "/estiramiento/estiramiento-de-munecas-y-tobillo-izquierdo.gif"
+                                },
+                                {
+                                    "name": "Estiramiento de muñecas y tobillo derecho",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Estiramiento de muñecas y tobillo derecho",
+                                    "image": "/estiramiento/estiramiento-de-munecas-y-tobillo-derecho.gif"
+                                },
+                                {
+                                    "name": "Círculos con las rodillas",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Círculos con las rodillas",
+                                    "image": "/estiramiento/circulos-con-las-rodillas.gif"
+                                },
+                                {
+                                    "name": "Flexión de rodilla de pie",
+                                    "duration": "1m",
+                                    "type": "calentamiento",
+                                    "instructions": "Flexión de rodilla de pie",
+                                    "image": "/estiramiento/flexion-de-rodilla-de-pie.gif"
+                                },
+                                {
+                                    "name": "Ciclismo suave",
+                                    "duration": "60m",
+                                    "type": "ejercicio",
+                                    "instructions": "Pedalea a ritmo cómodo, monitorea tu frecuencia cardíaca",
+                                    "image": "/ejercicio/ciclismo.png"
+                                },
+                                {
+                                    "name": "Descanso e hidratación",
+                                    "duration": "5m",
+                                    "type": "relajacion",
+                                    "instructions": "Descanso e hidratación",
+                                    "image": "/relajacion/descanso-e-hidratacion.png"
+                                }
+                            ]
+                        }
+                    }
+                }
+            },
+            "days": {
+                "1": {
+                    "name": "Día 1",
+                    "level": "Principiante",
+                    "duration": "6m 59s",
+                    "calories": 85,
+                    "targetAreas": ["Glúteos", "Pierna", "Espalda", "Tronco", "Abdomen"],
+                    "exercises": [
+                        {
+                            "name": "Extended Child Pose",
+                            "duration": "25s",
+                            "type": "calentamiento",
+                            "instructions": "Posición de relajación para comenzar suavemente",
+                            "image": "/exercises/child-pose.jpg"
+                        },
+                        {
+                            "name": "Childs pose",
+                            "duration": "25s",
+                            "type": "calentamiento",
+                            "instructions": "Mantén la posición y controla tu respiración",
+                            "image": "/exercises/child-pose2.jpg"
+                        },
+                        {
+                            "name": "Cross Touch And Reach",
+                            "duration": "25s",
+                            "type": "calentamiento",
+                            "instructions": "Movimiento controlado, monitorea tu presión",
+                            "image": "/exercises/cross-touch.jpg"
+                        },
+                        {
+                            "name": "Wood Chopper",
+                            "duration": "30s",
+                            "type": "ejercicio",
+                            "instructions": "Movimiento de hacha, controla tu glucosa durante el ejercicio",
+                            "image": "/exercises/wood-chopper.jpg"
+                        }
+                    ]
+                },
+                "2": {
+                    "name": "Día 2",
+                    "level": "Intermedio",
+                    "duration": "8m 42s",
+                    "calories": 93,
+                    "targetAreas": ["Cardiovascular", "Core", "Equilibrio"],
+                    "exercises": [
+                        {
+                            "name": "Gentle Cardio",
+                            "duration": "45s",
+                            "type": "ejercicio",
+                            "instructions": "Cardio suave, monitorea signos vitales",
+                            "image": "/exercises/gentle-cardio.jpg"
+                        }
+                    ]
+                },
+                "3": {
+                    "name": "Día 3",
+                    "level": "Intermedio",
+                    "duration": "6m 50s",
+                    "calories": 73,
+                    "targetAreas": ["Flexibilidad", "Relajación"],
+                    "exercises": [
+                        {
+                            "name": "Flexibility Routine",
+                            "duration": "60s",
+                            "type": "estiramiento",
+                            "instructions": "Rutina de flexibilidad adaptada",
+                            "image": "/exercises/flexibility.jpg"
+                        }
+                    ]
+                },
+                "4": {
+                    "name": "Día 4",
+                    "level": "Intermedio",
+                    "duration": "6m 1s",
+                    "calories": 64,
+                    "targetAreas": ["Fuerza", "Resistencia"],
+                    "exercises": [
+                        {
+                            "name": "Low Impact Strength",
+                            "duration": "40s",
+                            "type": "fuerza",
+                            "instructions": "Ejercicios de fuerza de bajo impacto",
+                            "image": "/exercises/low-impact.jpg"
+                        }
+                    ]
+                },
+                "5": {
+                    "name": "Día 5",
+                    "level": "Descanso",
+                    "duration": "0m",
+                    "calories": 0,
+                    "targetAreas": ["Recuperación"],
+                    "restDay": true,
+                    "message": "Mereces descansar hoy"
+                }
+            }
+        }
+    }
+}
