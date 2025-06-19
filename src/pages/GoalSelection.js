@@ -41,22 +41,6 @@ const ContentSection = styled(motion.div)`
     }
 `;
 
-const StepNumber = styled(motion.div)`
-    position: absolute;
-    font-size: 12rem;
-    font-weight: 900;
-    background: ${props => props.theme.colors.primary};
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    opacity: 0.08;
-    z-index: 0;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: ${props => props.theme.fonts.heading};
-`;
-
 const StepTitle = styled(Title)`
     font-size: ${props => props.theme.fontSizes["4xl"]};
     font-weight: 900;
@@ -192,12 +176,6 @@ const GoalSelection = () => {
 
     return (
         <CenteredContainer>
-            <BackgroundDecoration
-                initial={{ scale: 0, rotate: 0 }}
-                animate={{ scale: 1, rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            />
-            
             <motion.div
                 variants={containerVariants}
                 initial="hidden"
@@ -205,14 +183,6 @@ const GoalSelection = () => {
                 style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%' }}
             >
                 <ContentSection variants={itemVariants}>
-                    <StepNumber
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ duration: 0.8, delay: 0.3 }}
-                    >
-                        1
-                    </StepNumber>
-                    
                     <motion.div variants={itemVariants}>
                         <StepTitle>Tu Objetivo</StepTitle>
                     </motion.div>
@@ -225,20 +195,18 @@ const GoalSelection = () => {
                         <span className="emoji">🎯</span>
                         <h3>Comenzar tu transformación</h3>
                         <p>
-                            Vamos a crear un plan personalizado basado en tus características y objetivos específicos. 
-                            Cada paso nos acerca más a diseñar la rutina perfecta para ti.
+                            Descubre ejercicios efectivos y recetas nutritivas que te ayudarán a alcanzar tus metas de fitness. 
+                            Desde rutinas de cardio hasta comidas balanceadas, encuentra todo lo que necesitas para tu bienestar.
                         </p>
                     </ObjectiveCard>
 
-                    <motion.div variants={itemVariants}>
-                        <NextButton 
+                    <NextButton 
                             onClick={handleNext}
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                         >
                             Comenzar
                         </NextButton>
-                    </motion.div>
                 </ContentSection>
             </motion.div>
         </CenteredContainer>

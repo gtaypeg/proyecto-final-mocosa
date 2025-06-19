@@ -15,7 +15,6 @@ const Container = styled.div`
         ${props => props.theme.colors.background} 0%,
         ${props => props.theme.colors.backgroundDark} 100%
     );
-    border-radius: ${props => props.theme.borderRadius["2xl"]};
     box-shadow: ${props => props.theme.colors.shadow};
     overflow: hidden;
     position: relative;
@@ -28,7 +27,6 @@ const HeaderImage = styled(motion.div)`
     background-size: cover;
     background-position: center;
     position: relative;
-    border-radius: ${props => props.theme.borderRadius["2xl"]} ${props => props.theme.borderRadius["2xl"]} 0 0;
     overflow: hidden;
 `;
 
@@ -59,42 +57,39 @@ const TopBar = styled.div`
 `;
 
 const ActionButton = styled(motion.button)`
-    background: ${props => props.theme.colors.glass};
-    backdrop-filter: blur(20px);
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    width: 48px;
-    height: 48px;
+    background: ${(props) => props.theme.colors.surface};
+    border: 2px solid ${(props) => props.theme.colors.border};
+    border-radius: ${(props) => props.theme.borderRadius.lg};
+    width: 44px;
+    height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: ${(props) => props.theme.fontSizes.lg};
     cursor: pointer;
-    transition: ${props => props.theme.transitions.base};
-    box-shadow: ${props => props.theme.colors.shadow};
+    color: ${(props) => props.theme.colors.text};
+    transition: ${(props) => props.theme.transitions.base};
+    box-shadow: ${(props) => props.theme.colors.shadow};
 
     &:hover {
-        background: rgba(255, 255, 255, 0.4);
-        border-color: rgba(255, 255, 255, 0.5);
-        transform: scale(1.1);
-    }
-
-    svg {
-        width: 20px;
-        height: 20px;
-        color: white;
+        color: ${(props) => props.theme.colors.primarySolid};
+        border-color: ${(props) => props.theme.colors.primarySolid};
+        transform: translateX(-2px);
     }
 `;
 
 const FavoriteButton = styled(ActionButton)`
     svg {
-        color: ${props => props.isFavorite ? '#ff6b6b' : 'white'};
+        color: ${props => props.isFavorite ? '#ff6b6b' : 'currentColor'};
         fill: ${props => props.isFavorite ? '#ff6b6b' : 'none'};
+        width: 16px;
+        height: 16px;
     }
 `;
 
 const RecipeTitle = styled(motion.h1)`
     position: absolute;
-    bottom: ${props => props.theme.spacing.xl};
+    bottom: ${props => props.theme.spacing["2xl"]};
     left: ${props => props.theme.spacing.lg};
     right: ${props => props.theme.spacing.lg};
     color: white;
@@ -134,7 +129,7 @@ const ContentHeader = styled.div`
 
 const QuickInfoGrid = styled.div`
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: ${props => props.theme.spacing.lg};
     margin-bottom: ${props => props.theme.spacing.xl};
 `;
@@ -470,9 +465,7 @@ const RecipeDetailPage = () => {
                     <NotFoundTitle>Receta no encontrada</NotFoundTitle>
                     <NotFoundText>La receta que buscas no existe o ha sido eliminada.</NotFoundText>
                     <ActionButton onClick={() => navigate("/recipes")}>
-                        <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
-                        </svg>
+                        ←
                     </ActionButton>
                 </NotFoundContainer>
             </Container>
@@ -595,9 +588,7 @@ const RecipeDetailPage = () => {
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
                     >
-                        <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
-                        </svg>
+                     ←
                     </ActionButton>
                     <FavoriteButton 
                         isFavorite={isFavorite} 
@@ -644,7 +635,7 @@ const RecipeDetailPage = () => {
                             <InfoValue>{recipe.difficulty}</InfoValue>
                             <InfoLabel>Dificultad</InfoLabel>
                         </InfoCard>
-                        <InfoCard
+                        {/* <InfoCard
                             initial={{ opacity: 0, scale: 0.8 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ delay: 0.6, duration: 0.5 }}
@@ -652,7 +643,7 @@ const RecipeDetailPage = () => {
                         >
                             <InfoValue>{recipe.servings}</InfoValue>
                             <InfoLabel>Porciones</InfoLabel>
-                        </InfoCard>
+                        </InfoCard> */}
                     </QuickInfoGrid>
                     <Description>{recipe.description}</Description>
                 </ContentHeader>

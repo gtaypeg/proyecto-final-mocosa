@@ -283,17 +283,17 @@ const DiscoverPage = () => {
                             <CardContent>
                                 <CardTitle>Ejercicios</CardTitle>
                                 <CardDescription>
-                                    Rutinas personalizadas adaptadas a tu condición física y objetivos de salud
+                                    Rutinas de ejercicios sugeridas para ti
                                 </CardDescription>
                                 <StatsContainer>
                                     <StatItem>
                                         <span className="number">50+</span>
                                         <span>Rutinas</span>
                                     </StatItem>
-                                    <StatItem>
+                                    {/* <StatItem>
                                         <span className="number">4</span>
                                         <span>Niveles</span>
-                                    </StatItem>
+                                    </StatItem> */}
                                     <StatItem>
                                         <span className="number">24/7</span>
                                         <span>Acceso</span>
@@ -328,13 +328,13 @@ const DiscoverPage = () => {
                                 </CardDescription>
                                 <StatsContainer>
                                     <StatItem>
-                                        <span className="number">100+</span>
+                                        <span className="number">10+</span>
                                         <span>Recetas</span>
                                     </StatItem>
-                                    <StatItem>
+                                    {/* <StatItem>
                                         <span className="number">5</span>
                                         <span>Categorías</span>
-                                    </StatItem>
+                                    </StatItem> */}
                                     <StatItem>
                                         <span className="number">★4.9</span>
                                         <span>Rating</span>

@@ -15,7 +15,6 @@ const Container = styled.div`
         ${(props) => props.theme.colors.backgroundDark} 100%
     );
     position: relative;
-    border-radius: ${(props) => props.theme.borderRadius["2xl"]};
     box-shadow: ${(props) => props.theme.colors.shadow};
     overflow: hidden;
 `;

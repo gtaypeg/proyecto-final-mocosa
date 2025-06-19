@@ -30,7 +30,7 @@ const pulse = keyframes`
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - 2.125rem);
+  min-height: 100vh;
   background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
   color: white;
   text-align: center;

@@ -205,6 +205,7 @@ const RecipeOverlay = styled.div`
 
 const QuickInfo = styled.div`
     display: flex;
+    flex-direction: column;
     gap: ${props => props.theme.spacing.sm};
 `;
 
@@ -215,11 +216,12 @@ const InfoChip = styled.div`
     color: white;
     padding: ${props => props.theme.spacing.xs} ${props => props.theme.spacing.sm};
     border-radius: ${props => props.theme.borderRadius.md};
-    font-size: ${props => props.theme.fontSizes.xs};
+    font-size: 10px;
     font-weight: 500;
     display: flex;
     align-items: center;
     gap: 4px;
+    width: fit-content;
 `;
 
 const RecipeInfo = styled.div`
@@ -375,11 +377,11 @@ const RecipesPage = () => {
                                     <RecipeInfo>
                                         <RecipeName>{recipe.name}</RecipeName>
                                         <RecipeDetails>
-                                            {recipe.calories && (
+                                            {/* {recipe.calories && (
                                                 <CaloriesInfo>
                                                     🔥 {recipe.calories}
                                                 </CaloriesInfo>
-                                            )}
+                                            )} */}
                                             <TimeInfo>
                                                 <svg viewBox="0 0 24 24" fill="currentColor">
                                                     <circle cx="12" cy="12" r="10" />

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import Slider from "rc-slider";
+import "rc-slider/assets/index.css";
 import { 
     Title, 
     Button,
@@ -69,6 +71,7 @@ const FlexibilityImage = styled.img`
     height: 70px;
     object-fit: cover;
     border-radius: ${props => props.theme.borderRadius.lg};
+    mix-blend-mode: color;
 `;
 
 const FlexibilityStatusText = styled(motion.div)`
@@ -98,86 +101,166 @@ const SliderSection = styled(motion.div)`
     padding: 0 ${props => props.theme.spacing.xl} 35px;
 `;
 
-const SliderContainer = styled.div`
+const CustomSliderContainer = styled.div`
     width: 100%;
-    position: relative;
-    margin: ${props => props.theme.spacing.lg} 0;
-`;
 
-const SliderTrack = styled.div`
-    width: 100%;
-    height: 12px;
-    background: ${props => props.theme.colors.backgroundDark};
-    border-radius: 6px;
-    position: relative;
-    overflow: hidden;
-    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.15);
-`;
+    .rc-slider {
+        background-color: transparent;
+        border-radius: 6px;
+        position: relative;
+        height: 12px;
+        padding: 5px 0;
+        width: 100%;
+        border-radius: 6px;
+        touch-action: none;
+        box-sizing: border-box;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    }
 
-const SliderFill = styled(motion.div)`
-    height: 100%;
-    background: ${props => props.theme.colors.primary};
-    border-radius: 6px;
-    position: relative;
-    box-shadow: 0 2px 8px ${props => props.theme.colors.primarySolid}40;
-    transition: all 0.3s ease;
-`;
+    .rc-slider * {
+        box-sizing: border-box;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    }
 
-const SliderThumb = styled(motion.div)`
-    width: 28px;
-    height: 28px;
-    background: white;
-    border: 4px solid ${props => props.theme.colors.primarySolid};
-    border-radius: 50%;
-    position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    z-index: 10;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    .rc-slider-rail {
+        position: absolute;
+        width: 100%;
+        background: ${props => props.theme.colors.backgroundDark};
+        height: 12px;
+        border-radius: 6px;
+        box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
 
-    &:hover {
-        transform: translate(-50%, -50%) scale(1.1);
+    .rc-slider-track {
+        position: absolute;
+        left: 0;
+        height: 12px;
+        border-radius: 6px;
+        background: ${props => props.theme.colors.primary};
+        z-index: 1;
+        box-shadow: 0 2px 8px ${props => props.theme.colors.primarySolid}40;
+    }
+
+    .rc-slider-handle {
+        position: absolute;
+        width: 28px;
+        height: 28px;
+        cursor: pointer;
+        cursor: -webkit-grab;
+        margin-top: -8px;
+        border-radius: 50%;
+        border: 4px solid ${props => props.theme.colors.primarySolid};
+        background: white;
+        touch-action: pan-x;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 0 0 0 0 ${props => props.theme.colors.primarySolid}00;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 2;
+    }
+
+    .rc-slider-handle:hover {
+        border-color: ${props => props.theme.colors.primarySolid};
+        transform: scale(1.1);
         box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25), 0 0 0 8px ${props => props.theme.colors.primarySolid}20;
     }
 
-    &:active {
-        transform: translate(-50%, -50%) scale(1.15);
+    .rc-slider-handle:active {
+        border-color: ${props => props.theme.colors.primarySolid};
         box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25), 0 0 0 12px ${props => props.theme.colors.primarySolid}30;
+        cursor: -webkit-grabbing;
+        transform: scale(1.15);
+    }
+
+    .rc-slider-handle-dragging.rc-slider-handle-dragging.rc-slider-handle-dragging {
+        border-color: ${props => props.theme.colors.primarySolid};
+        box-shadow: 0 0 0 5px ${props => props.theme.colors.primarySolid}30;
+    }
+
+    .rc-slider-mark {
+        position: absolute;
+        top: 22px;
+        left: 0;
+        width: 100%;
+        font-size: 12px;
+    }
+
+    .rc-slider-mark-text {
+        position: absolute;
+        display: inline-block;
+        vertical-align: middle;
+        text-align: center;
+        cursor: pointer;
+        color: ${props => props.theme.colors.textLight};
+        font-weight: 600;
+        font-size: ${props => props.theme.fontSizes.sm};
+        transform: translateX(-50%);
+        white-space: nowrap;
+        user-select: none;
+    }
+
+    .rc-slider-mark-text-active {
+        color: ${props => props.theme.colors.primarySolid};
+        font-weight: 700;
+    }
+
+    .rc-slider-step {
+        display: none !important;
+    }
+
+    .rc-slider-dot {
+        position: absolute;
+        bottom: -6px;
+        margin-left: -4px;
+        width: 8px;
+        height: 8px;
+        border: 2px solid ${props => props.theme.colors.backgroundDark};
+        background: ${props => props.theme.colors.surface};
+        cursor: pointer;
+        border-radius: 50%;
+        vertical-align: middle;
+        transition: all 0.2s ease;
+    }
+
+    .rc-slider-dot-active {
+        border-color: ${props => props.theme.colors.primarySolid};
+        background: ${props => props.theme.colors.primarySolid};
+        transform: scale(1.2);
+    }
+
+    .rc-slider-dot-reverse {
+        margin-right: -4px;
+        margin-left: auto;
+    }
+
+    .rc-slider:hover .rc-slider-track {
+        background: ${props => props.theme.colors.primary};
+        box-shadow: 0 2px 12px ${props => props.theme.colors.primarySolid}50;
     }
 `;
 
-const HiddenSlider = styled.input`
-    position: absolute;
+const ProgressIndicators = styled.div`
+    display: flex;
+    justify-content: space-between;
     width: 100%;
-    height: 100%;
-    opacity: 0;
+    margin-top: ${props => props.theme.spacing.lg};
+    position: relative;
+`;
+
+const ProgressDot = styled(motion.div)`
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: ${props => props.active ? props.theme.colors.primarySolid : props.theme.colors.backgroundDark};
+    border: 2px solid ${props => props.active ? props.theme.colors.primarySolid : props.theme.colors.border};
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
-    margin: 0;
-    padding: 0;
-    
-    -webkit-appearance: none;
-    appearance: none;
-    
-    &::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        appearance: none;
-        width: 28px;
-        height: 28px;
-        cursor: pointer;
-    }
-    
-    &::-moz-range-thumb {
-        width: 28px;
-        height: 28px;
-        cursor: pointer;
-        border: none;
-        background: transparent;
+
+    &:hover {
+        transform: scale(1.2);
+        box-shadow: 0 0 0 4px ${props => props.theme.colors.primarySolid}20;
     }
 `;
 
-const SliderLabels = styled.div`
+const LevelLabels = styled.div`
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -185,12 +268,17 @@ const SliderLabels = styled.div`
     padding: 0 ${props => props.theme.spacing.sm};
 `;
 
-const SliderLabel = styled.span`
+const LevelLabel = styled(motion.span)`
     font-size: ${props => props.theme.fontSizes.sm};
-    color: ${props => props.theme.colors.textLight};
-    font-weight: 500;
+    color: ${props => props.active ? props.theme.colors.primarySolid : props.theme.colors.textLight};
+    font-weight: ${props => props.active ? "700" : "500"};
     text-align: center;
     min-width: 80px;
+    transition: all 0.3s ease;
+
+    ${props => props.active && `
+        transform: scale(1.05);
+    `}
 `;
 
 const NavigationContainer = styled.div`
@@ -236,49 +324,55 @@ const images = {
 
 const FlexibilityInput = () => {
   const navigate = useNavigate();
-  const [flexibility, setFlexibility] = useState(50);
+  const [flexibilityLevel, setFlexibilityLevel] = useState(1);
 
-  const handleFlexibilityChange = (e) => {
-    setFlexibility(parseInt(e.target.value));
+  // Configuración de los niveles de flexibilidad
+  const flexibilityLevels = [
+    {
+      value: 0,
+      key: "poor",
+      label: "Está bien",
+      description: "Las manos están lejos de los dedos de los pies, necesito mejorar mi flexibilidad",
+      image: "/flexibilidad/esta-bien.png",
+      color: "#94a3b8",
+    },
+    {
+      value: 1,
+      key: "good",
+      label: "¡Genial!",
+      description: "Puedo acercarme bastante, tengo una flexibilidad moderada que puedo mejorar",
+      image: "/flexibilidad/genial.png",
+      color: "#84cc16",
+    },
+    {
+      value: 2,
+      key: "excellent",
+      label: "¡Excelente!",
+      description: "Puedo tocar fácilmente los dedos de los pies, tengo muy buena flexibilidad",
+      image: "/flexibilidad/excelente.png",
+      color: "#22c55e",
+    },
+  ];
+
+  const getCurrentLevel = () => {
+    return flexibilityLevels[flexibilityLevel];
   };
 
-  const getFlexibilityLevel = () => {
-    if (flexibility < 30) return 'poor';
-    if (flexibility < 70) return 'good';
-    return 'excellent';
-  };
+  const marks = flexibilityLevels.reduce((acc, level) => {
+    acc[level.value] = {
+      style: {
+        color: flexibilityLevel === level.value ? "#2d3e2d" : "#94a3b8",
+        fontWeight: flexibilityLevel === level.value ? "700" : "500",
+        fontSize: "11px",
+        marginTop: "10px",
+      },
+      label: level.label.split(" ")[0], // Solo la primera palabra
+    };
+    return acc;
+  }, {});
 
-  const getFlexibilityStatus = () => {
-    const level = getFlexibilityLevel();
-    switch(level) {
-      case 'poor':
-        return 'Está bien';
-      case 'good':
-        return '¡Genial!';
-      case 'excellent':
-        return '¡Excelente!';
-      default:
-        return 'Está bien';
-    }
-  };
-
-  const getFlexibilityImage = () => {
-    const level = getFlexibilityLevel();
-    return images[level];
-  };
-
-  const getFlexibilityMessage = () => {
-    const level = getFlexibilityLevel();
-    switch(level) {
-      case 'poor':
-        return 'Nuestro plan fácil de seguir llevará tu flexibilidad al siguiente nivel';
-      case 'good':
-        return 'Nuestro plan fácil de seguir llevará tu flexibilidad al siguiente nivel';
-      case 'excellent':
-        return '¡Una buena flexibilidad acelerará significativamente tu objetivo!';
-      default:
-        return '';
-    }
+  const handleSliderChange = (value) => {
+    setFlexibilityLevel(value);
   };
 
   const handleNext = () => {
@@ -307,6 +401,8 @@ const FlexibilityInput = () => {
       }
     }
   };
+
+  const currentLevel = getCurrentLevel();
 
   return (
     <ModernPageContainer>
@@ -341,27 +437,27 @@ const FlexibilityInput = () => {
               }}
             >
               <FlexibilityImage 
-                src={getFlexibilityImage()} 
+                src={currentLevel.image} 
                 alt="Flexibilidad"
               />
             </FlexibilityFigure>
             <FlexibilityStatusText
-              key={getFlexibilityStatus()}
+              key={currentLevel.label}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
             >
-              {getFlexibilityStatus()}
+              {currentLevel.label}
             </FlexibilityStatusText>
           </FlexibilityVisual>
 
           <FlexibilityDescription
-            key={getFlexibilityMessage()}
+            key={currentLevel.description}
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.4 }}
           >
-            {getFlexibilityMessage()}
+            {currentLevel.description}
           </FlexibilityDescription>
 
           <SliderSection
@@ -369,31 +465,34 @@ const FlexibilityInput = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.4 }}
           >
-            <SliderContainer>
-              <SliderTrack>
-                <SliderFill 
-                  style={{ width: `${flexibility}%` }}
-                  layout
-                />
-                <SliderThumb 
-                  style={{ left: `${flexibility}%` }}
-                  whileHover={{ scale: 1.2 }}
-                  whileTap={{ scale: 0.9 }}
-                />
-                <HiddenSlider 
-                  type="range"
-                  min={0}
-                  max={100}
-                  value={flexibility}
-                  onChange={handleFlexibilityChange}
-                />
-              </SliderTrack>
-              
-              <SliderLabels>
-                <SliderLabel>Lejos</SliderLabel>
-                <SliderLabel>Toque</SliderLabel>
-              </SliderLabels>
-            </SliderContainer>
+            <CustomSliderContainer>
+              <Slider
+                min={0}
+                max={2}
+                step={1}
+                value={flexibilityLevel}
+                onChange={handleSliderChange}
+                marks={marks}
+                included={true}
+                trackStyle={{
+                    background: "#2d3e2d",
+                    boxShadow: "0 2px 8px rgba(45, 62, 45, 0.4)",
+                }}
+                handleStyle={{
+                    background: "#2d3e2d",
+                    borderColor: "#2d3e2d",
+                    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15), 0 0 0 0 rgba(139, 92, 246, 0)",
+                }}
+                dotStyle={{
+                    borderColor: "#2d3e2d",
+                    background: "#2d3e2d",
+                }}
+                activeDotStyle={{
+                    borderColor: "#2d3e2d",
+                    background: "#2d3e2d",
+                }}
+              />
+            </CustomSliderContainer>
           </SliderSection>
         </ContentSection>
 

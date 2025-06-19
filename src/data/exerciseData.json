@@ -541,7 +541,7 @@
                 "caminar": {
                     "name": "Caminar",
                     "slug": "caminar",
-                    "description": "Caminata adaptada para ambas condiciones",
+                    "description": "Caminata adaptada",
                     "image": "/exercises/walking.jpg",
                     "category": "cardiovascular",
                     "days": {
@@ -856,7 +856,7 @@
                 "yoga": {
                     "name": "Yoga",
                     "slug": "yoga",
-                    "description": "Yoga adaptado para ambas condiciones",
+                    "description": "Yoga adaptado",
                     "image": "/exercises/yoga.jpg",
                     "category": "relajacion",
                     "days": {

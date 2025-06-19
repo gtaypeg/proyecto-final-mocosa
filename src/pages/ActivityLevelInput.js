@@ -492,7 +492,7 @@ const ActivityLevelInput = () => {
                 <HeaderSection>
                     <motion.div variants={itemVariants}>
                         <Title gradient>¿Cuál es tu nivel de actividad?</Title>
-                        <Subtitle>Esto nos ayuda a crear un plan personalizado para ti</Subtitle>
+                        {/* <Subtitle>Esto nos ayuda a crear un plan personalizado para ti</Subtitle> */}
                     </motion.div>
                 </HeaderSection>
 

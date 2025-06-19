@@ -298,7 +298,7 @@ const InjuriesInput = () => {
                 <HeaderSection>
                     <motion.div variants={itemVariants}>
                         <Title gradient>¿Has experimentado alguna molestia?</Title>
-                        <Subtitle>Esto nos ayuda a personalizar tus entrenamientos de forma segura</Subtitle>
+                        {/* <Subtitle>Esto nos ayuda a personalizar tus entrenamientos de forma segura</Subtitle> */}
                     </motion.div>
                 </HeaderSection>
 
@@ -314,7 +314,6 @@ const InjuriesInput = () => {
                                     initial="hidden"
                                     animate="visible"
                                     transition={{ delay: index * 0.1 }}
-                                    whileHover={{ scale: 1.02 }}
                                     whileTap={{ scale: 0.98 }}
                                 >
                                     <InjuryIcon selected={selectedInjury === injury.id}>
@@ -328,14 +327,14 @@ const InjuriesInput = () => {
                         </InjuryOptions>
                     </ScrollableOptionsContainer>
 
-                    <InfoCard
+                    {/* <InfoCard
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 0.6 }}
                     >
                         <h3>💡 Información</h3>
                         <p>Esta información nos permite adaptar los ejercicios a tus necesidades específicas y garantizar tu seguridad</p>
-                    </InfoCard>
+                    </InfoCard> */}
                 </ContentWrapper>
 
                 <NavigationContainer>

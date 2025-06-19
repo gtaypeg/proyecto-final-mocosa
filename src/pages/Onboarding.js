@@ -151,6 +151,8 @@ const StartButton = styled(motion(Button))`
     overflow: hidden;
     min-width: 200px;
     text-shadow: none;
+    margin-top: auto;
+    transition: none;
 
     &::before {
         content: '';

@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import Slider from "rc-slider";
+import "rc-slider/assets/index.css";
 import { 
     Title, 
     Button,
     Subtitle,
     ModernPageContainer
 } from '../components/StyledComponents';
-
-
 
 const HeaderSection = styled.div`
     padding: ${props => props.theme.spacing.xl} ${props => props.theme.spacing.lg} 0;
@@ -42,238 +42,200 @@ const ContentSection = styled(motion.div)`
 `;
 
 const AerobicVisual = styled(motion.div)`
-    margin: ${props => props.theme.spacing.xl} 0;
+    margin: 0 0 auto 0;
     width: 100%;
-    height: 250px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     position: relative;
-    background: ${props => props.theme.colors.glass};
-    backdrop-filter: blur(20px);
-    border-radius: ${props => props.theme.borderRadius.xl};
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: ${props => props.theme.colors.shadow};
-    overflow: hidden;
-
-    &::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(
-            135deg,
-            ${props => props.theme.colors.primarySolid}10 0%,
-            transparent 50%,
-            ${props => props.theme.colors.primarySolid}05 100%
-        );
-    }
 `;
 
-const AerobicImage = styled(motion.img)`
-    width: 12rem;
-    height: 12rem;
+const AerobicFigure = styled(motion.div)`
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: ${props => props.theme.borderRadius.full};
+    background: ${props => props.theme.colors.primarySolid}15;
+    backdrop-filter: blur(10px);
+    border: 3px solid ${props => props.theme.colors.primarySolid}30;
+    margin-bottom: ${props => props.theme.spacing.md};
+    position: relative;
+    overflow: hidden;
+`;
+
+const AerobicImage = styled.img`
+    width: 70px;
+    height: 70px;
     object-fit: cover;
-    border-radius: ${props => props.theme.borderRadius.xl};
-    position: relative;
-    z-index: 1;
-    box-shadow: ${props => props.theme.colors.shadow};
-    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: ${props => props.theme.borderRadius.lg};
+    mix-blend-mode: color;
 `;
 
-const StatusCard = styled(motion.div)`
-    background: ${props => props.theme.colors.glass};
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: ${props => props.theme.borderRadius.xl};
-    padding: ${props => props.theme.spacing.lg};
-    text-align: center;
-    box-shadow: ${props => props.theme.colors.shadow};
-    max-width: 400px;
-    margin: ${props => props.theme.spacing.lg} 0;
-    position: relative;
-    overflow: hidden;
-
-    &::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: ${props => {
-            const level = props.level;
-            if (level === 'high') return `linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, transparent 100%)`;
-            if (level === 'medium') return `linear-gradient(135deg, rgba(251, 191, 36, 0.1) 0%, transparent 100%)`;
-            return `linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, transparent 100%)`;
-        }};
-    }
-`;
-
-const AerobicStatusText = styled.div`
+const AerobicStatusText = styled(motion.div)`
     font-size: ${props => props.theme.fontSizes["2xl"]};
     font-weight: 700;
     color: ${props => props.theme.colors.text};
     font-family: ${props => props.theme.fonts.heading};
-    background: ${props => {
-        const level = props.level;
-        if (level === 'high') return 'linear-gradient(135deg, #22c55e, #16a34a)';
-        if (level === 'medium') return 'linear-gradient(135deg, #f59e0b, #d97706)';
-        return 'linear-gradient(135deg, #ef4444, #dc2626)';
-    }};
+    background: ${props => props.theme.colors.primary};
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     margin-bottom: ${props => props.theme.spacing.sm};
-    position: relative;
-    z-index: 1;
+    text-align: center;
 `;
 
-const AerobicMessage = styled.div`
+const AerobicDescription = styled(motion.div)`
     font-size: ${props => props.theme.fontSizes.md};
     color: ${props => props.theme.colors.textLight};
-    line-height: 1.5;
-    position: relative;
-    z-index: 1;
+    text-align: center;
+    max-width: 380px;
+    line-height: 1.6;
+    margin-bottom: ${props => props.theme.spacing.xl};
 `;
 
 const SliderSection = styled(motion.div)`
     width: 100%;
-    max-width: 400px;
-    padding: ${props => props.theme.spacing.xl};
-    background: ${props => props.theme.colors.glass};
-    backdrop-filter: blur(20px);
-    border-radius: ${props => props.theme.borderRadius.xl};
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: ${props => props.theme.colors.shadow};
-    margin-bottom: ${props => props.theme.spacing.xl};
+    max-width: 450px;
+    padding: 0 ${props => props.theme.spacing.xl} 35px;
 `;
 
-const SliderContainer = styled.div`
+const CustomSliderContainer = styled.div`
     width: 100%;
-    position: relative;
-    margin: ${props => props.theme.spacing.lg} 0;
-`;
 
-const SliderTrack = styled.div`
-    width: 100%;
-    height: 8px;
-    background: ${props => props.theme.colors.backgroundDark};
-    border-radius: ${props => props.theme.borderRadius.full};
-    position: relative;
-    overflow: hidden;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
-`;
+    .rc-slider {
+        background-color: transparent;
+        border-radius: 6px;
+        position: relative;
+        height: 12px;
+        padding: 5px 0;
+        width: 100%;
+        border-radius: 6px;
+        touch-action: none;
+        box-sizing: border-box;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    }
 
-const SliderFill = styled(motion.div)`
-    height: 100%;
-    background: ${props => {
-        const level = props.level;
-        if (level === 'high') return 'linear-gradient(90deg, #22c55e, #16a34a)';
-        if (level === 'medium') return 'linear-gradient(90deg, #f59e0b, #d97706)';
-        return 'linear-gradient(90deg, #ef4444, #dc2626)';
-    }};
-    border-radius: ${props => props.theme.borderRadius.full};
-    position: relative;
-    
-    &::after {
-        content: '';
+    .rc-slider * {
+        box-sizing: border-box;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    }
+
+    .rc-slider-rail {
         position: absolute;
-        top: 0;
+        width: 100%;
+        background: ${props => props.theme.colors.backgroundDark};
+        height: 12px;
+        border-radius: 6px;
+        box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    .rc-slider-track {
+        position: absolute;
         left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-        border-radius: ${props => props.theme.borderRadius.full};
-        animation: shimmer 2s infinite;
+        height: 12px;
+        border-radius: 6px;
+        background: ${props => props.theme.colors.primary};
+        z-index: 1;
+        box-shadow: 0 2px 8px ${props => props.theme.colors.primarySolid}40;
     }
 
-    @keyframes shimmer {
-        0% { transform: translateX(-100%); }
-        100% { transform: translateX(100%); }
-    }
-`;
-
-const SliderThumb = styled(motion.div)`
-    width: 24px;
-    height: 24px;
-    background: white;
-    border: 3px solid ${props => {
-        const level = props.level;
-        if (level === 'high') return '#22c55e';
-        if (level === 'medium') return '#f59e0b';
-        return '#ef4444';
-    }};
-    border-radius: ${props => props.theme.borderRadius.full};
-    position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    cursor: pointer;
-    box-shadow: ${props => props.theme.colors.shadow};
-    z-index: 10;
-
-    &::before {
-        content: '';
+    .rc-slider-handle {
         position: absolute;
-        inset: -8px;
-        border-radius: ${props => props.theme.borderRadius.full};
-        background: ${props => {
-            const level = props.level;
-            if (level === 'high') return 'rgba(34, 197, 94, 0.2)';
-            if (level === 'medium') return 'rgba(251, 191, 36, 0.2)';
-            return 'rgba(239, 68, 68, 0.2)';
-        }};
-        opacity: 0;
-        transition: opacity ${props => props.theme.transitions.base};
-    }
-
-    &:hover::before {
-        opacity: 1;
-    }
-`;
-
-const HiddenSlider = styled.input`
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    cursor: pointer;
-    margin: 0;
-    padding: 0;
-    
-    -webkit-appearance: none;
-    appearance: none;
-    
-    &::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        appearance: none;
-        width: 24px;
-        height: 24px;
+        width: 28px;
+        height: 28px;
         cursor: pointer;
+        cursor: -webkit-grab;
+        margin-top: -8px;
+        border-radius: 50%;
+        border: 4px solid ${props => props.theme.colors.primarySolid};
+        background: white;
+        touch-action: pan-x;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 0 0 0 0 ${props => props.theme.colors.primarySolid}00;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 2;
     }
-    
-    &::-moz-range-thumb {
-        width: 24px;
-        height: 24px;
+
+    .rc-slider-handle:hover {
+        border-color: ${props => props.theme.colors.primarySolid};
+        transform: scale(1.1);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25), 0 0 0 8px ${props => props.theme.colors.primarySolid}20;
+    }
+
+    .rc-slider-handle:active {
+        border-color: ${props => props.theme.colors.primarySolid};
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25), 0 0 0 12px ${props => props.theme.colors.primarySolid}30;
+        cursor: -webkit-grabbing;
+        transform: scale(1.15);
+    }
+
+    .rc-slider-handle-dragging.rc-slider-handle-dragging.rc-slider-handle-dragging {
+        border-color: ${props => props.theme.colors.primarySolid};
+        box-shadow: 0 0 0 5px ${props => props.theme.colors.primarySolid}30;
+    }
+
+    .rc-slider-mark {
+        position: absolute;
+        top: 22px;
+        left: 0;
+        width: 100%;
+        font-size: 12px;
+    }
+
+    .rc-slider-mark-text {
+        position: absolute;
+        display: inline-block;
+        vertical-align: middle;
+        text-align: center;
         cursor: pointer;
-        border: none;
-        background: transparent;
+        color: ${props => props.theme.colors.textLight};
+        font-weight: 600;
+        font-size: ${props => props.theme.fontSizes.sm};
+        transform: translateX(-50%);
+        white-space: nowrap;
+        user-select: none;
     }
-`;
 
-const AerobicLabels = styled.div`
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    margin-top: ${props => props.theme.spacing.md};
-`;
+    .rc-slider-mark-text-active {
+        color: ${props => props.theme.colors.primarySolid};
+        font-weight: 700;
+    }
 
-const AerobicLabel = styled.span`
-    font-size: ${props => props.theme.fontSizes.sm};
-    color: ${props => props.theme.colors.textLight};
-    font-weight: 500;
+    .rc-slider-step {
+        display: none !important;
+    }
+
+    .rc-slider-dot {
+        position: absolute;
+        bottom: -6px;
+        margin-left: -4px;
+        width: 8px;
+        height: 8px;
+        border: 2px solid ${props => props.theme.colors.backgroundDark};
+        background: ${props => props.theme.colors.surface};
+        cursor: pointer;
+        border-radius: 50%;
+        vertical-align: middle;
+        transition: all 0.2s ease;
+    }
+
+    .rc-slider-dot-active {
+        border-color: ${props => props.theme.colors.primarySolid};
+        background: ${props => props.theme.colors.primarySolid};
+        transform: scale(1.2);
+    }
+
+    .rc-slider-dot-reverse {
+        margin-right: -4px;
+        margin-left: auto;
+    }
+
+    .rc-slider:hover .rc-slider-track {
+        background: ${props => props.theme.colors.primary};
+        box-shadow: 0 2px 12px ${props => props.theme.colors.primarySolid}50;
+    }
 `;
 
 const NavigationContainer = styled.div`
@@ -289,8 +251,7 @@ const FinishButton = styled(Button)`
     padding: ${props => props.theme.spacing.lg} ${props => props.theme.spacing.xl};
     position: relative;
     overflow: hidden;
-    background: ${props => props.theme.colors.primary};
-    
+
     &::before {
         content: '';
         position: absolute;
@@ -301,7 +262,7 @@ const FinishButton = styled(Button)`
         background: linear-gradient(
             90deg,
             transparent,
-            rgba(255, 255, 255, 0.3),
+            rgba(255, 255, 255, 0.2),
             transparent
         );
         transition: left 0.5s;
@@ -310,54 +271,59 @@ const FinishButton = styled(Button)`
     &:hover::before {
         left: 100%;
     }
-
-    &::after {
-        content: '🎉';
-        position: absolute;
-        right: ${props => props.theme.spacing.lg};
-        top: 50%;
-        transform: translateY(-50%);
-        font-size: ${props => props.theme.fontSizes.lg};
-        opacity: 0;
-        transition: opacity ${props => props.theme.transitions.base};
-    }
-
-    &:hover::after {
-        opacity: 1;
-    }
 `;
-
 
 const AerobicInput = () => {
     const navigate = useNavigate();
-    const [aerobicLevel, setAerobicLevel] = useState(30);
+    const [aerobicLevel, setAerobicLevel] = useState(1);
 
-    const handleAerobicChange = (e) => {
-        setAerobicLevel(parseInt(e.target.value));
+    // Configuración de los niveles aeróbicos
+    const aerobicLevels = [
+        {
+            value: 0,
+            key: "low",
+            label: "Sin aliento",
+            description: "¡Entendido! Nuestros entrenamientos personalizados aumentarán gradualmente tu resistencia.",
+            image: "/aerobico/sin-aliento.png",
+            color: "#ef4444",
+        },
+        {
+            value: 1,
+            key: "medium",
+            label: "Un poco cansado pero bien",
+            description: "¡Buen trabajo! Te ayudaremos a seguir progresando y a volverte más fuerte.",
+            image: "/aerobico/cansado-pero-bien.png",
+            color: "#f59e0b",
+        },
+        {
+            value: 2,
+            key: "high",
+            label: "Con facilidad",
+            description: "¡Genial! Tenemos más desafíos esperándote.",
+            image: "/aerobico/facilidad.png",
+            color: "#22c55e",
+        },
+    ];
+
+    const getCurrentLevel = () => {
+        return aerobicLevels[aerobicLevel];
     };
 
-    const getAerobicLevel = () => {
-        if (aerobicLevel < 30) return 'low';
-        if (aerobicLevel < 70) return 'medium';
-        return 'high';
-    };
+    const marks = aerobicLevels.reduce((acc, level) => {
+        acc[level.value] = {
+            style: {
+                color: aerobicLevel === level.value ? "#2d3e2d" : "#94a3b8",
+                fontWeight: aerobicLevel === level.value ? "700" : "500",
+                fontSize: "11px",
+                marginTop: "10px",
+            },
+            label: level.value === 0 ? "Difícil" : level.value === 1 ? "Bien" : "Fácil",
+        };
+        return acc;
+    }, {});
 
-    const getAerobicStatus = () => {
-        if (aerobicLevel < 30) return 'Sin aliento';
-        if (aerobicLevel < 70) return 'Un poco cansado pero bien';
-        return 'Con facilidad, habla normalmente';
-    };
-
-    const getAerobicImage = () => {
-        if (aerobicLevel < 30) return '/aerobico/sin-aliento.png';
-        if (aerobicLevel < 70) return '/aerobico/cansado-pero-bien.png';
-        return '/aerobico/facilidad.png';
-    };
-
-    const aerobicDescription = () => {
-        if (aerobicLevel < 30) return '¡Entendido! Nuestros entrenamientos personalizados aumentarán gradualmente tu resistencia.';
-        if (aerobicLevel < 70) return '¡Buen trabajo! Te ayudaremos a seguir progresando y a volverte más fuerte.';
-        return '¡Genial! Tenemos más desafíos esperándote.';
+    const handleSliderChange = (value) => {
+        setAerobicLevel(value);
     };
 
     const handleFinish = () => {
@@ -387,6 +353,8 @@ const AerobicInput = () => {
         }
     };
 
+    const currentLevel = getCurrentLevel();
+
     return (
         <ModernPageContainer>
             <motion.div
@@ -408,68 +376,74 @@ const AerobicInput = () => {
                         animate={{ scale: 1, opacity: 1 }}
                         transition={{ delay: 0.3 }}
                     >
-                        <AerobicImage 
-                            src={getAerobicImage()} 
-                            alt="Aerobic"
-                            key={getAerobicLevel()}
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.5 }}
-                            whileHover={{ scale: 1.05 }}
-                        />
+                        <AerobicFigure 
+                            animate={{ 
+                                scale: [1, 1.05, 1],
+                                rotate: [0, 2, -2, 0]
+                            }}
+                            transition={{ 
+                                duration: 3, 
+                                repeat: Infinity,
+                                ease: "easeInOut"
+                            }}
+                        >
+                            <AerobicImage 
+                                src={currentLevel.image} 
+                                alt="Aeróbico"
+                            />
+                        </AerobicFigure>
+                        <AerobicStatusText
+                            key={currentLevel.label}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.4 }}
+                        >
+                            {currentLevel.label}
+                        </AerobicStatusText>
                     </AerobicVisual>
 
-                    <StatusCard
-                        level={getAerobicLevel()}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.4 }}
+                    <AerobicDescription
+                        key={currentLevel.description}
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.4 }}
                     >
-                        <AerobicStatusText
-                            level={getAerobicLevel()}
-                            key={getAerobicStatus()}
-                        >
-                            {getAerobicStatus()}
-                        </AerobicStatusText>
-                        <AerobicMessage
-                            key={aerobicDescription()}
-                        >
-                            {aerobicDescription()}
-                        </AerobicMessage>
-                    </StatusCard>
+                        {currentLevel.description}
+                    </AerobicDescription>
 
                     <SliderSection
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: 0.5 }}
+                        transition={{ delay: 0.4 }}
                     >
-                        <SliderContainer>
-                            <SliderTrack>
-                                <SliderFill 
-                                    level={getAerobicLevel()}
-                                    style={{ width: `${aerobicLevel}%` }}
-                                    layout
-                                />
-                                <SliderThumb 
-                                    level={getAerobicLevel()}
-                                    style={{ left: `${aerobicLevel}%` }}
-                                    whileHover={{ scale: 1.2 }}
-                                    whileTap={{ scale: 0.9 }}
-                                />
-                                <HiddenSlider 
-                                    type="range"
-                                    min={0}
-                                    max={100}
-                                    value={aerobicLevel}
-                                    onChange={handleAerobicChange}
-                                />
-                            </SliderTrack>
-                            
-                            <AerobicLabels>
-                                <AerobicLabel>Muy difícil</AerobicLabel>
-                                <AerobicLabel>Calmado</AerobicLabel>
-                            </AerobicLabels>
-                        </SliderContainer>
+                        <CustomSliderContainer>
+                            <Slider
+                                min={0}
+                                max={2}
+                                step={1}
+                                value={aerobicLevel}
+                                onChange={handleSliderChange}
+                                marks={marks}
+                                included={true}
+                                trackStyle={{
+                                    background: "#2d3e2d",
+                                    boxShadow: "0 2px 8px rgba(45, 62, 45, 0.4)",
+                                }}
+                                handleStyle={{
+                                    background: "#2d3e2d",
+                                    borderColor: "#2d3e2d",
+                                    boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15), 0 0 0 0 rgba(139, 92, 246, 0)",
+                                }}
+                                dotStyle={{
+                                    borderColor: "#2d3e2d",
+                                    background: "#2d3e2d",
+                                }}
+                                activeDotStyle={{
+                                    borderColor: "#2d3e2d",
+                                    background: "#2d3e2d",
+                                }}
+                            />
+                        </CustomSliderContainer>
                     </SliderSection>
                 </ContentSection>
 
