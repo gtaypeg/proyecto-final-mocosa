@@ -334,7 +334,7 @@ const RecipesPage = () => {
                     ←
                 </BackButton>
                 <HeaderContent>
-                    <Title>Recetas Saludables</Title>
+                    <Title>Recetas</Title>
                     <Subtitle>Deliciosas opciones nutritivas para ti</Subtitle>
                 </HeaderContent>
             </Header>
