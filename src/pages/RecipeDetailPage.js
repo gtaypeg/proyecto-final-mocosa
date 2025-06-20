@@ -411,6 +411,63 @@ const NutritionLabel = styled.div`
     font-weight: 500;
 `;
 
+const NutritionDetailsList = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: ${props => props.theme.spacing.lg};
+    margin-top: ${props => props.theme.spacing.xl};
+`;
+
+const NutritionDetailCard = styled(motion.div)`
+    background: ${props => props.theme.colors.surface};
+    border: 1px solid ${props => props.theme.colors.border};
+    border-radius: ${props => props.theme.borderRadius.xl};
+    padding: ${props => props.theme.spacing.lg};
+    display: flex;
+    gap: ${props => props.theme.spacing.lg};
+    transition: ${props => props.theme.transitions.base};
+    box-shadow: ${props => props.theme.colors.shadow};
+    position: relative;
+    overflow: hidden;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: ${props => props.theme.colors.shadowHover};
+    }
+
+    &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 4px;
+        background: ${props => props.theme.colors.success};
+    }
+`;
+
+const NutritionIcon = styled.div`
+    width: 48px;
+    height: 48px;
+    background: ${props => props.theme.colors.success};
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: ${props => props.theme.fontSizes.lg};
+    flex-shrink: 0;
+    box-shadow: ${props => props.theme.colors.shadow};
+    font-family: ${props => props.theme.fonts.display};
+`;
+
+const NutritionDetailText = styled.div`
+    font-size: ${props => props.theme.fontSizes.base};
+    line-height: 1.6;
+    color: ${props => props.theme.colors.text};
+    font-weight: 400;
+`;
+
 const NotFoundContainer = styled(motion.div)`
     display: flex;
     flex-direction: column;
@@ -548,7 +605,7 @@ const RecipeDetailPage = () => {
                         initial="hidden"
                         animate="visible"
                     >
-                        <SectionTitle>Información Nutricional</SectionTitle>
+                        {/* <SectionTitle>Información Nutricional</SectionTitle>
                         <NutritionGrid>
                             {Object.entries(recipe.nutritionalInfo || {}).map(([key, value]) => (
                                 <NutritionCard
@@ -565,7 +622,30 @@ const RecipeDetailPage = () => {
                                     </NutritionLabel>
                                 </NutritionCard>
                             ))}
-                        </NutritionGrid>
+                        </NutritionGrid> */}
+                        
+                        {recipe.nutritionalDetails && (
+                            <>
+                                <SectionTitle>Beneficios Nutricionales</SectionTitle>
+                                <NutritionDetailsList>
+                                    {recipe.nutritionalDetails.map((detail, index) => (
+                                        <NutritionDetailCard
+                                            key={index}
+                                            variants={itemVariants}
+                                            whileHover={{ scale: 1.01 }}
+                                        >
+                                            {/* <NutritionIcon>
+                                                {index === 0 && "💪"}
+                                                {index === 1 && "🥑"}
+                                                {index === 2 && "🌾"}
+                                                {index === 3 && "✨"}
+                                            </NutritionIcon> */}
+                                            <NutritionDetailText>{detail}</NutritionDetailText>
+                                        </NutritionDetailCard>
+                                    ))}
+                                </NutritionDetailsList>
+                            </>
+                        )}
                     </motion.div>
                 );
             default:
@@ -665,7 +745,7 @@ const RecipeDetailPage = () => {
                     >
                         Preparación
                     </Tab>
-                    {/* {recipe.nutritionalInfo && (
+                    {recipe.nutritionalInfo && (
                         <Tab 
                             active={activeTab === "nutrition"} 
                             onClick={() => setActiveTab("nutrition")}
@@ -674,7 +754,7 @@ const RecipeDetailPage = () => {
                         >
                             Nutrición
                         </Tab>
-                    )} */}
+                    )}
                 </TabContainer>
 
                 <TabContent key={activeTab}>
