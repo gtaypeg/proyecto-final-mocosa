@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { motion } from "framer-motion";
@@ -26,8 +26,8 @@ const ContentSection = styled(motion.div)`
     border: 1px solid ${props => props.theme.colors.border};
     position: relative;
     overflow: hidden;
-    max-width: 500px;
-    width: 90%;
+    max-width: 600px;
+    width: 95%;
     text-align: center;
 
     &::before {
@@ -42,48 +42,60 @@ const ContentSection = styled(motion.div)`
 `;
 
 const StepTitle = styled(Title)`
-    font-size: ${props => props.theme.fontSizes["4xl"]};
+    font-size: ${props => props.theme.fontSizes["3xl"]};
     font-weight: 900;
     margin-bottom: ${props => props.theme.spacing.xl};
     position: relative;
     z-index: 1;
-    background: ${props => props.theme.colors.primary};
+    background: linear-gradient(135deg, #ff6b6b, #ffa726);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     font-family: ${props => props.theme.fonts.heading};
 `;
 
-const ObjectiveCard = styled(motion.div)`
+const WarningCard = styled(motion.div)`
     background: ${props => props.theme.colors.glass};
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 107, 107, 0.3);
     border-radius: ${props => props.theme.borderRadius.xl};
     padding: ${props => props.theme.spacing.xl};
     margin: ${props => props.theme.spacing.lg} 0;
     position: relative;
     z-index: 1;
-    box-shadow: ${props => props.theme.colors.shadow};
+    box-shadow: 0 8px 32px rgba(255, 107, 107, 0.1);
 
-    h3 {
-        color: ${props => props.theme.colors.text};
-        font-size: ${props => props.theme.fontSizes.xl};
-        font-weight: 600;
-        margin-bottom: ${props => props.theme.spacing.md};
-        font-family: ${props => props.theme.fonts.heading};
-    }
-
-    p {
-        color: ${props => props.theme.colors.textLight};
-        font-size: ${props => props.theme.fontSizes.md};
-        line-height: 1.6;
-        margin-bottom: ${props => props.theme.spacing.md};
-    }
-
-    .emoji {
-        font-size: ${props => props.theme.fontSizes["2xl"]};
-        margin-bottom: ${props => props.theme.spacing.sm};
+    .warning-icon {
+        font-size: ${props => props.theme.fontSizes["4xl"]};
+        margin-bottom: ${props => props.theme.spacing.lg};
         display: block;
+        animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+        100% { transform: scale(1); }
+    }
+`;
+
+const WarningText = styled.p`
+    color: ${props => props.theme.colors.text};
+    font-size: ${props => props.theme.fontSizes.lg};
+    line-height: 1.8;
+    margin-bottom: ${props => props.theme.spacing.lg};
+    font-weight: 500;
+    text-align: left;
+    text-align: center;
+    
+    strong {
+        color: #ff6b6b;
+        font-weight: 700;
+    }
+    
+    em {
+        font-style: italic;
+        color: ${props => props.theme.colors.textLight};
     }
 `;
 
@@ -95,6 +107,7 @@ const NextButton = styled(Button)`
     overflow: hidden;
     margin-top: ${props => props.theme.spacing.lg};
     min-width: 200px;
+    background: linear-gradient(135deg, #4CAF50, #45a049);
 
     &::before {
         content: '';
@@ -138,17 +151,17 @@ const BackgroundDecoration = styled(motion.div)`
     width: 300px;
     height: 300px;
     border-radius: ${props => props.theme.borderRadius.full};
-    background: ${props => props.theme.colors.primarySolid}10;
+    background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(255, 167, 38, 0.1));
     top: -150px;
     right: -150px;
     z-index: 0;
 `;
 
-const GoalSelection = () => {
+const MedicalWarning = () => {
     const navigate = useNavigate();
 
     const handleNext = () => {
-        navigate("/medical-warning");
+        navigate("/height");
     };
 
     const containerVariants = {
@@ -176,6 +189,11 @@ const GoalSelection = () => {
 
     return (
         <CenteredContainer>
+            <BackgroundDecoration
+                initial={{ scale: 0, rotate: 0 }}
+                animate={{ scale: 1, rotate: 360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            />
             <motion.div
                 variants={containerVariants}
                 initial="hidden"
@@ -184,33 +202,32 @@ const GoalSelection = () => {
             >
                 <ContentSection variants={itemVariants}>
                     <motion.div variants={itemVariants}>
-                        <StepTitle>Tu Objetivo</StepTitle>
+                        <StepTitle>Advertencia Médica</StepTitle>
                     </motion.div>
 
-                    <ObjectiveCard
+                    <WarningCard
                         variants={itemVariants}
                         whileHover={{ scale: 1.02 }}
                         transition={{ type: "spring", stiffness: 300 }}
                     >
-                        <span className="emoji">🎯</span>
-                        <h3>Comenzar tu transformación</h3>
-                        <p>
-                            Descubre ejercicios efectivos y recetas nutritivas que te ayudarán a alcanzar tus metas de fitness. 
-                            Desde rutinas de cardio hasta comidas balanceadas, encuentra todo lo que necesitas para tu bienestar.
-                        </p>
-                    </ObjectiveCard>
+                        <WarningText>
+                            <strong>Advertencia:</strong> Se le advierte que nunca se deben descontinuar o alterar las dosis de sus 
+                            medicamentos recetados, ni cambiar su régimen nutricional, ni utilizar suplementos 
+                            naturales, sin que antes haya consultado con su médico.
+                        </WarningText>
+                    </WarningCard>
 
                     <NextButton 
-                            onClick={handleNext}
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                        >
-                            Comenzar
-                        </NextButton>
+                        onClick={handleNext}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        Entendido
+                    </NextButton>
                 </ContentSection>
             </motion.div>
         </CenteredContainer>
     );
 };
 
-export default GoalSelection;
+export default MedicalWarning; 
