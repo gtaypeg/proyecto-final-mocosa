@@ -187,7 +187,6 @@ const Description = styled.p`
 
 const TabContainer = styled.div`
     display: flex;
-    padding: 0 ${props => props.theme.spacing.lg};
     background: ${props => props.theme.colors.surface};
     border-bottom: 1px solid ${props => props.theme.colors.border};
     position: sticky;
@@ -198,7 +197,6 @@ const TabContainer = styled.div`
 
 const Tab = styled(motion.button)`
     flex: 1;
-    padding: ${props => props.theme.spacing.lg};
     background: none;
     border: none;
     font-size: ${props => props.theme.fontSizes.base};
