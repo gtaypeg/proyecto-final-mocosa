@@ -8,8 +8,8 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    max-width: 480px;
-    margin: 0 auto;
+    /* max-width: 480px; */
+    /* margin: 0 auto; */
     background: linear-gradient(
         135deg,
         ${props => props.theme.colors.background} 0%,
@@ -665,7 +665,7 @@ const RecipeDetailPage = () => {
                     >
                         Preparación
                     </Tab>
-                    {/* {recipe.nutritionalInfo && (
+                    {recipe.nutritionalInfo && (
                         <Tab 
                             active={activeTab === "nutrition"} 
                             onClick={() => setActiveTab("nutrition")}
@@ -674,7 +674,7 @@ const RecipeDetailPage = () => {
                         >
                             Nutrición
                         </Tab>
-                    )} */}
+                    )}
                 </TabContainer>
 
                 <TabContent key={activeTab}>

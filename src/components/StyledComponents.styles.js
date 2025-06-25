@@ -8,7 +8,7 @@ export const StyledContainer = styled.div`
   justify-content: space-between;
   min-height: 100vh;
   padding: 20px;
-  max-width: 480px;
+  /* max-width: 480px; */
   margin: 0 auto;
   position: relative;
   background-color: #fff;

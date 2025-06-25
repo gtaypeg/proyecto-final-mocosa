@@ -144,13 +144,14 @@ const AppWrapper = styled.div`
     
     /* Large screens - add side padding */
     @media (min-width: 1024px) {
-        padding: ${props => props.theme.spacing.xl};
+        /* padding: ${props => props.theme.spacing.xl}; */
+        padding: 0;
     }
 `;
 
 const AppContainer = styled.div`
     width: 100%;
-    max-width: 480px;
+    /* max-width: 480px; */
     min-height: 100vh;
     background: ${props => props.theme.colors.surface};
     position: relative;
@@ -167,9 +168,9 @@ const AppContainer = styled.div`
     
     /* Tablet and up - card-like appearance */
     @media (min-width: 481px) {
-        border-radius: ${props => props.theme.borderRadius["2xl"]};
+        /* border-radius: ${props => props.theme.borderRadius["2xl"]}; */
         box-shadow: ${props => props.theme.colors.shadow};
-        border: 1px solid ${props => props.theme.colors.border};
+        /* border: 1px solid ${props => props.theme.colors.border}; */
         min-height: calc(100vh - ${props => props.theme.spacing.xl});
     }
 `;
