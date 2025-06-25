@@ -29,7 +29,13 @@
             "carbs": "12g",
             "fat": "18g",
             "fiber": "8g"
-        }
+        },
+        "nutritionalDetails": [
+            "Proteínas: El atún es una excelente fuente de proteínas de alta calidad.",
+            "Grasas: El atún contiene grasas saludables, como ácidos grasos omega-3. El aguacate también aporta grasas monoinsaturadas.",
+            "Carbohidratos: Bajo en carbohidratos.",
+            "Beneficios: Rico en proteínas, ácidos grasos omega-3, vitaminas y minerales. El aguacate aporta fibra, vitaminas y antioxidantes."
+        ]
     },
     {
         "id": 2,
@@ -60,7 +66,13 @@
             "carbs": "65g",
             "fat": "18g",
             "fiber": "3g"
-        }
+        },
+        "nutritionalDetails": [
+            "Proteínas: Las alas de pollo son una buena fuente de proteínas.",
+            "Grasas: Contiene grasas, principalmente saturadas.",
+            "Carbohidratos: Bajo en carbohidratos.",
+            "Beneficios: Aporta proteínas y algunos minerales, pero también grasas saturadas. La mostaza puede aportar propiedades antioxidantes."
+        ]
     },
     {
         "id": 3,
@@ -93,7 +105,13 @@
             "carbs": "35g",
             "fat": "14g",
             "fiber": "9g"
-        }
+        },
+        "nutritionalDetails": [
+            "Proteínas: La carne de pavo es rica en proteínas de alta calidad.",
+            "Grasas: Contiene grasas, principalmente monoinsaturadas y poliinsaturadas.",
+            "Carbohidratos: Bajo en carbohidratos.",
+            "Beneficios: Excelente fuente de proteínas magras, baja en grasas saturadas."
+        ]
     },
     {
         "id": 4,
@@ -126,7 +144,13 @@
             "carbs": "18g",
             "fat": "24g",
             "fiber": "6g"
-        }
+        },
+        "nutritionalDetails": [
+            "Proteínas: Los huevos aportan proteínas de alta calidad.",
+            "Grasas: Contiene grasas, principalmente monoinsaturadas del aceite de oliva.",
+            "Carbohidratos: Bajo en carbohidratos.",
+            "Beneficios: Rica en proteínas, vitaminas, minerales y antioxidantes de las espinacas."
+        ]
     },
     {
         "id": 5,
@@ -156,7 +180,13 @@
             "carbs": "25g",
             "fat": "8g",
             "fiber": "12g"
-        }
+        },
+        "nutritionalDetails": [
+            "Proteínas: Contiene proteínas de alta calidad del pollo y los huevos.",
+            "Grasas: Contiene grasas, principalmente monoinsaturadas y poliinsaturadas.",
+            "Carbohidratos: Bajo en carbohidratos.",
+            "Beneficios: Aporta proteínas magras, vitaminas y minerales."
+        ]
     },
     {
         "id": 6,
@@ -188,7 +218,13 @@
             "carbs": "45g",
             "fat": "12g",
             "fiber": "8g"
-        }
+        },
+        "nutritionalDetails": [
+            "Proteínas: Contiene proteínas de la ricota.",
+            "Grasas: Contiene grasas, principalmente monoinsaturadas del aceite de oliva.",
+            "Carbohidratos: Los tomates aportan algunos carbohidratos.",
+            "Beneficios: Aporta fibra, vitaminas, minerales y antioxidantes de la berenjena y los tomates."
+        ]
     },
     {
         "id": 7,
@@ -223,7 +259,13 @@
             "carbs": "55g",
             "fat": "16g",
             "fiber": "4g"
-        }
+        },
+        "nutritionalDetails": [
+            "Proteínas: La pechuga de pavo es una excelente fuente de proteínas magras.",
+            "Grasas: Bajo en grasas.",
+            "Carbohidratos: Bajo en carbohidratos.",
+            "Beneficios: Rica en proteínas, baja en grasas saturadas."
+        ]
     },
     {
         "id": 8,
@@ -258,7 +300,13 @@
             "carbs": "45g",
             "fat": "12g",
             "fiber": "9g"
-        }
+        },
+        "nutritionalDetails": [
+            "Proteínas: Los huevos aportan proteínas de alta calidad.",
+            "Grasas: Contiene grasas saludables del aceite de coco.",
+            "Carbohidratos: Bajo en carbohidratos.",
+            "Beneficios: Rica en proteínas, vitaminas, minerales y antioxidantes de las espinacas."
+        ]
     },
     {
         "id": 9,
@@ -287,7 +335,13 @@
             "carbs": "35g",
             "fat": "26g",
             "fiber": "4g"
-        }
+        },
+        "nutritionalDetails": [
+            "Proteínas: Contiene proteínas de los huevos y el queso.",
+            "Grasas: Bajo en grasas.",
+            "Carbohidratos: Bajo en carbohidratos.",
+            "Beneficios: Rica en proteínas, fibra, vitaminas y minerales del brócoli."
+        ]
     },
     {
         "id": 10,
@@ -321,7 +375,13 @@
             "carbs": "35g",
             "fat": "26g",
             "fiber": "4g"
-        }
+        },
+        "nutritionalDetails": [
+            "Proteínas: Contiene proteínas del queso y los huevos.",
+            "Grasas: Contiene grasas, principalmente monoinsaturadas.",
+            "Carbohidratos: Bajo en carbohidratos.",
+            "Beneficios: Aporta proteínas, fibra, vitaminas y minerales del calabacín."
+        ]
     },
     {
         "id": 11,
@@ -353,7 +413,13 @@
             "carbs": "35g",
             "fat": "26g",
             "fiber": "4g"
-        }
+        },
+        "nutritionalDetails": [
+            "Proteínas: Contiene proteínas de los huevos.",
+            "Grasas: Contiene grasas saludables de la mantequilla de coco.",
+            "Carbohidratos: Bajo en carbohidratos.",
+            "Beneficios: Rica en grasas saludables, baja en carbohidratos."
+        ]
     },
     {
       "id": 12,
@@ -385,6 +451,12 @@
           "carbs": "35g",
           "fat": "26g",
           "fiber": "4g"
-      }
+      },
+      "nutritionalDetails": [
+          "Proteínas: Contiene proteínas de los huevos.",
+          "Grasas: Contiene grasas, principalmente saturadas de la mantequilla.",
+          "Carbohidratos: Contiene carbohidratos del xilitol y la harina de almendras.",
+          "Beneficios: Aporta antioxidantes del cacao, pero también contiene grasas y azúcares."
+      ]
   }
 ]

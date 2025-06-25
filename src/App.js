@@ -13,6 +13,7 @@ import ActivityLevelInput from "./pages/ActivityLevelInput";
 import FlexibilityInput from "./pages/FlexibilityInput";
 import AerobicInput from "./pages/AerobicInput";
 import GoalSelection from "./pages/GoalSelection";
+import MedicalWarning from "./pages/MedicalWarning";
 import DiscoverPage from "./pages/DiscoverPage";
 import ActivitiesPage from "./pages/ActivitiesPage";
 import CategoryPage from "./pages/CategoryPage";
@@ -225,7 +226,7 @@ const AnimatedRoutes = () => {
         <AppWrapper>
             <AppContainer>
                 <AnimatePresence mode="wait">
-                    {location.pathname !== "/" && location.pathname !== "/goal" && !isApp && (
+                    {location.pathname !== "/" && location.pathname !== "/goal" && location.pathname !== "/medical-warning" && !isApp && (
                         <Header>
                             <BackButton to={pageSteps[activeIndex - 1] || "/"}>
                                 <svg
@@ -258,6 +259,7 @@ const AnimatedRoutes = () => {
                             <Routes location={location}>
                                 <Route path="/" element={<Onboarding />} />
                                 <Route path="/goal" element={<GoalSelection />} />
+                                <Route path="/medical-warning" element={<MedicalWarning />} />
                                 <Route path="/height" element={<HeightInput />} />
                                 <Route path="/weight" element={<WeightInput />} />
                                 <Route path="/age" element={<AgeInput />} />
