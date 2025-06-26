@@ -207,6 +207,7 @@ const Tab = styled(motion.button)`
     transition: ${props => props.theme.transitions.base};
     position: relative;
     font-family: ${props => props.theme.fonts.main};
+    height: 3.125rem;
 
     &:hover {
         color: ${props => props.theme.colors.primarySolid};
